@@ -1,5 +1,5 @@
 import React from 'react';
-import {rerenderEntireTree} from "../render";
+
 
 export type PostsTypes = {
     id: number
@@ -31,6 +31,8 @@ export type stateType = {
     dialogsPage: messagePageType
     sidebar: {}
 }
+let rerenderEntireTree = () =>{}
+
 
 
 const state: stateType = {
@@ -76,7 +78,7 @@ export let addPost = (postText: string) => {
 
     state.profilePage.posts.push(newPost)
 
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 
@@ -91,18 +93,15 @@ export let addMessage = (postMessage: string) => {
     }
 
     state.dialogsPage.messages.push(newMessage)
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 
-/*
-export let updateAddMessage = (newText: string) => {
-    debugger
-    state.dialogsPage.messagesForMessages = newText
-    rerenderEntireTree(state)
-}
-*/
 
+export const subscribe = (observer:()=>void)=>{
+    rerenderEntireTree=observer
+
+}
 
 
 
