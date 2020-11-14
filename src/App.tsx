@@ -6,7 +6,7 @@ import Profile from "./components/profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {stateType} from "./redux/state";
-import {rerenderEntireTree} from "./render";
+
 
 
 // необхлдимо устоновить BrowserRouter. вся компонента окружается BrowserRouter

@@ -14,6 +14,7 @@ const Dialogs = (props: DialogsType) => {
 
     let AddMessage = () =>{
         props.addMessage(valueTextArea)
+        setValueTextArea("")
     }
 
  let onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
