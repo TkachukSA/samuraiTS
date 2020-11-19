@@ -22,6 +22,7 @@ const Profile = (props: ProfileType) => {
             <MyPosts posts={props.profilePage.posts}
                      addPost={props.addPost} />
 
+
             </div>
 
     )

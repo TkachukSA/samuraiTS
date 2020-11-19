@@ -98,7 +98,7 @@ const Store: StroreType ={
         this.rerenderEntireTree()
     },
     rerenderEntireTree() {console.log('State Changed')},
-    subscribe(observer:()=>void){
+    subscribe(observer){
         this.rerenderEntireTree=observer
     },
     getState(){

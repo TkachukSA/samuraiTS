@@ -5,16 +5,13 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {stateType} from "./redux/state";
+import { StroreType} from "./redux/state";
 
 
 
-// необхлдимо устоновить BrowserRouter. вся компонента окружается BrowserRouter
-// в компоненту добавляем Route
-// exact - точное совпадение адреса
 
 type appType = {
-    state: stateType
+    Store: StroreType
     addPost: (postText: string) => void
     addMessage: (postMessage: string) => void
 
@@ -22,6 +19,7 @@ type appType = {
 }
 
 function App(props: appType) {
+    /*const state = props.Store.getState()*/
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -30,13 +28,13 @@ function App(props: appType) {
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile
 
-                        profilePage={props.state.profilePage}
-                        addPost={props.addPost}
+                        profilePage={props.Store._state.profilePage}
+                        addPost={props.addPost.bind(props.Store)}
 
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
-                        dialogsPage={props.state.dialogsPage}
-                        addMessage={props.addMessage}
+                        dialogsPage={props.Store._state.dialogsPage}
+                        addMessage={props.addMessage.bind(props.Store)}
                     />}/>
                 </div>
             </div>
