@@ -19,7 +19,7 @@ type appType = {
 }
 
 function App(props: appType) {
-    /*const state = props.Store.getState()*/
+    const state = props.Store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -28,12 +28,12 @@ function App(props: appType) {
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile
 
-                        profilePage={props.Store._state.profilePage}
+                        profilePage={state.profilePage}
                         addPost={props.addPost.bind(props.Store)}
 
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
-                        dialogsPage={props.Store._state.dialogsPage}
+                        dialogsPage={state.dialogsPage}
                         addMessage={props.addMessage.bind(props.Store)}
                     />}/>
                 </div>
