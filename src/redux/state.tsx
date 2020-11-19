@@ -34,11 +34,12 @@ export type stateType = {
 /*let rerenderEntireTree = () =>{}*/
 
 export type StroreType ={
-    _state:stateType
+    _state: stateType
     addPost:(postText: string)=>void
     addMessage:(postMessage: string)=>void
     rerenderEntireTree:()=>void
     subscribe: (observer:()=>void)=>void
+    getState:()=>stateType
 }
 
 const Store: StroreType ={
@@ -99,6 +100,9 @@ const Store: StroreType ={
     rerenderEntireTree() {console.log('State Changed')},
     subscribe(observer:()=>void){
         this.rerenderEntireTree=observer
+    },
+    getState(){
+       return this._state
     }
 
 

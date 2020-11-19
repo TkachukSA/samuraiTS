@@ -6,12 +6,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import {addMessage, addPost, stateType} from "./redux/state";
+import Store from "./redux/state";
 
  const rerenderEntireTree = () => {
-    ReactDOM.render(<App state={state}
-                         addPost={addPost}
+    ReactDOM.render(<App Store={Store}
+                         addPost={Store.addPost}
 
-                         addMessage={addMessage}/>,
+                         addMessage={Store.addMessage}/>,
         document.getElementById('root'));
 }
 
