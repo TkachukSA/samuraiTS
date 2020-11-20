@@ -1,4 +1,5 @@
 import React from 'react';
+import {type} from "os";
 
 
 export type PostsTypes = {
@@ -53,6 +54,13 @@ export type StroreType ={
 
 
 
+export const addPostActoinCreator =(postText: string):ChengeAddPostType =>{
+    return { type: "ADD-POST", postText}
+}
+
+export const addMessageActoinCreator =(postMessage: string):ChengeAddMessageType =>{
+    return { type: "ADD-MESSAGE", postMessage}
+}
 
 const Store: StroreType ={
     _state:  {

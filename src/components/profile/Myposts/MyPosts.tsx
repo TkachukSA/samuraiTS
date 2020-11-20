@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ChangeAllAddText, PostsTypes} from "../../../redux/state";
+import {addPostActoinCreator, ChangeAllAddText, PostsTypes} from "../../../redux/state";
 
 
 type MyPostsType = {
@@ -20,7 +20,7 @@ const MyPosts = (props: MyPostsType) => {
 
     let AddPost = () => {
     //    props.addPost(valueTextarea)
-        props.dispatch({ type: "ADD-POST", postText: valueTextarea})
+        props.dispatch(addPostActoinCreator(valueTextarea))
         setValuearea("")
     }
 

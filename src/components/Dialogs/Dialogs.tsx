@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {ChangeAllAddText, messagePageType, stateType} from "../../redux/state";
+import {addMessageActoinCreator, ChangeAllAddText, messagePageType, stateType} from "../../redux/state";
 
 type DialogsType ={
     dialogsPage: messagePageType
@@ -15,7 +15,7 @@ const Dialogs = (props: DialogsType) => {
 
     let AddMessage = () =>{
        // props.addMessage(valueTextArea)
-        props.dispatch({type: "ADD-MESSAGE", postMessage: valueTextArea})
+        props.dispatch(addMessageActoinCreator(valueTextArea))
         setValueTextArea("")
     }
 
