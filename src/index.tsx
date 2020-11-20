@@ -14,8 +14,9 @@ const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App Store={Store}
-                 addPost={Store.addPost}
-                 addMessage={Store.addMessage}/>,
+                 dispatch={Store.dispatch.bind(Store)}
+
+            />,
         </BrowserRouter>,
         document.getElementById('root'));
 }

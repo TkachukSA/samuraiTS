@@ -5,15 +5,16 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import { StroreType} from "./redux/state";
+import {ChangeAllAddText, StroreType} from "./redux/state";
 
 
 
 
 type appType = {
     Store: StroreType
-    addPost: (postText: string) => void
-    addMessage: (postMessage: string) => void
+    /*addPost: (postText: string) => void
+    addMessage: (postMessage: string) => void*/
+    dispatch: (action: ChangeAllAddText)=>void
 
 
 }
@@ -27,14 +28,13 @@ function App(props: appType) {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile
-
                         profilePage={state.profilePage}
-                        addPost={props.addPost.bind(props.Store)}
+                        dispatch={props.Store.dispatch.bind(props.Store)}
 
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
                         dialogsPage={state.dialogsPage}
-                        addMessage={props.addMessage.bind(props.Store)}
+                        dispatch={props.Store.dispatch.bind(props.Store)}
                     />}/>
                 </div>
             </div>

@@ -4,12 +4,13 @@ import s from "./Profile.module.css";
 import Profileinfo from "./ProfileInfo/ProfileInfo";
 import MyPosts from "./Myposts/MyPosts";
 
-import { profilePageType} from "../../redux/state";
+import {ChangeAllAddText, profilePageType} from "../../redux/state";
 
 
 type ProfileType= {
     profilePage: profilePageType
-    addPost: (postText: string) => void
+    /*addPost: (postText: string) => void*/
+    dispatch: (action: ChangeAllAddText)=>void
 
 }
 
@@ -20,7 +21,7 @@ const Profile = (props: ProfileType) => {
 
             <Profileinfo/>
             <MyPosts posts={props.profilePage.posts}
-                     addPost={props.addPost} />
+                     dispatch={props.dispatch.bind(props.dispatch)} />
 
 
             </div>

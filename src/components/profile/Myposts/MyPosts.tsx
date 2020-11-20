@@ -1,12 +1,13 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostsTypes} from "../../../redux/state";
+import {ChangeAllAddText, PostsTypes} from "../../../redux/state";
 
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    addPost: (postText: string) => void
+    /*addPost: (postText: string) => void*/
+    dispatch: (action: ChangeAllAddText)=>void
 
 
 
@@ -18,7 +19,8 @@ const MyPosts = (props: MyPostsType) => {
     const [valueTextarea, setValuearea] =useState("")
 
     let AddPost = () => {
-        props.addPost(valueTextarea)
+    //    props.addPost(valueTextarea)
+        props.dispatch({ type: "ADD-POST", postText: valueTextarea})
         setValuearea("")
     }
 
