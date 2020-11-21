@@ -62,13 +62,13 @@ export type StroreType ={
 }
 
 
-
+//воспринимай как константу
 export const addPostActoinCreator =(postText: string) =>{
-    return { type: "ADD-POST", postText}
+    return { type: "ADD-POST", postText} as const
 }
 
 export const addMessageActoinCreator =(postMessage: string) =>{
-    return { type: "ADD-MESSAGE", postMessage}
+    return { type: "ADD-MESSAGE", postMessage} as const
 }
 
 const Store: StroreType ={
