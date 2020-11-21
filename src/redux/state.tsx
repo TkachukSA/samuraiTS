@@ -31,14 +31,23 @@ export type stateType = {
     dialogsPage: messagePageType
     sidebar: {}
 }
-type ChengeAddPostType ={
+
+/*
+//type ChengeAddPostType ={
     type: "ADD-POST"
     postText: string
 }
-type ChengeAddMessageType ={
+*/
+// определяет тип   .  тоже самое что и закоментрованное
+type ChengeAddPostType =ReturnType<typeof addPostActoinCreator>
+type ChengeAddMessageType =ReturnType<typeof addMessageActoinCreator>
+
+
+
+/*type ChengeAddMessageType ={
     type: "ADD-MESSAGE"
     postMessage: string
-}
+}*/
 
 export type ChangeAllAddText = ChengeAddPostType | ChengeAddMessageType
 
@@ -54,11 +63,11 @@ export type StroreType ={
 
 
 
-export const addPostActoinCreator =(postText: string):ChengeAddPostType =>{
+export const addPostActoinCreator =(postText: string) =>{
     return { type: "ADD-POST", postText}
 }
 
-export const addMessageActoinCreator =(postMessage: string):ChengeAddMessageType =>{
+export const addMessageActoinCreator =(postMessage: string) =>{
     return { type: "ADD-MESSAGE", postMessage}
 }
 
