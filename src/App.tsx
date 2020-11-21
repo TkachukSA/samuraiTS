@@ -22,7 +22,7 @@ type appType = {
 function App(props: appType) {
     const state = props.Store.getState()
     return (
-        <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -38,7 +38,7 @@ function App(props: appType) {
                     />}/>
                 </div>
             </div>
-        </BrowserRouter>
+
     )
 }
 
