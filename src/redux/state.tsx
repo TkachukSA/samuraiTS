@@ -1,5 +1,7 @@
 import React from 'react';
-import {type} from "os";
+import DialogsReducer from "./dialogs-reduser";
+import ProfileReducer from "./profile-reduser";
+
 
 
 export type PostsTypes = {
@@ -134,6 +136,14 @@ const Store: StroreType ={
        return this._state
     },
     dispatch(action){
+
+
+        this._state.dialogsPage= DialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage=ProfileReducer(this._state.profilePage, action)
+        this.rerenderEntireTree()
+
+
+/*
         if (action.type ==="ADD-POST" ){
             this._state.profilePage.messageForNewPost = action.postText
             let newPost: PostsTypes = {
@@ -155,8 +165,7 @@ const Store: StroreType ={
             this._state.dialogsPage.messages.push(newMessage)
             this.rerenderEntireTree()
 
-
-        }
+        }*/
     }
 
 
