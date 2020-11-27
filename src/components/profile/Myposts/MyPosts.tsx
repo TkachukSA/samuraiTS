@@ -3,35 +3,20 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {ChangeAllAddText, PostsTypes} from "../../../redux/store";
 import {addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
-import store from "../../../redux/redux.store";
+
 
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    dispatch: any
+    dispatch: (action: ChangeAllAddText) => void
     messageForNewPost: string
 
 }
 
 
 const MyPosts = (props: MyPostsType) => {
-    debugger
+
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts}/>)
-   /* const [valueTextarea, setValuearea] =useState("")*/
-/*
-
-    let AddPost = () => {
-    //    props.addPost(valueTextarea)
-        props.dispatch(addPostActoinCreator(valueTextarea))
-        setValuearea("")
-    }
-
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setValuearea(e.currentTarget.value)
-    }
-*/
-
-
 
 
     const addPost = () => {
@@ -40,20 +25,12 @@ const MyPosts = (props: MyPostsType) => {
 
         } else {
             props.dispatch(updateNewPostActionCreator(""))
-
         }
     }
 
     const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-debugger
-        props.dispatch(updateNewPostActionCreator(event.currentTarget.value))//dispatch?
+        props.dispatch(updateNewPostActionCreator(event.currentTarget.value))
     }
-
-
-
-
-
-
 
 
     return (
@@ -62,7 +39,7 @@ debugger
             <div>
                 <div>
                 <textarea onChange={changeHandler}
-                          value={props.messageForNewPost} />
+                          value={props.messageForNewPost}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

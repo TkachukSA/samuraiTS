@@ -4,7 +4,6 @@ import profileReducer from "./profile-reduser";
 import saidbarReducer from "./saidbar-reduser";
 
 
-
 export type PostsTypes = {
     id: number
     message: string
@@ -19,7 +18,7 @@ export type MessagesType = {
     id: number
     message: string
 }
-export type messagePageType = {
+export type MessagePageType = {
     dialogs: Array<dialogsType>
     messages: Array<MessagesType>
     messagesForMessages: string
@@ -28,37 +27,25 @@ export type profilePageType = {
     messageForNewPost: string
     posts: Array<PostsTypes>
 }
-type sidebar = {}
+export type sidebar = {}
 export type stateType = {
     profilePage: profilePageType
-    dialogsPage: messagePageType
+    dialogsPage: MessagePageType
     sidebar: {}
 }
 
 
-// определяет тип   .  тоже самое что и закоментрованное
-/*type ChengeAddPostType =ReturnType<typeof addPostActoinCreator>*/
-type ChengeAddMessageType =ReturnType<typeof addMessageActoinCreator>
+export type ChangeAllAddText = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageType | addMessageActoinCreatorType
 
-
-
-export type ChangeAllAddText = AddPostActionType | ChengeAddMessageType | UpdateNewPostTextType
-
-export type StroreType ={
+export type StroreType = {
     _state: stateType
-    addPost:(postText: string)=>void
-    addMessage:(postMessage: string)=>void
-    rerenderEntireTree:()=>void
-    subscribe: (observer:()=>void)=>void
-    getState:()=>stateType
-    dispatch: (action: ChangeAllAddText)=>void
+    addPost: (postText: string) => void
+    addMessage: (postMessage: string) => void
+    rerenderEntireTree: () => void
+    subscribe: (observer: () => void) => void
+    getState: () => stateType
+    dispatch: (action: ChangeAllAddText) => void
 }
-
-
-//воспринимай как константу
-/*export const addPostActoinCreator =(postText: string) =>{
-    return { type: "ADD-POST", postText} as const
-}*/
 export type AddPostActionType = {
     type: "ADD-POST"
     postText: string
@@ -67,14 +54,19 @@ export type UpdateNewPostTextType = {
     type: "UPDATE-NEW-POST-TEXT"
     newText: string
 }
-
-
-export const addMessageActoinCreator =(postMessage: string) =>{
-    return { type: "ADD-MESSAGE", postMessage} as const
+export type addMessageActoinCreatorType = {
+    type: "ADD-MESSAGE"
+    postMessage: string
+}
+export type UpdateNewMessageType = {
+    type: "UPDATE-NEW-MESSAGE-TEXT"
+    newText: string
 }
 
-const store: StroreType ={
-    _state:  {
+
+
+const store: StroreType = {
+    _state: {
         profilePage: {
             messageForNewPost: "",
             posts: [
@@ -104,7 +96,7 @@ const store: StroreType ={
         },
         sidebar: {}
     },
-    addPost(postText: string)  {
+    addPost(postText: string) {
         debugger
         this._state.profilePage.messageForNewPost = postText
         let newPost: PostsTypes = {
@@ -117,7 +109,7 @@ const store: StroreType ={
 
         this.rerenderEntireTree()
     },
-    addMessage(postMessage: string)  {
+    addMessage(postMessage: string) {
         debugger
         this._state.dialogsPage.messagesForMessages = postMessage
         let newMessage: MessagesType = {
@@ -128,45 +120,21 @@ const store: StroreType ={
         this._state.dialogsPage.messages.push(newMessage)
         this.rerenderEntireTree()
     },
-    rerenderEntireTree() {console.log('State Changed')},
-    subscribe(observer){
-        this.rerenderEntireTree=observer
+    rerenderEntireTree() {
+        console.log('State Changed')
     },
-    getState(){
-       return this._state
+    subscribe(observer) {
+        this.rerenderEntireTree = observer
     },
-    dispatch(action){
-
-
-        this._state.dialogsPage=dialogsReducer(this._state.dialogsPage, action)
-        this._state.profilePage=profileReducer(this._state.profilePage, action)
-       /* this._state.sidebar=saidbarReducer()*/
+    getState() {
+        return this._state
+    },
+    dispatch(action) {
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        /* this._state.sidebar=saidbarReducer()*/
         this.rerenderEntireTree()
 
-
-/*
-        if (action.type ==="ADD-POST" ){
-            this._state.profilePage.messageForNewPost = action.postText
-            let newPost: PostsTypes = {
-                id: 6,
-                likekounts: 0,
-                message: this._state.profilePage.messageForNewPost
-            }
-
-            this._state.profilePage.posts.push(newPost)
-
-            this.rerenderEntireTree()
-        } else if (action.type ==="ADD-MESSAGE" ){
-            this._state.dialogsPage.messagesForMessages = action.postMessage
-            let newMessage: MessagesType = {
-                id: 6,
-                message: this._state.dialogsPage.messagesForMessages
-            }
-
-            this._state.dialogsPage.messages.push(newMessage)
-            this.rerenderEntireTree()
-
-        }*/
     }
 
 
