@@ -5,13 +5,14 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ChangeAllAddText, StroreType} from "./redux/state";
+import {ChangeAllAddText, StroreType} from "./redux/store";
+import {StoreReduxType} from "./redux/redux.store";
 
 
 
 
 type appType = {
-    Store: StroreType
+    Store: StoreReduxType
     /*addPost: (postText: string) => void
     addMessage: (postMessage: string) => void*/
     dispatch: (action: ChangeAllAddText)=>void

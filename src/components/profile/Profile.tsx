@@ -4,7 +4,7 @@ import s from "./Profile.module.css";
 import Profileinfo from "./ProfileInfo/ProfileInfo";
 import MyPosts from "./Myposts/MyPosts";
 
-import {ChangeAllAddText, profilePageType} from "../../redux/state";
+import {ChangeAllAddText, profilePageType} from "../../redux/store";
 
 
 type ProfileType= {

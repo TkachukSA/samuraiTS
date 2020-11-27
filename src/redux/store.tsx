@@ -1,6 +1,7 @@
 import React from 'react';
-import DialogsReducer from "./dialogs-reduser";
-import ProfileReducer from "./profile-reduser";
+import dialogsReducer from "./dialogs-reduser";
+import profileReducer from "./profile-reduser";
+import saidbarReducer from "./saidbar-reduser";
 
 
 
@@ -73,7 +74,7 @@ export const addMessageActoinCreator =(postMessage: string) =>{
     return { type: "ADD-MESSAGE", postMessage} as const
 }
 
-const Store: StroreType ={
+const store: StroreType ={
     _state:  {
         profilePage: {
             messageForNewPost: "",
@@ -138,8 +139,9 @@ const Store: StroreType ={
     dispatch(action){
 
 
-        this._state.dialogsPage= DialogsReducer(this._state.dialogsPage, action)
-        this._state.profilePage=ProfileReducer(this._state.profilePage, action)
+        this._state.dialogsPage=dialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage=profileReducer(this._state.profilePage, action)
+       /* this._state.sidebar=saidbarReducer()*/
         this.rerenderEntireTree()
 
 
@@ -172,5 +174,5 @@ const Store: StroreType ={
 }
 
 
-export default Store
+export default store
 

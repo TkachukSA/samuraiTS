@@ -1,10 +1,15 @@
 import React from 'react';
 
 
-function SaidbarReducer(){
+/*export const addPostActoinCreator =(postText: string) =>{
+    return { type: "ADD-POST", postText} as const
+}*/
+let initialState:{}
+function saidbarReducer(){
+
 
 
 }
 
 
-export default SaidbarReducer
+export default saidbarReducer

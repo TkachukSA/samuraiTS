@@ -141,12 +141,12 @@ console.log(bestStudent)
 let scoresSum=students.reduce((acc, st)=> acc + st.scores,0);;
 console.log(scoresSum)
 
-  function add (zzz){
+  function add (gr){
 
-    let stNames =deepCopyStudents.map(t => t.name)
-    let trueStd = deepCopyStudents.filter(d=> d.name !== stNames.name )
-    let xxx= trueStd.map(x=>({...x, friends: trueStd}))
-    return xxx
+
+    let names = rg.filter(s=> s.name)
+   return  gr.map(s=>({...s, friends: names.filter(i => i !== s.name)}))
+
 
         }
 
