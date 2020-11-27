@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/samuraiTS/static/css/main.72a30e46.chunk.css",
-    "main.js": "/samuraiTS/static/js/main.58168c85.chunk.js",
-    "main.js.map": "/samuraiTS/static/js/main.58168c85.chunk.js.map",
+    "main.js": "/samuraiTS/static/js/main.5bdb15d6.chunk.js",
+    "main.js.map": "/samuraiTS/static/js/main.5bdb15d6.chunk.js.map",
     "runtime-main.js": "/samuraiTS/static/js/runtime-main.93a10067.js",
     "runtime-main.js.map": "/samuraiTS/static/js/runtime-main.93a10067.js.map",
-    "static/js/2.ca6f5370.chunk.js": "/samuraiTS/static/js/2.ca6f5370.chunk.js",
-    "static/js/2.ca6f5370.chunk.js.map": "/samuraiTS/static/js/2.ca6f5370.chunk.js.map",
+    "static/js/2.80d1f542.chunk.js": "/samuraiTS/static/js/2.80d1f542.chunk.js",
+    "static/js/2.80d1f542.chunk.js.map": "/samuraiTS/static/js/2.80d1f542.chunk.js.map",
     "index.html": "/samuraiTS/index.html",
     "static/css/main.72a30e46.chunk.css.map": "/samuraiTS/static/css/main.72a30e46.chunk.css.map",
-    "static/js/2.ca6f5370.chunk.js.LICENSE.txt": "/samuraiTS/static/js/2.ca6f5370.chunk.js.LICENSE.txt"
+    "static/js/2.80d1f542.chunk.js.LICENSE.txt": "/samuraiTS/static/js/2.80d1f542.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.93a10067.js",
-    "static/js/2.ca6f5370.chunk.js",
+    "static/js/2.80d1f542.chunk.js",
     "static/css/main.72a30e46.chunk.css",
-    "static/js/main.58168c85.chunk.js"
+    "static/js/main.5bdb15d6.chunk.js"
   ]
 }
