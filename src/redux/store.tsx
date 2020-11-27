@@ -35,24 +35,14 @@ export type stateType = {
     sidebar: {}
 }
 
-/*
-//type ChengeAddPostType ={
-    type: "ADD-POST"
-    postText: string
-}
-*/
+
 // определяет тип   .  тоже самое что и закоментрованное
 type ChengeAddPostType =ReturnType<typeof addPostActoinCreator>
 type ChengeAddMessageType =ReturnType<typeof addMessageActoinCreator>
 
 
 
-/*type ChengeAddMessageType ={
-    type: "ADD-MESSAGE"
-    postMessage: string
-}*/
-
-export type ChangeAllAddText = ChengeAddPostType | ChengeAddMessageType
+export type ChangeAllAddText = ChengeAddPostType | ChengeAddMessageType | UpdateNewPostTextType
 
 export type StroreType ={
     _state: stateType
@@ -68,6 +58,10 @@ export type StroreType ={
 //воспринимай как константу
 export const addPostActoinCreator =(postText: string) =>{
     return { type: "ADD-POST", postText} as const
+}
+export type UpdateNewPostTextType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
 }
 
 export const addMessageActoinCreator =(postMessage: string) =>{

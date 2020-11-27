@@ -6,17 +6,16 @@ import {addPostActoinCreator, ChangeAllAddText, PostsTypes} from "../../../redux
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    /*addPost: (postText: string) => void*/
     dispatch: (action: ChangeAllAddText)=>void
-
-
+    messageForNewPost: string
 
 }
 
 
 const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts}/>)
-    const [valueTextarea, setValuearea] =useState("")
+   /* const [valueTextarea, setValuearea] =useState("")*/
+/*
 
     let AddPost = () => {
     //    props.addPost(valueTextarea)
@@ -27,6 +26,31 @@ const MyPosts = (props: MyPostsType) => {
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setValuearea(e.currentTarget.value)
     }
+*/
+
+
+
+
+    const addPost = () => {
+        if (props.messageForNewPost.trim()) {
+            props.dispatch(addPostActoinCreator(props.messageForNewPost))//addPostActionCreator(props.newPostText)
+            //props.addPost(props.newPostText)
+        } else {
+            props.dispatch(addPostActoinCreator(""))
+            //props.updatePostText("")
+        }
+    }
+
+    const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+
+        props.dispatch(addPostActoinCreator(event.currentTarget.value))//dispatch?
+    }
+
+
+
+
+
+
 
 
     return (
@@ -34,11 +58,11 @@ const MyPosts = (props: MyPostsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                <textarea onChange={onPostChange}
-                          value={valueTextarea} />
+                <textarea onChange={changeHandler}
+                          value={props.messageForNewPost} />
                 </div>
                 <div>
-                    <button onClick={AddPost}>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
 
             </div>

@@ -9,7 +9,6 @@ import {ChangeAllAddText, profilePageType} from "../../redux/store";
 
 type ProfileType= {
     profilePage: profilePageType
-    /*addPost: (postText: string) => void*/
     dispatch: (action: ChangeAllAddText)=>void
 
 }
@@ -21,7 +20,9 @@ const Profile = (props: ProfileType) => {
 
             <Profileinfo/>
             <MyPosts posts={props.profilePage.posts}
-                     dispatch={props.dispatch.bind(props.dispatch)} />
+                     dispatch={props.dispatch.bind(props.dispatch)}
+                     messageForNewPost={props.profilePage.messageForNewPost}
+            />
 
 
             </div>

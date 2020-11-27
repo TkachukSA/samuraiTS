@@ -1,8 +1,13 @@
 import React from 'react';
-import {ChangeAllAddText, MessagesType, PostsTypes, profilePageType} from "./store";
+import {ChangeAllAddText, PostsTypes, profilePageType} from "./store";
 
 export const addPostActoinCreator =(postText: string) =>{
     return { type: "ADD-POST", postText} as const
+}
+
+export type UpdateNewPostTextType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
 }
 
 let initialState:profilePageType ={
@@ -17,20 +22,45 @@ let initialState:profilePageType ={
 
 function profileReducer(state:profilePageType = initialState, action:ChangeAllAddText){
 
-    if (action.type ==="ADD-POST" ){
-        state.messageForNewPost = action.postText
-        let newPost: PostsTypes = {
-            id: 6,
-            likekounts: 0,
-            message: state.messageForNewPost
-        }
+    switch (action.type) {
+        case "ADD-POST":
+            let newPost: PostsTypes = {
+                id: 6,
+                likekounts: 0,
+                message: state.messageForNewPost
+            }
 
-        state.posts.push(newPost)
+            state.posts.push(newPost)
+            state.messageForNewPost = ""
+            return state
+        case "UPDATE-NEW-POST-TEXT":
+            state.messageForNewPost = action.newText
+            return state
+        default:
+            return state
+    }
 
-      //  this.rerenderEntireTree()
-    } return state
+    return state
 
 }
 
+/*if (action.type ==="ADD-POST" ){
+    state.messageForNewPost = action.postText
+    let newPost: PostsTypes = {
+        id: 6,
+        likekounts: 0,
+        message: state.messageForNewPost
+    }
+
+    state.posts.push(newPost)
+
+    //  this.rerenderEntireTree()
+} return state
+
+}*/
+
 
 export default profileReducer
+
+
+
