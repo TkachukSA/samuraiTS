@@ -1,18 +1,21 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPostActoinCreator, ChangeAllAddText, PostsTypes} from "../../../redux/store";
+import {ChangeAllAddText, PostsTypes} from "../../../redux/store";
+import {addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
+import store from "../../../redux/redux.store";
 
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    dispatch: (action: ChangeAllAddText)=>void
+    dispatch: any
     messageForNewPost: string
 
 }
 
 
 const MyPosts = (props: MyPostsType) => {
+    debugger
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts}/>)
    /* const [valueTextarea, setValuearea] =useState("")*/
 /*
@@ -33,17 +36,17 @@ const MyPosts = (props: MyPostsType) => {
 
     const addPost = () => {
         if (props.messageForNewPost.trim()) {
-            props.dispatch(addPostActoinCreator(props.messageForNewPost))//addPostActionCreator(props.newPostText)
-            //props.addPost(props.newPostText)
+            props.dispatch(addPostActoinCreator(props.messageForNewPost))
+
         } else {
-            props.dispatch(addPostActoinCreator(""))
-            //props.updatePostText("")
+            props.dispatch(updateNewPostActionCreator(""))
+
         }
     }
 
     const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-
-        props.dispatch(addPostActoinCreator(event.currentTarget.value))//dispatch?
+debugger
+        props.dispatch(updateNewPostActionCreator(event.currentTarget.value))//dispatch?
     }
 
 

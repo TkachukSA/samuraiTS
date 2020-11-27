@@ -24,7 +24,8 @@ const rerenderEntireTree = () => {
 
 
 rerenderEntireTree()
-store.subscribe(store.getState)
+// @ts-ignore
+store.subscribe(rerenderEntireTree)
 
 /*
 rerenderEntireTree(store.getState())

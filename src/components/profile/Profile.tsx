@@ -9,18 +9,18 @@ import {ChangeAllAddText, profilePageType} from "../../redux/store";
 
 type ProfileType= {
     profilePage: profilePageType
-    dispatch: (action: ChangeAllAddText)=>void
+    dispatch: any
 
 }
 
 const Profile = (props: ProfileType) => {
-
+debugger
     return (
         <div >
 
             <Profileinfo/>
             <MyPosts posts={props.profilePage.posts}
-                     dispatch={props.dispatch.bind(props.dispatch)}
+                     dispatch={props.dispatch}
                      messageForNewPost={props.profilePage.messageForNewPost}
             />
 

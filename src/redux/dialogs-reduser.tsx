@@ -7,22 +7,22 @@ export const addMessageActoinCreator =(postMessage: string) =>{
 }
 
 let initialState:messagePageType ={
-        dialogs: [
-            {id: 1, name: "Nastya"},
-            {id: 2, name: "Vlad"},
-            {id: 3, name: "Vika"},
-            {id: 4, name: "Andrey"},
-            {id: 5, name: "Vasia"}
-        ],
+    dialogs: [
+        {id: 1, name: "Nastya"},
+        {id: 2, name: "Vlad"},
+        {id: 3, name: "Vika"},
+        {id: 4, name: "Andrey"},
+        {id: 5, name: "Vasia"}
+    ],
 
-        messagesForMessages: "",
-        messages: [
-            {id: 1, message: "hi how is your programmnig"},
-            {id: 2, message: "hi, its ok\""},
-            {id: 3, message: "Good"},
-            {id: 4, message: "ok"},
-            {id: 5, message: "yo"}
-        ]
+    messagesForMessages: "",
+    messages: [
+        {id: 1, message: "hi how is your programmnig"},
+        {id: 2, message: "hi, its ok\""},
+        {id: 3, message: "Good"},
+        {id: 4, message: "ok"},
+        {id: 5, message: "yo"}
+    ]
 }
 
 type DialogsReducerType={
@@ -31,16 +31,16 @@ type DialogsReducerType={
 }
 function dialogsReducer(state:messagePageType = initialState, action:ChangeAllAddText) {
 
-     if (action.type ==="ADD-MESSAGE" ){
+    if (action.type ==="ADD-MESSAGE" ){
 
-         state.messagesForMessages=(action.postMessage)
+        state.messagesForMessages=(action.postMessage)
         let newMessage: MessagesType = {
             id: 6,
             message: state.messagesForMessages
         }
 
         state.messages.push(newMessage)
-      //  this.rerenderEntireTree()
+        //  this.rerenderEntireTree()
 
     }return state
 }

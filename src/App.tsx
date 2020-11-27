@@ -15,7 +15,7 @@ type appType = {
     Store: StoreReduxType
     /*addPost: (postText: string) => void
     addMessage: (postMessage: string) => void*/
-    dispatch: (action: ChangeAllAddText)=>void
+    dispatch: any
 
 
 }
@@ -30,7 +30,7 @@ function App(props: appType) {
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile
                         profilePage={state.profilePage}
-                        dispatch={props.Store.dispatch.bind(props.Store)}
+                        dispatch={props.dispatch}
 
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
