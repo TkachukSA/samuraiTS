@@ -1,15 +1,16 @@
 import React, {ChangeEvent, useState} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ChangeAllAddText, PostsTypes} from "../../../redux/store";
-import {addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
+import { PostsTypes} from "../../../redux/store";
+
 
 
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    dispatch: (action: ChangeAllAddText) => void
     messageForNewPost: string
+    addPost: ()=>void
+    changeHandler: (body: any)=>void
 
 }
 
@@ -20,16 +21,12 @@ const MyPosts = (props: MyPostsType) => {
 
 
     const addPost = () => {
-        if (props.messageForNewPost.trim()) {
-            props.dispatch(addPostActoinCreator(props.messageForNewPost))
-
-        } else {
-            props.dispatch(updateNewPostActionCreator(""))
-        }
+        props.addPost()
     }
 
     const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostActionCreator(event.currentTarget.value))
+        let body = event.currentTarget.value
+        props.changeHandler(body)
     }
 
 
