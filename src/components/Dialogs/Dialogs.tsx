@@ -18,7 +18,7 @@ const Dialogs = (props: DialogsType) => {
 
 
     const addMessage = ()=>{
-      props.addMessage()
+        props.addMessage()
     }
     const changeHandler =(event: ChangeEvent<HTMLTextAreaElement>)=>{
         const body = event.currentTarget.value

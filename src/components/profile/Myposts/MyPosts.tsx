@@ -10,7 +10,7 @@ type MyPostsType = {
     posts: Array<PostsTypes>
     messageForNewPost: string
     addPost: ()=>void
-    changeHandler: (body: any)=>void
+    changeHandler: (body: string)=>void
 
 }
 

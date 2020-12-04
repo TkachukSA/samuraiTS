@@ -1,9 +1,9 @@
 import React from 'react';
 import {AddPostActionType, ChangeAllAddText, PostsTypes, profilePageType, UpdateNewPostTextType} from "./store";
 
-export const addPostActoinCreator = (text: string): AddPostActionType => ({
+export const addPostActoinCreator = (): AddPostActionType => ({
         type: "ADD-POST",
-        postText: text
+
     }
 )
 
@@ -27,10 +27,11 @@ let initialState: profilePageType = {
 const profileReducer = (state: profilePageType = initialState, action: ChangeAllAddText): profilePageType => {
     debugger
     if (action.type === "ADD-POST") {
+        let text = state.messageForNewPost
         let newPost: PostsTypes = {
             id: 6,
             likekounts: 0,
-            message: action.postText
+            message: text
         }
 
         state.posts.push(newPost)

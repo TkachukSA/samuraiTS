@@ -13,13 +13,12 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type appType = {
-    Store: StoreReduxType
-    dispatch: any
+    Store?: StoreReduxType
+    dispatch?: any
 }
 
 function App(props: appType) {
 
-    const state = props.Store.getState()
 
     return (
 
@@ -28,10 +27,8 @@ function App(props: appType) {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path='/profile' render={() => <Profile
-                    store={props.Store}
                 />}/>
                 <Route path='/dialogs' render={() => <DialogsContainer
-                    store={props.Store}
                 />}/>
             </div>
         </div>

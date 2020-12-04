@@ -48,7 +48,7 @@ export type StroreType = {
 }
 export type AddPostActionType = {
     type: "ADD-POST"
-    postText: string
+    /*postText: string*/
 }
 export type UpdateNewPostTextType = {
     type: "UPDATE-NEW-POST-TEXT"
@@ -56,7 +56,7 @@ export type UpdateNewPostTextType = {
 }
 export type addMessageActoinCreatorType = {
     type: "ADD-MESSAGE"
-    postMessage: string
+    /*postMessage: string*/
 }
 export type UpdateNewMessageType = {
     type: "UPDATE-NEW-MESSAGE-TEXT"

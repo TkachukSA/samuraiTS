@@ -5,16 +5,16 @@ import MyPostsContainer from "./Myposts/MyPostsContainer";
 
 
 type ProfileType= {
-    store: StoreReduxType
+    store?: StoreReduxType
 }
 
 const Profile = (props: ProfileType) => {
-    let store = props.store.getState()
+    //let store = props.store.getState()
     return (
         <div >
 
             <Profileinfo/>
-            <MyPostsContainer store={props.store}
+            <MyPostsContainer
 
             />
 

@@ -3,28 +3,29 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 import ReactDOM from "react-dom";
+
+import { Provider } from 'react-redux'
 import App from "./App";
-
-
-import  {StroreType} from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux.store";
 
+
+
+
 const rerenderEntireTree = () => {
-
     ReactDOM.render(
+      
         <BrowserRouter>
-            <App Store={store}
-                 dispatch={store.dispatch.bind(store)}
-
-            />,
+            <Provider store={store}>
+                <App/>
+            </Provider>,
         </BrowserRouter>,
         document.getElementById('root'));
 }
 
 
 rerenderEntireTree()
-// @ts-ignore
+// @ts-ignor
 store.subscribe(rerenderEntireTree)
 
 /*

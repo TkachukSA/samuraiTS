@@ -1,41 +1,70 @@
-import React, {ChangeEvent} from 'react';import { ChangeAllAddText, MessagePageType, stateType} from "../../redux/store";
+import React, {ChangeEvent} from 'react';import {ChangeAllAddText, MessagePageType, stateType, StroreType} from "../../redux/store";
 import {addMessageActoinCreator, UpdateNewMessageCreator} from "../../redux/dialogs-reduser";
 import Dialogs from "./Dialogs";
-import {StoreReduxType} from "../../redux/redux.store";
+import {appStateType, StoreReduxType} from "../../redux/redux.store";
+import {connect} from "react-redux";
 
 
 
 
-type DialogsType = {
-    store: StoreReduxType
+
+/*type DialogsType = {
+    store?: StoreReduxType
+}*/
+
+type mapDispathToPropsType={
+    addMessage: ()=>void
+    changeHandler: (body: any)=>void
 }
-
-const DialogsContainer = (props: DialogsType) => {
-    const store = props.store.getState().dialogsPage
+/*const DialogsContainer = (props: DialogsType) => {
 
 
+    return (
+        <StoreContext.Consumer>{
+            (store)=>{
+                //const store = props.store.getState().dialogsPage
+                const state= store.getState()
 
-    const addMessage = ()=>{
-        if (store.messagesForMessages.trim()){
-            props.store.dispatch(addMessageActoinCreator(store.messagesForMessages))
-        } else {
-            props.store.dispatch(UpdateNewMessageCreator(""))
-        }
+                const addMessage = ()=>{
+                    if (state.dialogsPage.messagesForMessages.trim()) {
+                        store.dispatch(addMessageActoinCreator(state.dialogsPage.messagesForMessages))
+                    } else {
+                        store.dispatch(UpdateNewMessageCreator(""))
+                    }
+                }
+                const changeHandler =(body: any)=>{
+                    store.dispatch(UpdateNewMessageCreator(body))
+                }
+
+
+         return   <Dialogs
+                addMessage={addMessage}
+                changeHandler={changeHandler}
+                dialogsPage={state.dialogsPage}
+            />}}
+        </StoreContext.Consumer>
+
+)
+
+}*/
+
+let mapStateToProps=(state:appStateType)=>{
+    return{
+        dialogsPage: state.dialogsPage
     }
 
-    const changeHandler =(body: any)=>{
-        props.store.dispatch(UpdateNewMessageCreator(body))
-    }
-
-
-
-
-    return <Dialogs
-        addMessage={addMessage}
-        changeHandler={changeHandler}
-        dialogsPage={store}
-        />
-
-
 }
+
+let mapDispathToProps=(dispatch:(action: ChangeAllAddText) => void ):mapDispathToPropsType=>{
+    return{
+        addMessage: ()=>{ dispatch(addMessageActoinCreator())},
+        changeHandler: (body: any)=>{dispatch(UpdateNewMessageCreator(body))}
+    }}
+
+
+const DialogsContainer=connect(mapStateToProps,mapDispathToProps)(Dialogs)
+
+
+
+
 export default DialogsContainer

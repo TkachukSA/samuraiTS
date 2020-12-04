@@ -10,9 +10,9 @@ import {
 } from "./store";
 
 
-export const addMessageActoinCreator = (title: string):addMessageActoinCreatorType => ({
+export const addMessageActoinCreator = ():addMessageActoinCreatorType => ({
     type: "ADD-MESSAGE",
-    postMessage: title
+    /*postMessage: title*/
 })
 
 
@@ -51,7 +51,8 @@ function dialogsReducer(state:MessagePageType = initialState, action:ChangeAllAd
 
     if (action.type ==="ADD-MESSAGE" ) {
 
-        state.messagesForMessages = (action.postMessage)
+        let text = state.messagesForMessages
+        state.messagesForMessages = text
         let newMessage: MessagesType = {
             id: 6,
             message: state.messagesForMessages

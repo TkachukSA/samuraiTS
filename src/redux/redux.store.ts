@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 })
 
 
-type appStateType = ReturnType<typeof rootReducer>
+export type appStateType = ReturnType<typeof rootReducer>
 
 
 const store = createStore(rootReducer)
