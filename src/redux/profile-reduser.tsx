@@ -25,23 +25,25 @@ let initialState: profilePageType = {
 }
 
 const profileReducer = (state: profilePageType = initialState, action: ChangeAllAddText): profilePageType => {
-    debugger
-    if (action.type === "ADD-POST") {
-        let text = state.messageForNewPost
-        let newPost: PostsTypes = {
-            id: 6,
-            likekounts: 0,
-            message: text
-        }
 
-        state.posts.push(newPost)
-        state.messageForNewPost = ""
-        return {...state}
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-        debugger
-        return {...state, messageForNewPost: action.newText}
-    } else {
-        return state
+    switch (action.type) {
+        case "ADD-POST":
+            let text = state.messageForNewPost
+            let newPost: PostsTypes = {
+                id: 6,
+                likekounts: 0,
+                message: text
+            }
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+
+            stateCopy.posts.push(newPost)
+            stateCopy.messageForNewPost = ""
+            return stateCopy
+        case "UPDATE-NEW-POST-TEXT":
+            return {...state, messageForNewPost: action.newText}
+        default:
+            return state
     }
 
 }

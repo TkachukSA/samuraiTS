@@ -4,8 +4,6 @@ import {
     ChangeAllAddText,
     MessagePageType,
     MessagesType,
-    PostsTypes,
-    profilePageType,
     StroreType, UpdateNewMessageType
 } from "./store";
 
@@ -20,10 +18,6 @@ export const UpdateNewMessageCreator = (title: string):UpdateNewMessageType => (
     type: "UPDATE-NEW-MESSAGE-TEXT",
     newText: title
 })
-
-
-
-
 
 let initialState:MessagePageType ={
     dialogs: [
@@ -57,9 +51,11 @@ function dialogsReducer(state:MessagePageType = initialState, action:ChangeAllAd
             id: 6,
             message: state.messagesForMessages
         }
-        state.messagesForMessages = ""
-        state.messages.push(newMessage)
-        return {...state}
+        let stateCopy={...state}
+        stateCopy.messages=[...state.messages]
+        stateCopy.messagesForMessages = ""
+        stateCopy.messages.push(newMessage)
+        return stateCopy
     } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
         return {...state, messagesForMessages: action.newText}
     } else {
