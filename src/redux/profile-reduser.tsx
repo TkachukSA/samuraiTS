@@ -34,12 +34,11 @@ const profileReducer = (state: profilePageType = initialState, action: ChangeAll
                 likekounts: 0,
                 message: text
             }
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
+            return {...state,
+                posts:[...state.posts, newPost],
+                messageForNewPost: ""
+            }
 
-            stateCopy.posts.push(newPost)
-            stateCopy.messageForNewPost = ""
-            return stateCopy
         case "UPDATE-NEW-POST-TEXT":
             return {...state, messageForNewPost: action.newText}
         default:

@@ -3,8 +3,7 @@ import {
     addMessageActoinCreatorType,
     ChangeAllAddText,
     MessagePageType,
-    MessagesType,
-    StroreType, UpdateNewMessageType
+    UpdateNewMessageType
 } from "./store";
 
 
@@ -43,23 +42,18 @@ let initialState:MessagePageType ={
 }*/
 function dialogsReducer(state:MessagePageType = initialState, action:ChangeAllAddText):MessagePageType {
 
-    if (action.type ==="ADD-MESSAGE" ) {
-
-        let text = state.messagesForMessages
-        state.messagesForMessages = text
-        let newMessage: MessagesType = {
-            id: 6,
-            message: state.messagesForMessages
-        }
-        let stateCopy={...state}
-        stateCopy.messages=[...state.messages]
-        stateCopy.messagesForMessages = ""
-        stateCopy.messages.push(newMessage)
-        return stateCopy
-    } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-        return {...state, messagesForMessages: action.newText}
-    } else {
-        return state
+    switch (action.type) {
+        case "ADD-MESSAGE":
+            let text = state.messagesForMessages
+            return {
+                ...state,
+                messages: [...state.messages, {id: 9, message: text}],
+                messagesForMessages: ""
+            }
+        case "UPDATE-NEW-MESSAGE-TEXT":
+            return {...state, messagesForMessages: action.newText}
+        default:
+            return state
     }
 
 }
