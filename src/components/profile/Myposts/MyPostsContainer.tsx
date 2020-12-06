@@ -1,6 +1,6 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import {addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
-import {appStateType, StoreReduxType} from "../../../redux/redux.store";
+import {appStateType} from "../../../redux/redux.store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 

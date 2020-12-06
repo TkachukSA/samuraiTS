@@ -2,20 +2,21 @@ import React from 'react';
 import dialogsReducer from "./dialogs-reduser";
 import profileReducer from "./profile-reduser";
 import saidbarReducer from "./saidbar-reduser";
+import {v1} from "uuid";
 
 
 export type PostsTypes = {
-    id: number
+    id: string
     message: string
     likekounts: number
 
 }
 export type dialogsType = {
-    id: number
+    id: string
     name: string
 }
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 export type MessagePageType = {
@@ -70,28 +71,28 @@ const store: StroreType = {
         profilePage: {
             messageForNewPost: "",
             posts: [
-                {id: 1, message: 'Hi, how are you*?', likekounts: 12},
-                {id: 2, message: 'its my first post', likekounts: 33},
-                {id: 3, message: 'go in iron', likekounts: 333},
-                {id: 3, message: 'its my life', likekounts: 333}
+                {id: v1(), message: 'Hi, how are you*?', likekounts: 12},
+                {id: v1(), message: 'its my first post', likekounts: 33},
+                {id: v1(), message: 'go in iron', likekounts: 333},
+                {id: v1(), message: 'its my life', likekounts: 333}
             ],
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: "Nastya"},
-                {id: 2, name: "Vlad"},
-                {id: 3, name: "Vika"},
-                {id: 4, name: "Andrey"},
-                {id: 5, name: "Vasia"}
+                {id: v1(), name: "Nastya"},
+                {id: v1(), name: "Vlad"},
+                {id: v1(), name: "Vika"},
+                {id: v1(), name: "Andrey"},
+                {id: v1(), name: "Vasia"}
             ],
 
             messagesForMessages: "",
             messages: [
-                {id: 1, message: "hi how is your programmnig"},
-                {id: 2, message: "hi, its ok\""},
-                {id: 3, message: "Good"},
-                {id: 4, message: "ok"},
-                {id: 5, message: "yo"}
+                {id: v1(), message: "hi how is your programmnig"},
+                {id: v1(), message: "hi, its ok\""},
+                {id: v1(), message: "Good"},
+                {id: v1(), message: "ok"},
+                {id: v1(), message: "yo"}
             ]
         },
         sidebar: {}
@@ -100,7 +101,7 @@ const store: StroreType = {
         debugger
         this._state.profilePage.messageForNewPost = postText
         let newPost: PostsTypes = {
-            id: 6,
+            id: v1(),
             likekounts: 0,
             message: this._state.profilePage.messageForNewPost
         }
@@ -113,7 +114,7 @@ const store: StroreType = {
         debugger
         this._state.dialogsPage.messagesForMessages = postMessage
         let newMessage: MessagesType = {
-            id: 6,
+            id: v1(),
             message: this._state.dialogsPage.messagesForMessages
         }
 

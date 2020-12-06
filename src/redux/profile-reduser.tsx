@@ -1,5 +1,6 @@
 import React from 'react';
 import {AddPostActionType, ChangeAllAddText, PostsTypes, profilePageType, UpdateNewPostTextType} from "./store";
+import {v1} from "uuid";
 
 export const addPostActoinCreator = (): AddPostActionType => ({
         type: "ADD-POST",
@@ -17,10 +18,10 @@ export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType 
 let initialState: profilePageType = {
     messageForNewPost: "",
     posts: [
-        {id: 1, message: 'Hi, how are you*?', likekounts: 12},
-        {id: 2, message: 'its my first post', likekounts: 33},
-        {id: 3, message: 'go in iron', likekounts: 333},
-        {id: 3, message: 'its my life', likekounts: 333}
+        {id: v1(), message: 'Hi, how are you*?', likekounts: 12},
+        {id: v1(), message: 'its my first post', likekounts: 33},
+        {id: v1(), message: 'go in iron', likekounts: 333},
+        {id: v1(), message: 'its my life', likekounts: 333}
     ],
 }
 
@@ -30,7 +31,7 @@ const profileReducer = (state: profilePageType = initialState, action: ChangeAll
         case "ADD-POST":
             let text = state.messageForNewPost
             let newPost: PostsTypes = {
-                id: 6,
+                id: v1(),
                 likekounts: 0,
                 message: text
             }

@@ -5,6 +5,7 @@ import {
     MessagePageType,
     UpdateNewMessageType
 } from "./store";
+import {v1} from "uuid";
 
 
 export const addMessageActoinCreator = ():addMessageActoinCreatorType => ({
@@ -20,19 +21,19 @@ export const UpdateNewMessageCreator = (title: string):UpdateNewMessageType => (
 
 let initialState:MessagePageType ={
     dialogs: [
-        {id: 1, name: "Nastya"},
-        {id: 2, name: "Vlad"},
-        {id: 3, name: "Vika"},
-        {id: 4, name: "Andrey"},
-        {id: 5, name: "Vasia"}
+        {id: v1(), name: "Nastya"},
+        {id: v1(), name: "Vlad"},
+        {id: v1(), name: "Vika"},
+        {id: v1(), name: "Andrey"},
+        {id: v1(), name: "Vasia"}
     ],
     messagesForMessages: "",
     messages: [
-        {id: 1, message: "hi how is your programmnig"},
-        {id: 2, message: "hi, its ok\""},
-        {id: 3, message: "Good"},
-        {id: 4, message: "ok"},
-        {id: 5, message: "yo"}
+        {id: v1(), message: "hi how is your programmnig"},
+        {id: v1(), message: "hi, its ok\""},
+        {id: v1(), message: "Good"},
+        {id: v1(), message: "ok"},
+        {id: v1(), message: "yo"}
     ]
 }
 
@@ -47,7 +48,7 @@ function dialogsReducer(state:MessagePageType = initialState, action:ChangeAllAd
             let text = state.messagesForMessages
             return {
                 ...state,
-                messages: [...state.messages, {id: 9, message: text}],
+                messages: [...state.messages, {id: v1(), message: text}],
                 messagesForMessages: ""
             }
         case "UPDATE-NEW-MESSAGE-TEXT":

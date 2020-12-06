@@ -4,21 +4,17 @@ import {StoreReduxType} from "../../redux/redux.store";
 import MyPostsContainer from "./Myposts/MyPostsContainer";
 
 
-type ProfileType= {
+type ProfileType = {
     store?: StoreReduxType
 }
 
 const Profile = (props: ProfileType) => {
-    //let store = props.store.getState()
-    return (
-        <div >
 
+    return (
+        <div>
             <Profileinfo/>
             <MyPostsContainer
-
             />
-
-
         </div>
 
     )

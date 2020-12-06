@@ -1,7 +1,8 @@
-import React, {ChangeEvent} from 'react';import {ChangeAllAddText, MessagePageType, stateType, StroreType} from "../../redux/store";
+import React from 'react';
+import {ChangeAllAddText} from "../../redux/store";
 import {addMessageActoinCreator, UpdateNewMessageCreator} from "../../redux/dialogs-reduser";
 import Dialogs from "./Dialogs";
-import {appStateType, StoreReduxType} from "../../redux/redux.store";
+import {appStateType} from "../../redux/redux.store";
 import {connect} from "react-redux";
 
 
