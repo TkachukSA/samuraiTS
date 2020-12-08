@@ -7,6 +7,7 @@ import {Route} from "react-router-dom";
 
 import {StoreReduxType} from "./redux/redux.store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Users from "./components/users/Users";
 
 
 
@@ -25,10 +26,9 @@ function App(props: appType) {
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path='/profile' render={() => <Profile
-                />}/>
-                <Route path='/dialogs' render={() => <DialogsContainer
-                />}/>
+                <Route path='/profile' render={() => <Profile/>}/>
+                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                <Route path='/users' render={() => <Users/>}/>
             </div>
         </div>
     )
