@@ -1,17 +1,8 @@
 import React from 'react';
 import {v1} from "uuid";
+import {UsersType} from "../components/users/Users";
 
-type UsersType={
-    id: string
-    folowed: boolean
-    fullName: string
-    status: string
-    location: {
-        contry: string
-        city: string
-    }
-}
-type UsersPageType={
+export type UsersPageType={
     users:Array<UsersType>
 }
 export type folowActionType = { type: "FOLLOW", userid: string  }
@@ -35,12 +26,7 @@ export const setUsersAC = (users: Array<UsersType>): setUsersActionType => ({
 export type ActionUserType= folowActionType | unFolowActionType | setUsersActionType
 
 let initialState: UsersPageType = {
-    users: [
-        {id: v1(), folowed: false ,fullName: 'Serey Tkachuk', status: 'i am fine', location:{contry: 'Usa', city: "New York"}},
-        {id: v1(), folowed: false, fullName: 'Serey ', status: 'i love America', location:{contry: 'Usa', city: "Bruklin"}},
-        {id: v1(), folowed: false, fullName: 'Nastia ', status: 'i am fine', location:{contry: 'Usa', city: "New York"}},
-
-    ],
+    users: []
 }
 
 

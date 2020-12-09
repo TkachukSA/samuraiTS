@@ -3,6 +3,7 @@ import dialogsReducer from "./dialogs-reduser";
 import profileReducer from "./profile-reduser";
 import saidbarReducer from "./saidbar-reduser";
 import {v1} from "uuid";
+import {folowActionType, setUsersActionType, unFolowActionType} from "./users-reduser";
 
 
 export type PostsTypes = {
@@ -36,7 +37,13 @@ export type stateType = {
 }
 
 
-export type ChangeAllAddText = AddPostActionType | UpdateNewPostTextType | UpdateNewMessageType | addMessageActoinCreatorType
+export type ChangeAllAddText = AddPostActionType
+    | UpdateNewPostTextType
+    | UpdateNewMessageType
+    | addMessageActoinCreatorType
+    | folowActionType
+    | unFolowActionType
+    | setUsersActionType
 
 export type StroreType = {
     _state: stateType

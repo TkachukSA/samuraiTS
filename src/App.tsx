@@ -7,7 +7,7 @@ import {Route} from "react-router-dom";
 
 import {StoreReduxType} from "./redux/redux.store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Users from "./components/users/Users";
+import UsersContainet from "./components/users/UsersContainer";
 
 
 
@@ -28,7 +28,7 @@ function App(props: appType) {
             <div className="app-wrapper-content">
                 <Route path='/profile' render={() => <Profile/>}/>
                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                <Route path='/users' render={() => <Users/>}/>
+                <Route path='/users' render={() => <UsersContainet/>}/>
             </div>
         </div>
     )
