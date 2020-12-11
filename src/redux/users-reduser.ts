@@ -53,6 +53,7 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionUserTyp
                     return u
                 })}
         case "SETUSERS": {
+            debugger
             return {...state, users: [...state.users, ...action.users] }
 
 
