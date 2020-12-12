@@ -1,17 +1,20 @@
 import React from 'react';
 import  s from "./Users.module.css"
-import {v1} from "uuid";
 import axios, {AxiosResponse} from 'axios';
 import userPhoto from "../../assets/images/user.png"
 
 
 
 export type UsersType={
-    id: string
-    folowed: boolean
     name: string
-    status: string
-    photos: string
+    id: string
+    followed: boolean
+
+    status: string | null
+    photos: {
+        small: string | null,
+        large: string | null
+    }
     location: {
         contry: string
         city: string
@@ -25,13 +28,17 @@ export type UsersPropsType={
 }
 
 class Users extends React.Component<UsersPropsType, any>{
-    constructor(props: UsersPropsType) {
+   /* constructor(props: UsersPropsType) {
         super(props);
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response:AxiosResponse<any>)=>{
 
-            props.setUsers(response.data.items)
-        })
-    }
+    }*/
+
+   componentDidMount() {
+       axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response:AxiosResponse<any>)=>{
+           this.props.setUsers(response.data.items)
+       })
+   }
+
     render() {
         return <div>
             {
@@ -39,9 +46,9 @@ class Users extends React.Component<UsersPropsType, any>{
 
             <span>
             <div>
-                <img src={u.photos.small !== null? u.photos: userPhoto} className={s.usersPhoto}/>
+                <img src={u.photos.small !== null? u.photos.small: userPhoto} className={s.usersPhoto}/>
                 <div>
-                    {u.folowed
+                    {u.followed
                         ? <button onClick={()=>{this.props.UnFollow(u.id)}}>unfollow</button>
                         : <button onClick={()=>{this.props.follow(u.id)}}>follow</button> }
 

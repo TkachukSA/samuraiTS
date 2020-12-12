@@ -1,5 +1,3 @@
-import React from 'react';
-import {v1} from "uuid";
 import {UsersType} from "../components/users/Users";
 
 
@@ -11,7 +9,7 @@ export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
 export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
 export const folowAC = (userid: string):folowActionType => ({
-        type: "FOLLOW",
+    type: "FOLLOW",
         userid: userid
     })
 export const unFolowAC = (userid: string): unFolowActionType => ({
@@ -39,7 +37,7 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionUserTyp
                 ...state,
                 users: state.users.map(u => {
                     if (action.userid === u.id) {
-                        return {...u, folowed: true}
+                        return {...u, followed: true}
                     }
                     return u
                 })
@@ -49,12 +47,11 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionUserTyp
                 ...state,
                 users: state.users.map(u => {
                     if (action.userid === u.id) {
-                        return {...u, folowed: false}
+                        return {...u, followed: false}
                     }
                     return u
                 })}
         case "SETUSERS": {
-            debugger
             return {...state, users: [...state.users, ...action.users] }
 
 

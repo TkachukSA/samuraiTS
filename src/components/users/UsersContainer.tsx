@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import {appStateType} from "../../redux/redux.store";
 import {ActionUserType, folowAC, setUsersAC, unFolowAC} from "../../redux/users-reduser";
-import UsersC, {UsersType} from "./Users";
+import {UsersType} from "./Users";
 import Users from "./Users";
 
 
