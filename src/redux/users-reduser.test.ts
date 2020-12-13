@@ -8,6 +8,7 @@ test('folowAC',()=>{
             name: 'SA',
             id: "2502",
             followed: false,
+            uniqueUrlName: null,
             status: "is active",
             photos: {
                 small: "string",
@@ -33,6 +34,7 @@ test('unFolowAC',()=>{
         users:[{
             name: 'SA',
             id: "2502",
+            uniqueUrlName: null,
             followed: true,
             status: "is active",
             photos: {
@@ -60,6 +62,7 @@ test('SETUSERS',()=>{
             name: 'SA',
             id: "2502",
             followed: true,
+            uniqueUrlName: null,
             status: "is active",
             photos: {
                 small: "string",
@@ -76,6 +79,7 @@ test('SETUSERS',()=>{
         name: 'Frank',
         id: "0704",
         followed: true,
+        uniqueUrlName: null,
         status: "is active",
         photos: {
             small: "string",

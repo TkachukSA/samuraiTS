@@ -3,13 +3,19 @@ import {UsersType} from "../components/users/Users";
 
 export type UsersPageType={
     users:Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 export type folowActionType = { type: "FOLLOW", userid: string  }
 export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
 export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
+export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
+export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalUsersCount: number}
+
 export const folowAC = (userid: string):folowActionType => ({
-    type: "FOLLOW",
+        type: "FOLLOW",
         userid: userid
     })
 export const unFolowAC = (userid: string): unFolowActionType => ({
@@ -21,15 +27,32 @@ export const setUsersAC = (users: Array<UsersType>): setUsersActionType => ({
         users: users
     })
 
+export const setCurrentPageAC = (currentPage: number): setCurrentPageActionType => ({
+        type: "SET-CURRENT-PAGE",
+        currentPage: currentPage
+    })
+export const setTotalUsersCountAC = (totalUsersCount: number): setTotalUsersCountActionType => ({
+        type: "SET-TOTAL-USERS-COUNT",
+    totalUsersCount: totalUsersCount
+    })
 
-export type ActionUserType= folowActionType | unFolowActionType | setUsersActionType
 
-let initialState: UsersPageType = {
-    users: []
+export type ActionUserType= folowActionType
+    | unFolowActionType
+    | setUsersActionType
+    | setCurrentPageActionType
+    | setTotalUsersCountActionType
+
+
+let initialState: UsersPageType  = {
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 42,
+    currentPage: 5
 }
 
 
-const usersReducer = (state: UsersPageType = initialState, action: ActionUserType): UsersPageType => {
+const usersReducer = (state: UsersPageType  = initialState, action: ActionUserType): UsersPageType => {
 
     switch (action.type) {
         case "FOLLOW":
@@ -52,10 +75,14 @@ const usersReducer = (state: UsersPageType = initialState, action: ActionUserTyp
                     return u
                 })}
         case "SETUSERS": {
-            return {...state, users: [...state.users, ...action.users] }
-
-
+            return {...state, users: action.users }
     }
+        case "SET-CURRENT-PAGE":{
+            return {...state, currentPage: action.currentPage}
+        }
+        case "SET-TOTAL-USERS-COUNT":{
+            return {...state, totalUsersCount: action.totalUsersCount}
+        }
 
     }
 
