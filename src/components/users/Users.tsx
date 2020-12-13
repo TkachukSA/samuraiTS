@@ -39,14 +39,17 @@ class Users extends React.Component<UsersPropsType, any>{
            this.props.setUsers(response.data.items)
        })
    }
-    onPageChanded = (pageNumber: number)=>{
-       debugger
-           this.props.setCurrentPage(pageNumber)
-           axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then((response:AxiosResponse<any>)=>{
-               this.props.setUsers(response.data.items)
-               this.props.setTotalUsersCount(response.data.items)
-           })
-       }
+    onPageChanged = (pageNumber: number) => {
+        debugger
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+
+            });
+    }
+
+
 
     render() {
 
@@ -59,8 +62,8 @@ class Users extends React.Component<UsersPropsType, any>{
 
                 {
                 pages.map(p=>{
-                   return <span className={this.props.currentPage == p ? s.selectedPage : ''}
-                   onClick={()=>{this.onPageChanded(p)}}>{p}</span>}) }
+                   return <span className={ this.props.currentPage=== p ?s.selectedPage: ""}
+                                onClick={(e) => { this.onPageChanged(p); }}>{p}</span>}) }
             </div>
 
             {

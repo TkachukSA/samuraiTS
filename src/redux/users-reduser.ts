@@ -12,7 +12,8 @@ export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
 export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
 export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
-export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalUsersCount: number}
+export type setTotalUsersCountActionType = {
+    type: "SET-TOTAL-USERS-COUNT", totalUsersCount: number }
 
 export const folowAC = (userid: string):folowActionType => ({
         type: "FOLLOW",
@@ -47,8 +48,8 @@ export type ActionUserType= folowActionType
 let initialState: UsersPageType  = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 42,
-    currentPage: 5
+    totalUsersCount: 100,
+    currentPage: 2
 }
 
 

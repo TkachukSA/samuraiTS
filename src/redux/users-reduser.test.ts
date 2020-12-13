@@ -3,9 +3,10 @@ import {UsersType} from "../components/users/Users";
 
 test('folowAC',()=>{
 
-    const startState={
+    const startState: UsersPageType={
         users:[{
             name: 'SA',
+
             id: "2502",
             followed: false,
             uniqueUrlName: null,
@@ -18,7 +19,10 @@ test('folowAC',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ]
+        } ],
+        currentPage: 1,
+        pageSize:2,
+        totalUsersCount:20
     }
 
     const action =folowAC("2502")
@@ -30,12 +34,13 @@ test('folowAC',()=>{
 })
 test('unFolowAC',()=>{
 
-    const startState={
+    const startState: UsersPageType={
         users:[{
             name: 'SA',
+
             id: "2502",
+            followed: false,
             uniqueUrlName: null,
-            followed: true,
             status: "is active",
             photos: {
                 small: "string",
@@ -45,7 +50,10 @@ test('unFolowAC',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ]
+        } ],
+        currentPage: 1,
+        pageSize:2,
+        totalUsersCount:20
     }
 
     const action =unFolowAC("2502")
@@ -72,7 +80,10 @@ test('SETUSERS',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ]
+        } ],
+        totalUsersCount: 10,
+        pageSize: 1,
+        currentPage:1,
     }
     const newState: Array<UsersType> = [{
 
@@ -97,9 +108,9 @@ test('SETUSERS',()=>{
     const endState=usersReducer(startState, action )
     expect(startState.users.length).toBe(1)
 
-    expect(endState.users[1].name).toBe('Frank')
-    expect(endState.users[0].name).toBe('SA')
-    expect(endState.users.length).toBe(2)
+    expect(endState.users[0].name).toBe('Frank')
+/*    expect(endState.users[1].name).toBe('SA')*/
+    expect(endState.users.length).toBe(1)
 
 
 

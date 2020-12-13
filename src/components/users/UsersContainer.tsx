@@ -15,12 +15,7 @@ import Users from "./Users";
 
 
 
-type tets ={
-    users: any
-    pageSize: any
-    totalUsersCount: number
-    currentPage: any
-}
+
 type mapDispathToPropsType={
     follow: (userid: string)=>void
     UnFollow: (userid: string)=> void
@@ -63,7 +58,7 @@ let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToP
     }
 }
 
-let UsersContainet = connect<tets,mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(Users)
+let UsersContainet = connect<{},mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(Users)
 
 
 export default UsersContainet
