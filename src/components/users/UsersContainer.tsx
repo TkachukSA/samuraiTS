@@ -29,12 +29,17 @@ let mapStateToProps=(state:appStateType)=>{
     return {
         users: state.usersPeges.users,
         pageSize: state.usersPeges.pageSize,
-        totalUsersCount: state.usersPeges.totalUsersCount,
+        totalCount: state.usersPeges.totalCount,
         currentPage: state.usersPeges.currentPage
     }
 }
 
-
+type mapStateToPropsType ={
+    users: any
+    pageSize: any
+    totalCount: number
+    currentPage: any
+}
 
 let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToPropsType=>{
     return{
@@ -58,7 +63,7 @@ let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToP
     }
 }
 
-let UsersContainet = connect<{},mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(Users)
+let UsersContainet = connect<mapStateToPropsType,mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(Users)
 
 
 export default UsersContainet

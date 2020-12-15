@@ -4,7 +4,7 @@ import {UsersType} from "../components/users/Users";
 export type UsersPageType={
     users:Array<UsersType>
     pageSize: number
-    totalUsersCount: number
+    totalCount: number
     currentPage: number
 }
 export type folowActionType = { type: "FOLLOW", userid: string  }
@@ -13,7 +13,7 @@ export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
 export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
 export type setTotalUsersCountActionType = {
-    type: "SET-TOTAL-USERS-COUNT", totalUsersCount: number }
+    type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 
 export const folowAC = (userid: string):folowActionType => ({
         type: "FOLLOW",
@@ -32,9 +32,9 @@ export const setCurrentPageAC = (currentPage: number): setCurrentPageActionType 
         type: "SET-CURRENT-PAGE",
         currentPage: currentPage
     })
-export const setTotalUsersCountAC = (totalUsersCount: number): setTotalUsersCountActionType => ({
+export const setTotalUsersCountAC = (totalCount: number): setTotalUsersCountActionType => ({
         type: "SET-TOTAL-USERS-COUNT",
-    totalUsersCount: totalUsersCount
+    totalCount: totalCount
     })
 
 
@@ -48,7 +48,7 @@ export type ActionUserType= folowActionType
 let initialState: UsersPageType  = {
     users: [],
     pageSize: 5,
-    totalUsersCount: 100,
+    totalCount: 100,
     currentPage: 2
 }
 
@@ -82,7 +82,7 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
             return {...state, currentPage: action.currentPage}
         }
         case "SET-TOTAL-USERS-COUNT":{
-            return {...state, totalUsersCount: action.totalUsersCount}
+            return {...state, totalCount: action.totalCount}
         }
 
     }

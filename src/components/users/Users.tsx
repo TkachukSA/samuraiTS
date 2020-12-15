@@ -28,24 +28,32 @@ export type UsersPropsType={
     setTotalUsersCount:(totalCount: number)=>void
     setCurrentPage: (pageNumber: number)=>void
     pageSize: number
-    totalUsersCount: number
+    totalCount: number
     currentPage: number
 }
-
+type ResponseUsersType = {
+    error: any
+    items: Array<UsersType>
+    totalCount: number
+}
 class Users extends React.Component<UsersPropsType, any>{
 
    componentDidMount() {
-       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((response:AxiosResponse<any>)=>{
+       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+           .then((response:AxiosResponse<ResponseUsersType>)=>{
+               debugger
            this.props.setUsers(response.data.items)
+               this.props.setTotalUsersCount(response.data.totalCount)
+
        })
    }
     onPageChanged = (pageNumber: number) => {
         debugger
         this.props.setCurrentPage(pageNumber);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(response => {
+            .then((response:AxiosResponse<ResponseUsersType>) => {
                 this.props.setUsers(response.data.items);
-
+                this.props.setTotalUsersCount(response.data.totalCount)
             });
     }
 
@@ -53,7 +61,7 @@ class Users extends React.Component<UsersPropsType, any>{
 
     render() {
 
-        let pagesCount = Math.ceil (this.props.totalUsersCount / this.props.pageSize);
+        let pagesCount = Math.ceil (this.props.totalCount / this.props.pageSize);
         let pages = []
         for(let i = 1; i <= pagesCount; i++ ){
             pages.push(i)}
