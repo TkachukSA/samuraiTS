@@ -7,28 +7,32 @@ import {
     folowAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC,
+    setUsersAC, toglIsFetchingAC,
     unFolowAC
 } from "../../redux/users-reduser";
 import Users, { UsersType} from "./Users";
-
+import loader from '../../assets/loading/loader.gif'
 import axios, {AxiosResponse} from "axios";
+import Preloader from "../common/Preloader";
 
 
 
 
-type mapDispathToPropsType={
-    follow: (userid: string)=>void
-    UnFollow: (userid: string)=> void
-    setUsers: (users: Array<UsersType>)=>void
-    setCurrentPage: (pageNumber: number)=>void
-    setTotalUsersCount:(totalCount: number)=>void
+type mapDispathToPropsType= {
+    follow: (userid: string) => void
+    UnFollow: (userid: string) => void
+    setUsers: (users: Array<UsersType>) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
+    toglIsFetchingAC: (isFetching: boolean) => void
 }
+
 type mapStateToPropsType ={
     users: any
-    pageSize: any
+    pageSize: number
     totalCount: number
-    currentPage: any
+    currentPage: number
+    isFetching: boolean
 }
 
 type ResponseUsersType = {
@@ -44,9 +48,10 @@ export type UsersPropsType=mapStateToPropsType & mapDispathToPropsType
 class UsersContainet extends React.Component<UsersPropsType> {
 
     componentDidMount() {
+        this.props.toglIsFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then((response: AxiosResponse<ResponseUsersType>) => {
-                debugger
+                this.props.toglIsFetchingAC(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
 
@@ -54,16 +59,20 @@ class UsersContainet extends React.Component<UsersPropsType> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        debugger
         this.props.setCurrentPage(pageNumber);
+        this.props.toglIsFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then((response: AxiosResponse<ResponseUsersType>) => {
+                this.props.toglIsFetchingAC(false)
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount)
             });
     }
     render() {
-        return <Users users={this.props.users}
+        return <>
+            {this.props.isFetching? <Preloader/>: null
+                }
+        <Users users={this.props.users}
                       follow={this.props.follow}
                       UnFollow={this.props.UnFollow}
                       setUsers={this.props.setUsers}
@@ -74,6 +83,7 @@ class UsersContainet extends React.Component<UsersPropsType> {
                       currentPage={this.props.currentPage}
                       onPageChanged={this.onPageChanged}
         />
+        </>
     }
 }
 
@@ -83,13 +93,16 @@ let mapStateToProps=(state:appStateType)=>{
         users: state.usersPeges.users,
         pageSize: state.usersPeges.pageSize,
         totalCount: state.usersPeges.totalCount,
-        currentPage: state.usersPeges.currentPage
+        currentPage: state.usersPeges.currentPage,
+        isFetching: state.usersPeges.isFetching
     }
 }
 
 
 let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToPropsType=>{
     return{
+
+
         follow: (userid: string)=>{
             dispatch(folowAC(userid))
         },
@@ -105,6 +118,9 @@ let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToP
         },
         setTotalUsersCount:(totalCount: number)=>{
             dispatch(setTotalUsersCountAC(totalCount))
+        },
+        toglIsFetchingAC: (isFetching: boolean)=>{
+            dispatch(toglIsFetchingAC(isFetching))
         }
 
     }
@@ -112,6 +128,3 @@ let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToP
 
 export default connect<mapStateToPropsType,mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(UsersContainet)
 
-
-/*
-export default UsersContainet*/

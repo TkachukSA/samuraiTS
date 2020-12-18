@@ -6,14 +6,15 @@ export type UsersPageType={
     pageSize: number
     totalCount: number
     currentPage: number
+    isFetching: boolean
 }
 export type folowActionType = { type: "FOLLOW", userid: string  }
 export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
 export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
 export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
-export type setTotalUsersCountActionType = {
-    type: "SET-TOTAL-USERS-COUNT", totalCount: number }
+export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
+export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
 
 export const folowAC = (userid: string):folowActionType => ({
         type: "FOLLOW",
@@ -28,6 +29,7 @@ export const setUsersAC = (users: Array<UsersType>): setUsersActionType => ({
         users: users
     })
 
+
 export const setCurrentPageAC = (currentPage: number): setCurrentPageActionType => ({
         type: "SET-CURRENT-PAGE",
         currentPage: currentPage
@@ -36,6 +38,10 @@ export const setTotalUsersCountAC = (totalCount: number): setTotalUsersCountActi
         type: "SET-TOTAL-USERS-COUNT",
     totalCount: totalCount
     })
+export const toglIsFetchingAC = (isFetching: boolean): toglIsFetchingActionType => ({
+        type: "TOGL-IDFETCHING",
+    isFetching: isFetching
+    })
 
 
 export type ActionUserType= folowActionType
@@ -43,13 +49,15 @@ export type ActionUserType= folowActionType
     | setUsersActionType
     | setCurrentPageActionType
     | setTotalUsersCountActionType
+    | toglIsFetchingActionType
 
 
 let initialState: UsersPageType  = {
     users: [],
     pageSize: 5,
     totalCount: 100,
-    currentPage: 2
+    currentPage: 1,
+    isFetching: false
 }
 
 
@@ -83,6 +91,9 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
         }
         case "SET-TOTAL-USERS-COUNT":{
             return {...state, totalCount: action.totalCount}
+        }
+        case "TOGL-IDFETCHING":{
+            return {...state, isFetching: action.isFetching}
         }
 
     }
