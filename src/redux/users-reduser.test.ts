@@ -1,4 +1,4 @@
-import usersReducer, {folowAC, setUsersAC, unFolowAC, UsersPageType} from "./users-reduser";
+import usersReducer, {folow, setUsers, unFolow, UsersPageType} from "./users-reduser";
 import {UsersType} from "../components/users/Users";
 
 test('folowAC',()=>{
@@ -25,7 +25,7 @@ test('folowAC',()=>{
         totalUsersCount:20
     }
 
-    const action =folowAC("2502")
+    const action =folow("2502")
     const endState=usersReducer(startState, action )
 
     expect(endState.users[0].followed).toBe(true)
@@ -56,7 +56,7 @@ test('unFolowAC',()=>{
         totalUsersCount:20
     }
 
-    const action =unFolowAC("2502")
+    const action =unFolow("2502")
     const endState=usersReducer(startState, action )
 
     expect(endState.users[0].followed).toBe(false)
@@ -104,7 +104,7 @@ test('SETUSERS',()=>{
 
 
 
-    const action =setUsersAC(newState)
+    const action =setUsers(newState)
     const endState=usersReducer(startState, action )
     expect(startState.users.length).toBe(1)
 

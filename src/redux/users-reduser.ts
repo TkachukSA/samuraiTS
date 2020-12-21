@@ -16,29 +16,29 @@ export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: 
 export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
 
-export const folowAC = (userid: string):folowActionType => ({
+export const follow = (userid: string):folowActionType => ({
         type: "FOLLOW",
         userid: userid
     })
-export const unFolowAC = (userid: string): unFolowActionType => ({
+export const unFolow = (userid: string): unFolowActionType => ({
         type: "UN-FOLLOW",
         userid: userid
     })
-export const setUsersAC = (users: Array<UsersType>): setUsersActionType => ({
+export const setUsers = (users: Array<UsersType>): setUsersActionType => ({
         type: "SETUSERS",
         users: users
     })
 
 
-export const setCurrentPageAC = (currentPage: number): setCurrentPageActionType => ({
+export const setCurrentPage = (currentPage: number): setCurrentPageActionType => ({
         type: "SET-CURRENT-PAGE",
         currentPage: currentPage
     })
-export const setTotalUsersCountAC = (totalCount: number): setTotalUsersCountActionType => ({
+export const setTotalUsersCount = (totalCount: number): setTotalUsersCountActionType => ({
         type: "SET-TOTAL-USERS-COUNT",
     totalCount: totalCount
     })
-export const toglIsFetchingAC = (isFetching: boolean): toglIsFetchingActionType => ({
+export const toglIsFetching = (isFetching: boolean): toglIsFetchingActionType => ({
         type: "TOGL-IDFETCHING",
     isFetching: isFetching
     })

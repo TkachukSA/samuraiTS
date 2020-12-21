@@ -37,7 +37,7 @@ const students = [
     },
 ];
 
-const student = {
+export const student = {
     name: "Bob",
     age: 23,
     isStudent: true,

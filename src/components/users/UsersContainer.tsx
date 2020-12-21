@@ -4,11 +4,11 @@ import {connect} from "react-redux";
 import {appStateType} from "../../redux/redux.store";
 import {
     ActionUserType,
-    folowAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toglIsFetchingAC,
-    unFolowAC
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toglIsFetching,
+    unFolow
 } from "../../redux/users-reduser";
 import Users, { UsersType} from "./Users";
 import loader from '../../assets/loading/loader.gif'
@@ -20,11 +20,11 @@ import Preloader from "../common/Preloader";
 
 type mapDispathToPropsType= {
     follow: (userid: string) => void
-    UnFollow: (userid: string) => void
+    unFolow: (userid: string) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
-    toglIsFetchingAC: (isFetching: boolean) => void
+    toglIsFetching: (isFetching: boolean) => void
 }
 
 type mapStateToPropsType ={
@@ -48,10 +48,10 @@ export type UsersPropsType=mapStateToPropsType & mapDispathToPropsType
 class UsersContainet extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toglIsFetchingAC(true)
+        this.props.toglIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then((response: AxiosResponse<ResponseUsersType>) => {
-                this.props.toglIsFetchingAC(false)
+                this.props.toglIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalUsersCount(response.data.totalCount)
 
@@ -60,10 +60,10 @@ class UsersContainet extends React.Component<UsersPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
-        this.props.toglIsFetchingAC(true)
+        this.props.toglIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then((response: AxiosResponse<ResponseUsersType>) => {
-                this.props.toglIsFetchingAC(false)
+                this.props.toglIsFetching(false)
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount)
             });
@@ -74,7 +74,7 @@ class UsersContainet extends React.Component<UsersPropsType> {
                 }
         <Users users={this.props.users}
                       follow={this.props.follow}
-                      UnFollow={this.props.UnFollow}
+                      UnFollow={this.props.unFolow}
                       setUsers={this.props.setUsers}
                       setTotalUsersCount={this.props.setTotalUsersCount}
                       setCurrentPage={this.props.setCurrentPage}
@@ -99,32 +99,14 @@ let mapStateToProps=(state:appStateType)=>{
 }
 
 
-let mapDispathToProps=(dispatch:(action: ActionUserType) => void ):mapDispathToPropsType=>{
-    return{
 
 
-        follow: (userid: string)=>{
-            dispatch(folowAC(userid))
-        },
-        UnFollow: (userid: string)=>{
-            dispatch(unFolowAC(userid))
-        },
-        setUsers: (users: Array<UsersType>)=>{
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number)=>{
-            dispatch(setCurrentPageAC(pageNumber))
-
-        },
-        setTotalUsersCount:(totalCount: number)=>{
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toglIsFetchingAC: (isFetching: boolean)=>{
-            dispatch(toglIsFetchingAC(isFetching))
-        }
-
-    }
-}
-
-export default connect<mapStateToPropsType,mapDispathToPropsType, {}, appStateType>( mapStateToProps, mapDispathToProps)(UsersContainet)
+export default connect<mapStateToPropsType,mapDispathToPropsType, {}, appStateType>( mapStateToProps, {
+    follow,
+    unFolow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toglIsFetching
+})(UsersContainet)
 
