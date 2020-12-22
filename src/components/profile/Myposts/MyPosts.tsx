@@ -14,7 +14,6 @@ type MyPostsType = {
 
 }
 
-
 const MyPosts = (props: MyPostsType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts} id={p.id} key={p.id}/>)
