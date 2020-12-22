@@ -21,33 +21,6 @@ type mapDispathToPropsType={
 }
 
 
-/*const MyPostsContainer = (props: MyPostsType) => {
-
-    return (
-        <StoreContext.Consumer>{
-            (store)  =>{
-
-                const addPost = () => {
-                    let state = store.getState()
-                    if (state.profilePage.messageForNewPost.trim()) {
-                        store.dispatch(addPostActoinCreator(state.profilePage.messageForNewPost))
-                    } else {
-                        store.dispatch(updateNewPostActionCreator(""))
-                    }
-                }
-                const changeHandler = (body: string) => {
-                    store.dispatch(updateNewPostActionCreator(body))
-                }
-                return <MyPosts
-            messageForNewPost={store.getState().profilePage.messageForNewPost}
-            posts={store.getState().profilePage.posts}
-            addPost={addPost}
-            changeHandler={changeHandler}
-        />}}
-        </StoreContext.Consumer>
-    )
-}*/
-
 
 let mapStateToProps=(state:appStateType)=>{
     return{

@@ -2,6 +2,7 @@ import React from 'react';
 import  s from "./Users.module.css"
 import axios, {AxiosResponse} from 'axios';
 import userPhoto from "../../assets/images/user.png"
+import {NavLink} from "react-router-dom";
 
 
 
@@ -35,26 +36,7 @@ export type UsersPropsType={
 }
 
 
-/*class Users extends React.Component<UsersPropsType, any>{
 
-   componentDidMount() {
-       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-           .then((response:AxiosResponse<ResponseUsersType>)=>{
-               debugger
-           this.props.setUsers(response.data.items)
-               this.props.setTotalUsersCount(response.data.totalCount)
-
-       })
-   }
-    onPageChanged = (pageNumber: number) => {
-        debugger
-        this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then((response:AxiosResponse<ResponseUsersType>) => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount)
-            });
-    }*/
 
 function Users(props: UsersPropsType) {
 
@@ -79,7 +61,9 @@ function Users(props: UsersPropsType) {
 
   <span>
             <div>
+                       <NavLink to={'/profile/'+u.id}>
                        <img src={u.photos.small !== null? u.photos.small: userPhoto} className={s.usersPhoto}/>
+                       </NavLink>
                 <div>
                     {u.followed
                         ? <button onClick={()=>{props.UnFollow(u.id)}}>unfollow</button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import dialogsReducer from "./dialogs-reduser";
-import profileReducer from "./profile-reduser";
+import profileReducer, {newProfileType} from "./profile-reduser";
 import saidbarReducer from "./saidbar-reduser";
 import {v1} from "uuid";
 import {folowActionType, setUsersActionType, unFolowActionType} from "./users-reduser";
@@ -26,6 +26,7 @@ export type MessagePageType = {
     messagesForMessages: string
 }
 export type profilePageType = {
+    profile: null | number
     messageForNewPost: string
     posts: Array<PostsTypes>
 }
@@ -37,13 +38,14 @@ export type stateType = {
 }
 
 
-export type ChangeAllAddText = AddPostActionType
-    | UpdateNewPostTextType
+export type ChangeAllAddText =
+
     | UpdateNewMessageType
     | addMessageActoinCreatorType
     | folowActionType
     | unFolowActionType
     | setUsersActionType
+
 
 export type StroreType = {
     _state: stateType
@@ -54,14 +56,8 @@ export type StroreType = {
     getState: () => stateType
     dispatch: (action: ChangeAllAddText) => void
 }
-export type AddPostActionType = {
-    type: "ADD-POST"
-    /*postText: string*/
-}
-export type UpdateNewPostTextType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
+
+
 export type addMessageActoinCreatorType = {
     type: "ADD-MESSAGE"
     /*postMessage: string*/
@@ -73,9 +69,11 @@ export type UpdateNewMessageType = {
 
 
 
+
 const store: StroreType = {
     _state: {
         profilePage: {
+            profile: null,
             messageForNewPost: "",
             posts: [
                 {id: v1(), message: 'Hi, how are you*?', likekounts: 12},
@@ -139,7 +137,7 @@ const store: StroreType = {
     },
     dispatch(action) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
+   /*     this._state.profilePage = profileReducer(this._state.profilePage, action)*/
         /* this._state.sidebar=saidbarReducer()*/
         this.rerenderEntireTree()
 

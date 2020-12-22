@@ -11,7 +11,7 @@ import {
     unFolow
 } from "../../redux/users-reduser";
 import Users, { UsersType} from "./Users";
-import loader from '../../assets/loading/loader.gif'
+
 import axios, {AxiosResponse} from "axios";
 import Preloader from "../common/Preloader";
 

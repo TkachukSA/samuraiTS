@@ -37,10 +37,7 @@ let initialState:MessagePageType ={
     ]
 }
 
-/*type DialogsReducerType={
-    action: (action: ChangeAllAddText)=>void
-    state: MessagePageType
-}*/
+
 function dialogsReducer(state:MessagePageType = initialState, action:ChangeAllAddText):MessagePageType {
 
     switch (action.type) {

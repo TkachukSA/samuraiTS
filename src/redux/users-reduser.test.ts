@@ -34,7 +34,7 @@ test('folowAC',()=>{
 })
 test('unFolowAC',()=>{
 
-    const startState: UsersPageType={
+    const startState={
         users:[{
             name: 'SA',
 
@@ -53,7 +53,7 @@ test('unFolowAC',()=>{
         } ],
         currentPage: 1,
         pageSize:2,
-        totalUsersCount:20
+
     }
 
     const action =unFolow("2502")
@@ -65,8 +65,9 @@ test('unFolowAC',()=>{
 })
 test('SETUSERS',()=>{
 
-    const startState:UsersPageType={
+    const startState={
         users:[{
+
             name: 'SA',
             id: "2502",
             followed: true,
@@ -81,7 +82,7 @@ test('SETUSERS',()=>{
                 city: "DUMAI"
             },
         } ],
-        totalUsersCount: 10,
+
         pageSize: 1,
         currentPage:1,
     }
