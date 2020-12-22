@@ -1,9 +1,6 @@
 import React from 'react';
 import Profileinfo from "./ProfileInfo/ProfileInfo";
-import {StoreReduxType} from "../../redux/redux.store";
 import MyPostsContainer from "./Myposts/MyPostsContainer";
-import {profilePageType} from "../../redux/store";
-import {UsersType} from "../users/Users";
 import {newProfileType} from "../../redux/profile-reduser";
 
 
