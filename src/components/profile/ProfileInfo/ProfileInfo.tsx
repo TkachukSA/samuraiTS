@@ -1,7 +1,5 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css";
-import {ProfileType} from "../Profile";
-import {UsersType} from "../../users/Users";
 import {newProfileType} from "../../../redux/profile-reduser";
 import Preloader from "../../common/Preloader";
 
@@ -18,7 +16,7 @@ const Profileinfo = (props: Profileinfotype) => {
     return (
         <div >
             <div>
-                <img src="https://imgcomfort.com/Userfiles/Upload/images/illustration-geiranger.jpg"/>
+                <img src="https://imgcomfort.com/Userfiles/Upload/images/illustration-geiranger.jpg" alt={'hi'}/>
             </div>
             <div className={s.discriptionBlock}>
                 ava + discriphon

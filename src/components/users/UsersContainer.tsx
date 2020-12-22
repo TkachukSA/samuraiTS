@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 
 import {appStateType} from "../../redux/redux.store";
 import {
-    ActionUserType,
     follow,
     setCurrentPage,
     setTotalUsersCount,

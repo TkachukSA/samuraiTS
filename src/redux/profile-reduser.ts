@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     PostsTypes,
 } from "./store";
@@ -16,7 +15,7 @@ export type UpdateNewPostTextType = {
     type: "UPDATE-NEW-POST-TEXT"
     newText: string
 }
-type ActionPageType=UpdateNewPostTextType | AddPostActionType | setUsersProfileType
+export type ActionPageType=UpdateNewPostTextType | AddPostActionType | setUsersProfileType
 
 export type newProfileType={
     aboutMe: string

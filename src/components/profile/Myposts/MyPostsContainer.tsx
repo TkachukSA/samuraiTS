@@ -1,19 +1,12 @@
 import React from 'react';
-import {addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
 import {appStateType} from "../../../redux/redux.store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
-import {ChangeAllAddText} from "../../../redux/store";
+
+import {ActionPageType, addPostActoinCreator, updateNewPostActionCreator} from "../../../redux/profile-reduser";
 
 
-
-
-
-/*type MyPostsType = {
-   store?: StoreReduxType
-
-}*/
 
 type mapDispathToPropsType={
     addPost: ()=>void
@@ -29,7 +22,7 @@ let mapStateToProps=(state:appStateType)=>{
     }
 }
 
-let mapDispathToProps=(dispatch:(action: ChangeAllAddText) => void ):mapDispathToPropsType=>{
+let mapDispathToProps=(dispatch:(action: ActionPageType) => void ):mapDispathToPropsType=>{
     return{
         addPost: ()=>{dispatch(addPostActoinCreator())},
         changeHandler: (body: string)=>{dispatch(updateNewPostActionCreator(body))}
