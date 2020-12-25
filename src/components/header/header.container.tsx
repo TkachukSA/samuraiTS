@@ -22,7 +22,6 @@ type HeaderPropsType = mapStateToPropsType & mapDispathToPropsType
 class HeaderContainer extends React.Component<HeaderPropsType> {
 
     componentDidMount() {
-        debugger
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
             withCredentials: true
         })
