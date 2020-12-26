@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/user.png"
 import {NavLink} from "react-router-dom";
-import axios, {AxiosResponse} from "axios";
+import {userApi} from "../../api/api";
 
 
 export type UsersType = {
@@ -58,38 +58,22 @@ function Users(props: UsersPropsType) {
   <span>
             <div>
                        <NavLink to={'/profile/' + u.id}>
-                       <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={s.usersPhoto}/>
+                       <img alt={'photo'} src={u.photos.small !== null ? u.photos.small : userPhoto} className={s.usersPhoto}/>
                        </NavLink>
                 <div>
                     {u.followed
                         ? <button onClick={() => {
+                           userApi.getUnFollow(+u.id)
+                                .then((data) => {
+                                    if (data.resultCode === 0) {
+                                        props.UnFollow(u.id)}})
 
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                withCredentials: true,
-                                headers:{"API-KEY": "7866738e-c5bf-440e-864d-4cc467150876"}
-                            })
-                                .then((response: AxiosResponse<any>) => {
-                                    if (response.data.resultCode == 0) {
-                                        props.UnFollow(u.id)
-                                    }
-                                })
-                        }
-
-                        }>unfollow</button>
+                        }}>unfollow</button>
 
                         : <button onClick={() => {
-
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},{
-                                withCredentials: true,
-                                headers:{"API-KEY": "7866738e-c5bf-440e-864d-4cc467150876"}
-                            })
-
-
-                                .then((response: AxiosResponse<any>) => {if (response.data.resultCode == 0) {
-                                        props.follow(u.id)
-                                    }
-                                })
-
+                            userApi.getFollow(+u.id)
+                                .then((data) => {if (data.resultCode === 0) {
+                                        props.follow(u.id)}})
 
                         }}>follow</button>}
                 </div>

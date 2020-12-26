@@ -9,7 +9,6 @@ import {
     unFolow
 } from "../../redux/users-reduser";
 import Users, { UsersType} from "./Users";
-import axios, {AxiosResponse} from "axios";
 import Preloader from "../common/Preloader";
 import {userApi} from "../../api/api";
 

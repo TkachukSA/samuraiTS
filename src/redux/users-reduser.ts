@@ -16,28 +16,11 @@ export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: 
 export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
 
-export const follow = (userid: string):folowActionType => ({
-        type: "FOLLOW",
-        userid: userid
-    })
-export const unFolow = (userid: string): unFolowActionType => ({
-        type: "UN-FOLLOW",
-        userid: userid
-    })
-export const setUsers = (users: Array<UsersType>): setUsersActionType => ({
-        type: "SETUSERS",
-        users: users
-    })
 
 
-export const setCurrentPage = (currentPage: number): setCurrentPageActionType => ({
-        type: "SET-CURRENT-PAGE",
-        currentPage: currentPage
-    })
-export const setTotalUsersCount = (totalCount: number): setTotalUsersCountActionType => ({
-        type: "SET-TOTAL-USERS-COUNT",
-    totalCount: totalCount
-    })
+
+
+
 export const toglIsFetching = (isFetching: boolean): toglIsFetchingActionType => ({
         type: "TOGL-IDFETCHING",
     isFetching: isFetching
@@ -107,5 +90,25 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
 
 export default usersReducer
 
+export const follow = (userid: string):folowActionType => ({
+    type: "FOLLOW",
+    userid: userid
+})
+export const unFolow = (userid: string): unFolowActionType => ({
+    type: "UN-FOLLOW",
+    userid: userid
+})
+export const setUsers = (users: Array<UsersType>): setUsersActionType => ({
+    type: "SETUSERS",
+    users: users
+})
+export const setCurrentPage = (currentPage: number): setCurrentPageActionType => ({
+    type: "SET-CURRENT-PAGE",
+    currentPage: currentPage
+})
+export const setTotalUsersCount = (totalCount: number): setTotalUsersCountActionType => ({
+    type: "SET-TOTAL-USERS-COUNT",
+    totalCount: totalCount
+})
 
 

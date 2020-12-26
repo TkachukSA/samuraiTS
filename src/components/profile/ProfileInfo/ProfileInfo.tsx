@@ -16,7 +16,7 @@ const Profileinfo = (props: Profileinfotype) => {
     return (
         <div >
             <div>
-                <img src="https://imgcomfort.com/Userfiles/Upload/images/illustration-geiranger.jpg" alt={'hi'}/>
+                <img src="https://imgcomfort.com/Userfiles/Upload/images/illustration-geiranger.jpg"  alt={''}/>
             </div>
             <div className={s.discriptionBlock}>
                 ava + discriphon

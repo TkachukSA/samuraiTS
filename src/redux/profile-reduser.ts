@@ -39,7 +39,7 @@ export type newProfileType={
         large: string
     }
 }
-type newProfilePageType={
+export type newProfilePageType={
     profile:newProfileType | null
     messageForNewPost: string
     posts: Array<PostsTypes>
@@ -74,7 +74,6 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
                 posts:[...state.posts, newPost],
                 messageForNewPost: ""
             }
-
         case "UPDATE-NEW-POST-TEXT":
             return {...state, messageForNewPost: action.newText}
         case "SET_USER_PROFILE":

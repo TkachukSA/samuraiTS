@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {appStateType} from "../../../redux/redux.store";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";

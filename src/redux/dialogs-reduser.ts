@@ -1,4 +1,3 @@
-
 import {
     addMessageActoinCreatorType,
     ChangeAllAddText,
@@ -10,7 +9,7 @@ import {v1} from "uuid";
 
 export const addMessageActoinCreator = ():addMessageActoinCreatorType => ({
     type: "ADD-MESSAGE",
-    /*postMessage: title*/
+
 })
 
 

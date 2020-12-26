@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {ChangeAllAddText} from "../../redux/store";
 import {addMessageActoinCreator, UpdateNewMessageCreator} from "../../redux/dialogs-reduser";
 import Dialogs from "./Dialogs";

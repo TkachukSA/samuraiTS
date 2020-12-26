@@ -24,5 +24,33 @@ export const userApi = {
         ).then((response: AxiosResponse<ResponseUsersType>) => {
                 return response.data
             })
+    },
+    getLogin(){
+       return instance.get(`auth/me`)
+            .then((response: AxiosResponse<any>) => {
+                    return response.data
+                })
+
+    },
+    getUnFollow(id: number){
+     return  instance.delete(`follow/${id}`)
+            .then((response: AxiosResponse<any>) => {
+                    return response.data
+
+            })
+    },
+    getFollow(id: number){
+        return  instance.post(`follow/${id}`)
+            .then((response: AxiosResponse<any>) => {
+                return response.data
+
+            })
+
     }
+
+
+
+
+
+
 }

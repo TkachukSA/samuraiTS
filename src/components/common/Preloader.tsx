@@ -3,6 +3,6 @@ import loader from "../../assets/loading/loader.gif";
 
 
 const Preloader=()=>{
-    return <img src={loader}/>
+    return <img  src={loader} alt=''/>
 }
 export default Preloader

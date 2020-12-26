@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/header/header";
 import Navbar from "./components/navbar/Navbar";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";

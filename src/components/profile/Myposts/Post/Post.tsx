@@ -12,7 +12,7 @@ const Post = (props: PostProps) => {
 
     return (
         <div className={s.item}>
-            <img src="https://vignette.wikia.nocookie.net/castle-rock/images/9/9d/Stephen_King._Art_by_CoalRye.jpg/revision/latest?cb=20180716011208&path-prefix=ru"/>
+            <img alt={'post'} src="https://vignette.wikia.nocookie.net/castle-rock/images/9/9d/Stephen_King._Art_by_CoalRye.jpg/revision/latest?cb=20180716011208&path-prefix=ru"/>
             {props.message}
 
             <div>
