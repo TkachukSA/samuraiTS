@@ -32,6 +32,8 @@ export type UsersPropsType = {
     pageSize: number
     totalCount: number
     currentPage: number
+    toglFolowingInProgress:(isFetching: boolean, userId: string)=>void
+    folowingInProgres :Array<string>
 }
 
 
@@ -62,18 +64,24 @@ function Users(props: UsersPropsType) {
                        </NavLink>
                 <div>
                     {u.followed
-                        ? <button onClick={() => {
+                        ? <button disabled={props.folowingInProgres.some(id=>id === u.id)} onClick={() => {
+                            props.toglFolowingInProgress(true,u.id)
                            userApi.getUnFollow(+u.id)
                                 .then((data) => {
                                     if (data.resultCode === 0) {
-                                        props.UnFollow(u.id)}})
+                                        props.UnFollow(u.id)}
+                                    props.toglFolowingInProgress(false,u.id)
+                                })
 
                         }}>unfollow</button>
 
-                        : <button onClick={() => {
+                        : <button disabled={props.folowingInProgres.some(id=>id === u.id)} onClick={() => {
+                            props.toglFolowingInProgress(true,u.id)
                             userApi.getFollow(+u.id)
                                 .then((data) => {if (data.resultCode === 0) {
-                                        props.follow(u.id)}})
+                                        props.follow(u.id)}
+                                    props.toglFolowingInProgress(false,u.id)
+                                })
 
                         }}>follow</button>}
                 </div>

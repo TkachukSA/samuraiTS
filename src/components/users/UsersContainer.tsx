@@ -1,12 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {appStateType} from "../../redux/redux.store";
-import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers, toglIsFetching,
-    unFolow
+import {follow, setCurrentPage, setTotalUsersCount, setUsers, toglFolowingInProgress, toglIsFetching, unFolow
 } from "../../redux/users-reduser";
 import Users, { UsersType} from "./Users";
 import Preloader from "../common/Preloader";
@@ -23,6 +18,7 @@ type mapDispathToPropsType= {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toglIsFetching: (isFetching: boolean) => void
+    toglFolowingInProgress:(isFetching: boolean, userId: string)=>void
 }
 
 type mapStateToPropsType ={
@@ -31,6 +27,7 @@ type mapStateToPropsType ={
     totalCount: number
     currentPage: number
     isFetching: boolean
+    folowingInProgress:Array<string>
 }
 
 export type ResponseUsersType = {
@@ -80,6 +77,10 @@ class UsersContainet extends React.Component<UsersPropsType> {
                       totalCount={this.props.totalCount}
                       currentPage={this.props.currentPage}
                       onPageChanged={this.onPageChanged}
+                      folowingInProgres={this.props.folowingInProgress}
+                      toglFolowingInProgress={this.props.toglFolowingInProgress}
+
+
         />
         </>
     }
@@ -92,7 +93,8 @@ let mapStateToProps=(state:appStateType)=>{
         pageSize: state.usersPeges.pageSize,
         totalCount: state.usersPeges.totalCount,
         currentPage: state.usersPeges.currentPage,
-        isFetching: state.usersPeges.isFetching
+        isFetching: state.usersPeges.isFetching,
+        folowingInProgress: state.usersPeges.folowingInProgress
     }
 }
 
@@ -105,6 +107,7 @@ export default connect<mapStateToPropsType,mapDispathToPropsType, {}, appStateTy
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toglIsFetching
+    toglIsFetching,
+    toglFolowingInProgress
 })(UsersContainet)
 

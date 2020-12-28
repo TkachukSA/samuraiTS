@@ -7,6 +7,7 @@ export type UsersPageType={
     totalCount: number
     currentPage: number
     isFetching: boolean
+    folowingInProgress:Array<string>
 }
 export type folowActionType = { type: "FOLLOW", userid: string  }
 export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
@@ -15,16 +16,14 @@ export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
 export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
+export type toglFolowingInProgressActionType = { type: "TOGL-IS-FOLLOWING-PROGRESS", isFetching: boolean , userId: string}
 
 
 
 
 
 
-export const toglIsFetching = (isFetching: boolean): toglIsFetchingActionType => ({
-        type: "TOGL-IDFETCHING",
-    isFetching: isFetching
-    })
+
 
 
 export type ActionUserType= folowActionType
@@ -33,6 +32,8 @@ export type ActionUserType= folowActionType
     | setCurrentPageActionType
     | setTotalUsersCountActionType
     | toglIsFetchingActionType
+    | toglFolowingInProgressActionType
+
 
 
 let initialState: UsersPageType  = {
@@ -40,7 +41,8 @@ let initialState: UsersPageType  = {
     pageSize: 5,
     totalCount: 100,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    folowingInProgress: []
 }
 
 
@@ -78,6 +80,14 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
         case "TOGL-IDFETCHING":{
             return {...state, isFetching: action.isFetching}
         }
+        case "TOGL-IS-FOLLOWING-PROGRESS":{
+            return {
+                ...state,
+                folowingInProgress: action.isFetching
+                    ? [...state.folowingInProgress, action.userId]
+                    : state.folowingInProgress.filter(id => id != action.userId)
+            }
+        }
 
     }
 
@@ -109,6 +119,14 @@ export const setCurrentPage = (currentPage: number): setCurrentPageActionType =>
 export const setTotalUsersCount = (totalCount: number): setTotalUsersCountActionType => ({
     type: "SET-TOTAL-USERS-COUNT",
     totalCount: totalCount
+})
+export const toglIsFetching = (isFetching: boolean): toglIsFetchingActionType => ({
+    type: "TOGL-IDFETCHING",
+    isFetching: isFetching
+})
+export const toglFolowingInProgress = (isFetching: boolean, userId: string): toglFolowingInProgressActionType => ({
+    type: "TOGL-IS-FOLLOWING-PROGRESS",
+    isFetching, userId
 })
 
 

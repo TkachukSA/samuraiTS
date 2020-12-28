@@ -20,10 +20,6 @@ export type AuthPageType={
     isAuth: boolean
 }
 
-//export type AuthPageType={
-//    data: AuthDateType
-//    isAuth: boolean
-//}
 
 
 let initialState :AuthPageType = {
