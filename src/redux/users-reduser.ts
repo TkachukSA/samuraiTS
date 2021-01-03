@@ -1,4 +1,6 @@
 import {UsersType} from "../components/users/Users";
+import {userApi} from "../api/api";
+import {mapDispathToPropsType} from "../components/users/UsersContainer";
 
 
 export type UsersPageType={
@@ -17,10 +19,6 @@ export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: 
 export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
 export type toglFolowingInProgressActionType = { type: "TOGL-IS-FOLLOWING-PROGRESS", isFetching: boolean , userId: string}
-
-
-
-
 
 
 
@@ -86,11 +84,9 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
                 folowingInProgress: action.isFetching
                     ? [...state.folowingInProgress, action.userId]
                     : state.folowingInProgress.filter(id => id != action.userId)
-            }
-        }
+            }}
 
     }
-
 
     return state
 
@@ -130,3 +126,43 @@ export const toglFolowingInProgress = (isFetching: boolean, userId: string): tog
 })
 
 
+export const getUsersThunk=(currentPage: number, pageSize: number)=>{
+
+    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
+        dispatch(toglIsFetching(true))
+        userApi.getUsers(currentPage, pageSize)
+            .then((data) => {
+                dispatch(toglIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+
+            })
+
+    }
+}
+export const unFolluwThunk=(userId: string)=>{
+
+    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
+        dispatch(toglFolowingInProgress(true,userId))
+        userApi.getUnFollow(+userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(unFolow(userId))}
+                dispatch(toglFolowingInProgress(false,userId))
+            })
+
+    }
+}
+export const FolluwThunk=(userId: string)=>{
+
+    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
+        dispatch(toglFolowingInProgress(true,userId))
+        userApi.getFollow(+userId)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(follow(userId))}
+                dispatch(toglFolowingInProgress(false,userId))
+            })
+
+    }
+}
