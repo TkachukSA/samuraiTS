@@ -2,6 +2,9 @@ import {
     PostsTypes,
 } from "./store";
 import {v1} from "uuid";
+import {userApi} from "../api/api";
+import {ActionUserType, follow, toglFolowingInProgress} from "./users-reduser";
+import {AxiosResponse} from "axios";
 
 
 export type setUsersProfileType={
@@ -99,6 +102,18 @@ export const setUsersProfile = (profile: newProfileType):setUsersProfileType => 
 
 
 export default profileReducer
+
+
+export const getUserProfile=(userId: string)=>{
+
+    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+
+        userApi.getProfile(+userId)
+            .then((response: AxiosResponse<any>) => {
+                dispatch(setUsersProfile(response.data))
+            })
+    }
+}
 
 
 

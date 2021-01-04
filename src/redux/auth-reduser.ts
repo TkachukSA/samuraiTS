@@ -1,4 +1,6 @@
-
+import {authAPI, userApi} from "../api/api";
+import {AxiosResponse} from "axios";
+import {ActionPageType, setUsersProfile} from "./profile-reduser";
 
 
 export type setUserDataActionType = { type: "SET-USER-DATA", id: number, email: string , login: string }
@@ -48,5 +50,17 @@ const authReducer = (state: AuthPageType  = initialState, action: ActionAuthType
 
 export default authReducer
 
+export const getAuthUserData=()=>{
+
+    return (dispatch: (action: ActionAuthType)=> ActionAuthType )=>{
+
+        authAPI.me()
+            .then((response) => {
+                if(response.data.resultCode===0){
+                    let { id, email, login}=response.data.data
+                    dispatch(setAuthUserData(id, email, login))
+                }})
+    }
+}
 
 
