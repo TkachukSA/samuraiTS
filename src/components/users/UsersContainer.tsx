@@ -15,7 +15,7 @@ import {
 } from "../../redux/users-reduser";
 import Users, {UsersType} from "./Users";
 import Preloader from "../common/Preloader";
-import {userApi} from "../../api/api";
+
 
 
 export type mapDispathToPropsType = {

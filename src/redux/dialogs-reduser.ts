@@ -1,11 +1,27 @@
 import {
     addMessageActoinCreatorType,
     ChangeAllAddText,
-    MessagePageType,
     UpdateNewMessageType
 } from "./store";
 import {v1} from "uuid";
 
+
+
+export type MessagesType = {
+    id: string
+    message: string
+}
+
+export type dialogsType = {
+    id: string
+    name: string
+}
+
+export type MessagePageType = {
+    dialogs: Array<dialogsType>
+    messages: Array<MessagesType>
+    messagesForMessages: string
+}
 
 export const addMessageActoinCreator = ():addMessageActoinCreatorType => ({
     type: "ADD-MESSAGE",

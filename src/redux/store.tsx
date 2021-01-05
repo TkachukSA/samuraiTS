@@ -1,5 +1,5 @@
 import React from 'react';
-import dialogsReducer from "./dialogs-reduser";
+import dialogsReducer, {MessagePageType, MessagesType} from "./dialogs-reduser";
 import profileReducer, {newProfileType} from "./profile-reduser";
 import saidbarReducer from "./saidbar-reduser";
 import {v1} from "uuid";
@@ -12,19 +12,9 @@ export type PostsTypes = {
     likekounts: number
 
 }
-export type dialogsType = {
-    id: string
-    name: string
-}
-export type MessagesType = {
-    id: string
-    message: string
-}
-export type MessagePageType = {
-    dialogs: Array<dialogsType>
-    messages: Array<MessagesType>
-    messagesForMessages: string
-}
+
+
+
 export type profilePageType = {
     profile: null | number
     messageForNewPost: string
