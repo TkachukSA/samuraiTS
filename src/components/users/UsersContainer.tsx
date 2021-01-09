@@ -16,6 +16,7 @@ import {
 import Users, {UsersType} from "./Users";
 import Preloader from "../common/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -115,19 +116,27 @@ let mapStateToProps = (state: appStateType) => {
         folowingInProgress: state.usersPeges.folowingInProgress
     }
 }
-const  withRedirect = withAuthRedirect(UsersContainet)
 
 
-export default connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
-    // follow,
-    // unFolow,
-    //  setUsers,
-    // toglFolowingInProgress,
+export default compose(withAuthRedirect,connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toglIsFetching,
     getUsersThunk,
     unFolluwThunk,
     FolluwThunk
-})(withRedirect)
+}))(UsersContainet)
 
+
+
+/*const  withRedirect = withAuthRedirect(UsersContainet)
+
+
+export default connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
+    setCurrentPage,
+    setTotalUsersCount,
+    toglIsFetching,
+    getUsersThunk,
+    unFolluwThunk,
+    FolluwThunk
+})(withRedirect)*/

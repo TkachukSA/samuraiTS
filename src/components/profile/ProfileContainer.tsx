@@ -7,36 +7,33 @@ import {getUserProfile, newProfileType, setUsersProfile} from "../../redux/profi
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {userApi} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
-
-
-type mapStateToPropsType ={
+type mapStateToPropsType = {
     profile: newProfileType | null
     isAuth: boolean
 }
-type mapDispathToPropsType={
+type mapDispathToPropsType = {
     //setUsersProfile: (profile: newProfileType)=>void
-    getUserProfile:(userId: string)=>void
+    getUserProfile: (userId: string) => void
 }
-type PathParamType={
+type PathParamType = {
     userId: string
 }
 
 export type ProfilePropsType = mapStateToPropsType & mapDispathToPropsType
 
-type PropsType= RouteComponentProps <PathParamType> & ProfilePropsType
-
-
-
+type PropsType = RouteComponentProps<PathParamType> & ProfilePropsType
 
 
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        let userId=this.props.match.params.userId
-        if(!userId){
-            userId='2'}
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = '2'
+        }
         this.props.getUserProfile(userId)
         /*axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)*/
 
@@ -49,7 +46,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-        if(!this.props.isAuth) return <Redirect to={"/login"}/>
+        if (!this.props.isAuth) return <Redirect to={"/login"}/>
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}/>
@@ -58,12 +55,19 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps=(state: appStateType):mapStateToPropsType=>{
+let mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth
     }
 }
+
+export default compose<any>(connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>
+(mapStateToProps, {getUserProfile}),withRouter,withAuthRedirect)(ProfileContainer)
+
+/*
+
+//функция compose заменяет этот код:
 const  withRedirect = withAuthRedirect(ProfileContainer)
 
 // для отображения на какой странице профиля находимся
@@ -73,5 +77,4 @@ export default connect<mapStateToPropsType, mapDispathToPropsType,{}, appStateTy
     getUserProfile,
     //setUsersProfile
 })(WithUrlDataContainerComponent)
-
-
+*/

@@ -4,6 +4,7 @@ import Dialogs from "./Dialogs";
 import {appStateType} from "../../redux/redux.store";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 type mapDispathToPropsType = {
@@ -34,10 +35,15 @@ let mapDispathToProps = (dispatch: (action: ChangeAllAddText) => void): mapDispa
         }
     }
 }
-const  withRedirect = withAuthRedirect(Dialogs)
+
+
+export default compose<any>(connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, mapDispathToProps),withAuthRedirect)(Dialogs)
+
+
+/*const  withRedirect = withAuthRedirect(Dialogs)
 
 
 const DialogsContainer = connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, mapDispathToProps)(withRedirect)
 
 
-export default DialogsContainer
+export default DialogsContainer*/
