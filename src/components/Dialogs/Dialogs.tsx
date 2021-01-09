@@ -10,16 +10,16 @@ import { Redirect } from 'react-router-dom';
 
 
 
-type DialogsType = {
+export type DialogsType = {
     dialogsPage: MessagePageType
     addMessage: ()=> void
     changeHandler:(body: any)=> void
-    isAuth: boolean
+   // isAuth: boolean
 }
 
 const Dialogs = (props: DialogsType) => {
 
-if(!props.isAuth) return <Redirect to={"/login"}/>
+/*if(!props.isAuth) return <Redirect to={"/login"}/>*/
 
     const addMessage = ()=>{
         props.addMessage()

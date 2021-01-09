@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {getUserProfile, newProfileType, setUsersProfile} from "../../redux/profile-reduser";
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {userApi} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 
@@ -63,8 +64,10 @@ let mapStateToProps=(state: appStateType):mapStateToPropsType=>{
         isAuth: state.auth.isAuth
     }
 }
+const  withRedirect = withAuthRedirect(ProfileContainer)
 
-let WithUrlDataContainerComponent= withRouter(ProfileContainer)
+// для отображения на какой странице профиля находимся
+let WithUrlDataContainerComponent= withRouter(withRedirect)
 
 export default connect<mapStateToPropsType, mapDispathToPropsType,{}, appStateType>( mapStateToProps, {
     getUserProfile,
