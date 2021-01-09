@@ -1,5 +1,5 @@
-import axios, {AxiosResponse} from "axios";
-import {ResponseUsersType} from "../components/users/UsersContainer";
+import axios from "axios";
+
 
 
 
@@ -11,40 +11,18 @@ const instance= axios.create({
     }
 })
 
-/*export const getUsers =(currentPage: number, pageSize:number)=> {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`
-    )
-        .then((response: AxiosResponse<ResponseUsersType>) => {
-            return response.data
-        })
-}*/
+
 export const userApi = {
     getUsers(currentPage: number, pageSize:number){
         return instance.get(`users?page=${currentPage}&count=${pageSize}`
-        ).then((response: AxiosResponse<ResponseUsersType>) => {
-                return response.data
-            })
-    },
-    getLogin(){
-       return instance.get(`auth/me`)
-            .then((response: AxiosResponse<any>) => {
-                    return response.data
-                })
-
+        )
     },
     getUnFollow(id: number){
      return  instance.delete(`follow/${id}`)
-            .then((response: AxiosResponse<any>) => {
-                    return response.data
 
-            })
     },
     getFollow(id: number){
         return  instance.post(`follow/${id}`)
-            .then((response: AxiosResponse<any>) => {
-                return response.data
-
-            })
 
     },
     getProfile(userId: number){

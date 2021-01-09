@@ -36,7 +36,7 @@ export type ActionUserType= folowActionType
 
 let initialState: UsersPageType  = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalCount: 100,
     currentPage: 1,
     isFetching: false,
@@ -131,10 +131,10 @@ export const getUsersThunk=(currentPage: number, pageSize: number)=>{
     return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
         dispatch(toglIsFetching(true))
         userApi.getUsers(currentPage, pageSize)
-            .then((data) => {
+            .then((response) => {
                 dispatch(toglIsFetching(false))
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
+                dispatch(setUsers(response.data.items))
+                dispatch(setTotalUsersCount(response.data.totalCount))
 
             })
 
@@ -145,8 +145,8 @@ export const unFolluwThunk=(userId: string)=>{
     return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
         dispatch(toglFolowingInProgress(true,userId))
         userApi.getUnFollow(+userId)
-            .then((data) => {
-                if (data.resultCode === 0) {
+            .then((response) => {
+                if (response.data.resultCode === 0) {
                     dispatch(unFolow(userId))}
                 dispatch(toglFolowingInProgress(false,userId))
             })
@@ -158,8 +158,8 @@ export const FolluwThunk=(userId: string)=>{
     return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
         dispatch(toglFolowingInProgress(true,userId))
         userApi.getFollow(+userId)
-            .then((data) => {
-                if (data.resultCode === 0) {
+            .then((response) => {
+                if (response.data.resultCode === 0) {
                     dispatch(follow(userId))}
                 dispatch(toglFolowingInProgress(false,userId))
             })
