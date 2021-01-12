@@ -3,7 +3,7 @@ import {appStateType} from "../../redux/redux.store";
 import Profile from "./Profile";
 import axios, {AxiosResponse} from "axios";
 import {connect} from "react-redux";
-import {getUserProfile, newProfileType, setUsersProfile} from "../../redux/profile-reduser";
+import {getStatus, getUserProfile, newProfileType, setUsersProfile, updateStatus} from "../../redux/profile-reduser";
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {userApi} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -13,10 +13,13 @@ import {compose} from "redux";
 type mapStateToPropsType = {
     profile: newProfileType | null
     isAuth: boolean
+    status: string
 }
 type mapDispathToPropsType = {
     //setUsersProfile: (profile: newProfileType)=>void
     getUserProfile: (userId: string) => void
+    getStatus: (userId: string) => void
+    updateStatus: (status: string) => void
 }
 type PathParamType = {
     userId: string
@@ -35,21 +38,18 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = '2'
         }
         this.props.getUserProfile(userId)
-        /*axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)*/
+        this.props.getStatus(userId)
 
-        //Past 2
-        /*userApi.getProfile(+userId)
-            .then((response: AxiosResponse<any>) => {
 
-                this.props.setUsersProfile(response.data)
-            })*/
     }
 
     render() {
         if (!this.props.isAuth) return <Redirect to={"/login"}/>
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile {...this.props} profile={this.props.profile}
+                         status={this.props.status}
+                         updateStatus={this.props.updateStatus}/>
             </div>
         );
     }
@@ -58,12 +58,13 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        status: state.profilePage.status
     }
 }
 
 export default compose<any>(connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>
-(mapStateToProps, {getUserProfile}),withRouter,withAuthRedirect)(ProfileContainer)
+(mapStateToProps, {getUserProfile, getStatus, updateStatus}), withRouter, withAuthRedirect)(ProfileContainer)
 
 /*
 

@@ -2,7 +2,7 @@ import {
     PostsTypes,
 } from "./store";
 import {v1} from "uuid";
-import {userApi} from "../api/api";
+import {profileAPI, userApi} from "../api/api";
 import {ActionUserType, follow, toglFolowingInProgress} from "./users-reduser";
 import {AxiosResponse} from "axios";
 
@@ -18,7 +18,15 @@ export type UpdateNewPostTextType = {
     type: "UPDATE-NEW-POST-TEXT"
     newText: string
 }
-export type ActionPageType=UpdateNewPostTextType | AddPostActionType | setUsersProfileType
+export type setStatusActionType = {
+    type: "SET_STATUS"
+    status: string
+}
+export type updateStatusActionType = {
+    type: "UPDATE_STATUS"
+    status: string
+}
+export type ActionPageType=UpdateNewPostTextType | AddPostActionType | setUsersProfileType | setStatusActionType|updateStatusActionType
 
 export type newProfileType={
     aboutMe: string
@@ -46,6 +54,7 @@ export type newProfilePageType={
     profile:newProfileType | null
     messageForNewPost: string
     posts: Array<PostsTypes>
+    status: string
 }
 
 
@@ -54,6 +63,7 @@ export type newProfilePageType={
 let initialState: newProfilePageType = {
     profile: null,
     messageForNewPost: "",
+    status: '',
     posts: [
         {id: v1(), message: 'Hi, how are you*?', likekounts: 12},
         {id: v1(), message: 'its my first post', likekounts: 33},
@@ -73,14 +83,18 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
                 likekounts: 0,
                 message: text
             }
-            return {...state,
-                posts:[...state.posts, newPost],
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
                 messageForNewPost: ""
             }
         case "UPDATE-NEW-POST-TEXT":
             return {...state, messageForNewPost: action.newText}
         case "SET_USER_PROFILE":
-         return    {...state, profile: action.profile}
+            return {...state, profile: action.profile}
+
+        case "SET_STATUS":
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -100,6 +114,13 @@ export const setUsersProfile = (profile: newProfileType):setUsersProfileType => 
     profile
 })
 
+export const setStatus = (status :string): setStatusActionType => ({
+  type: 'SET_STATUS', status
+})
+export const updateStatusAC = (status :string): updateStatusActionType => ({
+  type: 'UPDATE_STATUS', status
+})
+
 
 export default profileReducer
 
@@ -111,6 +132,26 @@ export const getUserProfile=(userId: string)=>{
         userApi.getProfile(+userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setUsersProfile(response.data))
+            })
+    }
+}
+
+export const getStatus=(userId: string)=>{
+    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+        profileAPI.getStatus(+userId)
+            .then((response: AxiosResponse<any>) => {
+                debugger
+                dispatch(setStatus(response.data))
+            })
+    }
+}
+
+export const updateStatus=(status: string)=>{
+    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+        profileAPI.updateStatus(status)
+            .then((response: AxiosResponse<any>) => {
+                if(response.data.resultCode===0){
+                dispatch(updateStatusAC(status))}
             })
     }
 }
