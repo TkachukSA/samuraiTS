@@ -95,6 +95,8 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
 
         case "SET_STATUS":
             return {...state, status: action.status}
+        case "UPDATE_STATUS":
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -140,13 +142,12 @@ export const getStatus=(userId: string)=>{
     return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
         profileAPI.getStatus(+userId)
             .then((response: AxiosResponse<any>) => {
-                debugger
                 dispatch(setStatus(response.data))
             })
     }
 }
 
-export const updateStatus=(status: string)=>{
+export const updateStatus= (status: string)=>{
     return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
         profileAPI.updateStatus(status)
             .then((response: AxiosResponse<any>) => {
