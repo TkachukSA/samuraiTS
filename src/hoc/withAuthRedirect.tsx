@@ -17,9 +17,13 @@ let mapStateToProps = (state: appStateType):mapStateToPropsType => ({
 type PropsType = DialogsType | UsersPropsType | ProfileType
 
 export const withAuthRedirect = (Component: any) => {
+
+
     const RedirectComponent = (props: PropsType & mapStateToPropsType) => {
+debugger
         if (!props.isAuth) return <Redirect to={"/login"}/>
         return <Component {...props}/>
+
     };
     return connect(mapStateToProps)(RedirectComponent)
 }

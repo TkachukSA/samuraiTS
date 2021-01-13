@@ -23,6 +23,7 @@ type HeaderPropsType = mapStateToPropsType & mapDispathToPropsType
 class HeaderContainer extends React.Component<HeaderPropsType> {
 
     componentDidMount() {
+        debugger
         this.props.getAuthUserData()
 
     }
@@ -41,5 +42,4 @@ let mapStateToProps=(state:appStateType):mapStateToPropsType=>{
 }
 
 export default connect<mapStateToPropsType,mapDispathToPropsType,{}, appStateType>(mapStateToProps,{
-   // setAuthUserData,
     getAuthUserData}) (HeaderContainer)

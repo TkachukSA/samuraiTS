@@ -37,7 +37,9 @@ let mapDispathToProps = (dispatch: (action: ChangeAllAddText) => void): mapDispa
 }
 
 
-export default compose<any>(connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, mapDispathToProps),withAuthRedirect)(Dialogs)
+export default compose<React.ComponentType>(
+    connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, mapDispathToProps), withAuthRedirect
+)(Dialogs)
 
 
 /*const  withRedirect = withAuthRedirect(Dialogs)
