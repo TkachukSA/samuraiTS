@@ -3,7 +3,6 @@ import {
 } from "./store";
 import {v1} from "uuid";
 import {profileAPI, userApi} from "../api/api";
-import {ActionUserType, follow, toglFolowingInProgress} from "./users-reduser";
 import {AxiosResponse} from "axios";
 
 
@@ -12,12 +11,10 @@ export type setUsersProfileType={
     profile: newProfileType
 }
 export type AddPostActionType = {
-    type: "ADD-POST"
+    type: "ADD-POST",
+    value:string
 }
-export type UpdateNewPostTextType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
+
 export type setStatusActionType = {
     type: "SET_STATUS"
     status: string
@@ -26,7 +23,7 @@ export type updateStatusActionType = {
     type: "UPDATE_STATUS"
     status: string
 }
-export type ActionPageType=UpdateNewPostTextType | AddPostActionType | setUsersProfileType | setStatusActionType|updateStatusActionType
+export type ActionPageType= AddPostActionType | setUsersProfileType | setStatusActionType|updateStatusActionType
 
 export type newProfileType={
     aboutMe: string
@@ -52,7 +49,7 @@ export type newProfileType={
 }
 export type newProfilePageType={
     profile:newProfileType | null
-    messageForNewPost: string
+
     posts: Array<PostsTypes>
     status: string
 }
@@ -62,7 +59,6 @@ export type newProfilePageType={
 
 let initialState: newProfilePageType = {
     profile: null,
-    messageForNewPost: "",
     status: '',
     posts: [
         {id: v1(), message: 'Hi, how are you*?', likekounts: 12},
@@ -77,7 +73,7 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
 
     switch (action.type) {
         case "ADD-POST":
-            let text = state.messageForNewPost
+            let text = action.value
             let newPost: PostsTypes = {
                 id: v1(),
                 likekounts: 0,
@@ -86,10 +82,10 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                messageForNewPost: ""
+
+
             }
-        case "UPDATE-NEW-POST-TEXT":
-            return {...state, messageForNewPost: action.newText}
+
         case "SET_USER_PROFILE":
             return {...state, profile: action.profile}
 
@@ -103,14 +99,11 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
 
 }
 
-export const addPostActoinCreator = (): AddPostActionType => ({
-        type: "ADD-POST"
+export const addPostActoinCreator = (value:string): AddPostActionType => ({
+        type: "ADD-POST", value
     }
 )
-export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({
-    type: "UPDATE-NEW-POST-TEXT",
-    newText: text
-})
+
 export const setUsersProfile = (profile: newProfileType):setUsersProfileType => ({
     type: "SET_USER_PROFILE",
     profile

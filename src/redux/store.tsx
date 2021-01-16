@@ -50,6 +50,7 @@ export type StroreType = {
 
 export type addMessageActoinCreatorType = {
     type: "ADD-MESSAGE"
+    value: string
     /*postMessage: string*/
 }
 export type UpdateNewMessageType = {
@@ -81,7 +82,6 @@ const store: StroreType = {
                 {id: v1(), name: "Vasia"}
             ],
 
-            messagesForMessages: "",
             messages: [
                 {id: v1(), message: "hi how is your programmnig"},
                 {id: v1(), message: "hi, its ok\""},
@@ -107,13 +107,13 @@ const store: StroreType = {
     },
     addMessage(postMessage: string) {
         debugger
-        this._state.dialogsPage.messagesForMessages = postMessage
-        let newMessage: MessagesType = {
+
+        let newMessage = {
             id: v1(),
-            message: this._state.dialogsPage.messagesForMessages
+
         }
 
-        this._state.dialogsPage.messages.push(newMessage)
+        this._state.dialogsPage.messages.push()
         this.rerenderEntireTree()
     },
     rerenderEntireTree() {

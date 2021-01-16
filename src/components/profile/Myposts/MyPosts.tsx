@@ -1,16 +1,14 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { PostsTypes} from "../../../redux/store";
-
-
+import {PostsTypes} from "../../../redux/store";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 
 type MyPostsType = {
     posts: Array<PostsTypes>
-    messageForNewPost: string
-    addPost: ()=>void
-    changeHandler: (body: string)=>void
+    addPost: (value: string) => void
+
 
 }
 
@@ -19,13 +17,13 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts} id={p.id} key={p.id}/>)
 
 
-    const addPost = () => {
-        props.addPost()
-    }
 
-    const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = event.currentTarget.value
-        props.changeHandler(body)
+
+
+
+
+    const addPost = (formData: FormDataType) => {
+        props.addPost(formData.newPostBody)
     }
 
 
@@ -33,13 +31,8 @@ const MyPosts = (props: MyPostsType) => {
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div>
-                <textarea onChange={changeHandler}
-                          value={props.messageForNewPost}/>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
+
+                <AddNewPostReduxForm onSubmit={addPost}/>
 
             </div>
             <div className={s.posts}>
@@ -51,3 +44,20 @@ const MyPosts = (props: MyPostsType) => {
     )
 }
 export default MyPosts
+
+type FormDataType = {
+    newPostBody: string
+}
+const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field placeholder={'Enter new post'} name={'newPostBody'} component={'textarea'}/>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+const AddNewPostReduxForm = reduxForm<FormDataType>({form: 'AddNewPostForm'})(AddNewPostForm)

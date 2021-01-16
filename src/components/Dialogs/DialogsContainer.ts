@@ -1,5 +1,5 @@
 import {ChangeAllAddText} from "../../redux/store";
-import {addMessageActoinCreator, MessagePageType, UpdateNewMessageCreator} from "../../redux/dialogs-reduser";
+import {addMessageActoinCreator, MessagePageType} from "../../redux/dialogs-reduser";
 import Dialogs from "./Dialogs";
 import {appStateType} from "../../redux/redux.store";
 import {connect} from "react-redux";
@@ -8,8 +8,8 @@ import {compose} from "redux";
 
 
 type mapDispathToPropsType = {
-    addMessage: () => void
-    changeHandler: (body: any) => void
+    addMessage: ( value: string) => void
+   // changeHandler: (body: any) => void
 }
 type mapStateToPropsType = {
     dialogsPage: MessagePageType,
@@ -27,15 +27,11 @@ let mapStateToProps = (state: appStateType) => {
 
 let mapDispathToProps = (dispatch: (action: ChangeAllAddText) => void): mapDispathToPropsType => {
     return {
-        addMessage: () => {
-            dispatch(addMessageActoinCreator())
-        },
-        changeHandler: (body: any) => {
-            dispatch(UpdateNewMessageCreator(body))
+        addMessage: (value: string) => {
+            dispatch(addMessageActoinCreator(value))
         }
     }
 }
-
 
 export default compose<React.ComponentType>(
     connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, mapDispathToProps), withAuthRedirect

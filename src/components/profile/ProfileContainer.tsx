@@ -1,11 +1,9 @@
 import React from 'react';
 import {appStateType} from "../../redux/redux.store";
 import Profile from "./Profile";
-import axios, {AxiosResponse} from "axios";
 import {connect} from "react-redux";
-import {getStatus, getUserProfile, newProfileType, setUsersProfile, updateStatus} from "../../redux/profile-reduser";
+import {getStatus, getUserProfile, newProfileType, updateStatus} from "../../redux/profile-reduser";
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
-import {userApi} from "../../api/api";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 

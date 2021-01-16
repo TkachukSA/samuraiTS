@@ -38,13 +38,10 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 function Login() {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
-    }
+        console.log(formData)}
     return <div>
-
         <div>Login</div>
         <LoginReduxForm onSubmit={onSubmit}/>
-
     </div>
 
 }
