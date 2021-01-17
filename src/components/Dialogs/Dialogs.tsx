@@ -4,27 +4,25 @@ import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import {MessagePageType} from "../../redux/dialogs-reduser";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-
-
-
-
+import {maxLength, required} from "../../utils/validators/validators";
+import {TextArea} from "../common/formsControl/FormsControl";
 
 
 export type DialogsType = {
     dialogsPage: MessagePageType
-    addMessage: ( value: string)=> void
-    changeHandler:(body: any)=> void
-   // isAuth: boolean
+    addMessage: (value: string) => void
+    changeHandler: (body: any) => void
+    // isAuth: boolean
 }
 
 const Dialogs = (props: DialogsType) => {
 
-/*if(!props.isAuth) return <Redirect to={"/login"}/>*/
+    /*if(!props.isAuth) return <Redirect to={"/login"}/>*/
 
     /*const addMessage = ()=>{
         props.addMessage()
     }*/
-    const changeHandler =(event: ChangeEvent<HTMLTextAreaElement>)=>{
+    const changeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const body = event.currentTarget.value
         props.changeHandler(body)
     }
@@ -36,7 +34,8 @@ const Dialogs = (props: DialogsType) => {
 
     const onSubmit = (formData: FormDataType) => {
         console.log(formData.newMessageBody)
-        props.addMessage(formData.newMessageBody)}
+        props.addMessage(formData.newMessageBody)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -45,7 +44,7 @@ const Dialogs = (props: DialogsType) => {
 
             <div className={s.messages}>
                 <div> {messageElements}</div>
-                <AddMessageReduxForm onSubmit={onSubmit} />
+                <AddMessageReduxForm onSubmit={onSubmit}/>
 
 
             </div>
@@ -55,14 +54,15 @@ const Dialogs = (props: DialogsType) => {
 }
 export default Dialogs
 
-type FormDataType={
+type FormDataType = {
     newMessageBody: string
 }
-const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> =(props)=>{
-    return(
+const maxLength10=maxLength(10)
+const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Enter your message'} name={'newMessageBody'} component={'textarea'}/>
+                <Field placeholder={'Enter your message'} validate={[maxLength10, required]} name={'newMessageBody'} component={TextArea}/>
             </div>
             <div>
                 <button>add message</button>
