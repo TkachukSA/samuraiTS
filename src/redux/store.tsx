@@ -93,7 +93,6 @@ const store: StroreType = {
         sidebar: {}
     },
     addPost(postText: string) {
-        debugger
         this._state.profilePage.messageForNewPost = postText
         let newPost: PostsTypes = {
             id: v1(),
@@ -106,7 +105,6 @@ const store: StroreType = {
         this.rerenderEntireTree()
     },
     addMessage(postMessage: string) {
-        debugger
 
         let newMessage = {
             id: v1(),
