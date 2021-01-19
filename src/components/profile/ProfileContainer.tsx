@@ -11,6 +11,8 @@ import {compose} from "redux";
 type mapStateToPropsType = {
     profile: newProfileType | null
     status: string
+    autorisedUserId: any
+    isAuth: boolean
 }
 type mapDispathToPropsType = {
     getUserProfile: (userId: string) => void
@@ -31,7 +33,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '13055'
+            userId = this.props.autorisedUserId
         }
 
         this.props.getUserProfile(userId)
@@ -55,7 +57,9 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        autorisedUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 
