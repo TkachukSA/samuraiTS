@@ -7,7 +7,8 @@ export type setUserDataActionType = ReturnType<typeof setAuthUserData>
 
 export const setAuthUserData = (data: AuthPageType) => ({
     type: "SET-USER-DATA", data
-})
+} as const
+)
 
 
 export type ActionAuthType = setUserDataActionType

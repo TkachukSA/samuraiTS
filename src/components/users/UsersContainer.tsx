@@ -118,7 +118,7 @@ let mapStateToProps = (state: appStateType) => {
 }
 
 
-export default compose(withAuthRedirect,connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
+export default compose(/*withAuthRedirect,*/connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toglIsFetching,
