@@ -33,6 +33,7 @@ class App extends React.Component<HeaderPropsType> {
     }
 
     render() {
+
         {
             if(!this.props.initialized){
                 return <Preloader/>

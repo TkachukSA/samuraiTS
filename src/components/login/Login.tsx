@@ -47,6 +47,7 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 
 function Login(props: mapDispathToPropsType & mapStateToPropsType ) {
+
     const onSubmit = (formData: FormDataType) => {
         props.loginTC(formData.email, formData.password,formData.rememberMe)}
     if (props.isAuth) {

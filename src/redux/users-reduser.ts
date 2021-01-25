@@ -130,6 +130,7 @@ export const getUsersThunk=(currentPage: number, pageSize: number)=>{
 
     return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
         dispatch(toglIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
         userApi.getUsers(currentPage, pageSize)
             .then((response) => {
                 dispatch(toglIsFetching(false))

@@ -43,6 +43,7 @@ export default appReducer
 
 export const initializedApp = ()=>(dispatch: Dispatch<any>)=>{
   const promise =  dispatch(getAuthUserData())
+  const promise1 =  dispatch(getAuthUserData())
 
    /// promise.then(()=>{})???????????
     Promise.all([promise])
