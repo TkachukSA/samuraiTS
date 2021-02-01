@@ -1,14 +1,11 @@
 import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
-import { stopSubmit } from 'redux-form';
+import {stopSubmit} from 'redux-form';
 
 //export type setUserDataActionType = { type: "SET-USER-DATA", data: {id: number | null, email: string, login: string ,isAuth: boolean }}
 export type setUserDataActionType = ReturnType<typeof setAuthUserData>
 
-export const setAuthUserData = (data: AuthPageType) => ({
-    type: "SET-USER-DATA", data
-} as const
-)
+export const setAuthUserData = (data: AuthPageType) => ({type: "SET-USER-DATA", data} as const)
 
 
 export type ActionAuthType = setUserDataActionType
@@ -62,13 +59,12 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
     return (dispatch: Dispatch<any>) => {
 
 
-
         authAPI.login(email, password, rememberMe)
             .then((response) => {
                 if (response.data.resultCode === 0) {
                     dispatch(getAuthUserData())
                 } else {
-                  let message =  response.data.messages.length > 0 ? response.data.messages[0]: 'some error'
+                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some error'
                     dispatch(stopSubmit("login", {_error: message}))
                 }
             })
