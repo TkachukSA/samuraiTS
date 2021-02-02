@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/navbar/Navbar";
-import {Route, withRouter, RouteComponentProps} from "react-router-dom";
+import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainet from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
@@ -9,10 +9,10 @@ import HeaderContainer from "./components/header/header.container";
 import Login from "./components/login/Login";
 import {connect} from "react-redux";
 import {appStateType} from "./redux/redux.store";
-import {getAuthUserData, logoutTC} from "./redux/auth-reduser";
 import {compose} from "redux";
 import {initializedApp} from "./redux/app-reduser";
 import Preloader from "./components/common/Preloader";
+import {Chat} from "./chat/Chat";
 
 
 type mapDispathToPropsType= {
@@ -52,6 +52,7 @@ class App extends React.Component<HeaderPropsType> {
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/users' render={() => <UsersContainet/>}/>
                     <Route path='/login' render={() => <Login/>}/>
+                    <Route path='/chat' render={() => <Chat/>}/>
                 </div>
             </div>
         )
