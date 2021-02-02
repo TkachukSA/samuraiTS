@@ -70,24 +70,12 @@ function Users(props: UsersPropsType) {
                     {u.followed
                         ? <button disabled={props.folowingInProgres.some(id => id === u.id)} onClick={() => {
                             props.unFolluwThunk(u.id)
-                            /*props.toglFolowingInProgress(true,u.id)
-                           userApi.getUnFollow(+u.id)
-                                .then((data) => {
-                                    if (data.resultCode === 0) {
-                                        props.UnFollow(u.id)}
-                                    props.toglFolowingInProgress(false,u.id)
-                                })*/
+
 
                         }}>unfollow</button>
 
                         : <button disabled={props.folowingInProgres.some(id => id === u.id)} onClick={() => {
                             props.FolluwThunk(u.id)
-                            /*props.toglFolowingInProgress(true,u.id)
-                            userApi.getFollow(+u.id)
-                                .then((data) => {if (data.resultCode === 0) {
-                                        props.follow(u.id)}
-                                    props.toglFolowingInProgress(false,u.id)
-                                })*/
 
                         }}>follow</button>}
                 </div>

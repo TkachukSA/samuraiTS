@@ -2,7 +2,6 @@ import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {stopSubmit} from 'redux-form';
 
-//export type setUserDataActionType = { type: "SET-USER-DATA", data: {id: number | null, email: string, login: string ,isAuth: boolean }}
 export type setUserDataActionType = ReturnType<typeof setAuthUserData>
 
 export const setAuthUserData = (data: AuthPageType) => ({type: "SET-USER-DATA", data} as const)

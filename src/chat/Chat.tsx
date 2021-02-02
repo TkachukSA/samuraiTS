@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useEffect, useState} from "react"
-import aaa from "../assets/images/user.png"
+import React, {ChangeEvent, useEffect, useRef, useState} from "react"
 import s from './Chat.module.css'
+import {useSelector} from "react-redux";
+import {appStateType} from "../redux/redux.store";
 
 type UserType = {
     message: string
@@ -10,32 +11,38 @@ type UserType = {
 }
 
 export const Chat = function () {
+
+    const authId = useSelector<appStateType, number| null>(state => state.auth.id)
+
     let [messange, setMessane] = useState('')
     let [user, setUser] = useState<UserType[]>([])
     let [ws, setWs] = useState<WebSocket>()
 
+    const h1Ref = useRef<HTMLHeadingElement>(null)
+
+
 // 3. в объекте вс приходит свойство onmessage в нем находится введеный текст
 // 4. сзздаем из него объект и делаем копью нового сообщения и с старых сообщений
+
     if (ws) {
         ws.onmessage = (messange) => {
+            debugger
             let messages = JSON.parse(messange.data)
+            if (h1Ref && h1Ref.current) {
+                h1Ref.current.scrollTo(0, h1Ref.current.scrollHeight)
+            }
             setUser([...user, ...messages])
         }
     }
 
-
-    console.log('render')
 //1. делаем запрос в wss
-// 2. если запрос пришел сетаем его
+//2. если запрос пришел сетаем его
     useEffect(() => {
-        debugger
         let webSocket = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
         if (webSocket) {
             setWs(webSocket)
         }
-
     }, [])
-
 
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setMessane(e.currentTarget.value)
@@ -45,18 +52,16 @@ export const Chat = function () {
         if (ws) {
             ws.send(messange)
             setMessane('')
-
         }
     }
 
-    return (<div>
+    return (<div className={s.chat}>
 
         <div>
-            <div className={"messanges"}>
-                {user.map((u, index) => <div key={index} className={'messange'}>
-
-                        <img className={s.photo} src={u.photo}/><b>{u.userName}</b>
-                        <div>{u.message}</div>
+            <div ref={h1Ref} className={s.messanges}>
+                {user.map((u, index) => <div key={index} className={s.messange}>
+                        <img className={s.usersPhoto} src={u.photo}/><b><span className={u.userId === authId? s.span2: s.span}>{u.userName}</span></b>
+                        <span>{u.message}</span>
                     </div>
                 )}
             </div>
@@ -71,52 +76,4 @@ export const Chat = function () {
 
 }
 
-
-/*export const Chat = function () {
-    const [messange, setMessane] = useState('')
-    const [user, setUser] = useState([{id: 1, name: "SA", Photo: aaa, messange: 'Hello'}])
-
-    let ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-    console.log('render')
-
-    useEffect(() => {
-
-        console.log('useeffect')
-        ws.onmessage = (messange) => {
-            console.log(messange)
-        }
-
-    }, [])
-
-
-    const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setMessane(e.currentTarget.value)
-    }
-
-    const onMessange = () => {
-        ws.send(messange)
-    }
-
-    return (<div>
-
-        <div>
-            <div className={"messanges"}>
-                {user.map(u => <div className={'messange'}>
-
-                        <img className={s.usersPhoto} src={u.Photo}/><b>{u.name}</b>
-                        <div>{u.messange}</div>
-                    </div>
-                )}
-            </div>
-        </div>
-        <div>
-            <textarea onChange={onMessageChange}/>
-            <button onClick={onMessange}>Send</button>
-        </div>
-
-
-    </div>)
-
-
-}*/
 
