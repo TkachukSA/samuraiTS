@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
 import ReactDOM from "react-dom";
-
 import { Provider } from 'react-redux'
-
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux.store";
 import App from "./App";
 
 
+import me from './assets/images/me.jpg'
+import {profileAPI} from "./api/api";
 
 
 const rerenderEntireTree = () => {
+
     ReactDOM.render(
       
         <BrowserRouter>

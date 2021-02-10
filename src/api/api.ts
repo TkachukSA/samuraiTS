@@ -1,6 +1,6 @@
 import axios from "axios";
 
-
+import ss from '../assets/images/user.png'
 
 
 const instance= axios.create({
@@ -42,7 +42,12 @@ export const profileAPI = {
     updateStatus(status: string){
         return instance.put(`profile/status`, { status: status }, );
     },
+    updatePhotos(image: string){
+        return instance.put(`profile/photo`, {image: image})
+    }
 }
+/*debugger
+profileAPI.updatePhotos(ss)*/
 
 export const authAPI = {
     me() {

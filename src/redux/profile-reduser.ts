@@ -4,15 +4,16 @@ import {
 import {v1} from "uuid";
 import {profileAPI, userApi} from "../api/api";
 import {AxiosResponse} from "axios";
+import {AuthPageType, setAuthUserData} from "./auth-reduser";
 
 
-export type setUsersProfileType={
+export type setUsersProfileType = {
     type: "SET_USER_PROFILE"
     profile: newProfileType
 }
 export type AddPostActionType = {
     type: "ADD-POST",
-    value:string
+    value: string
 }
 
 export type setStatusActionType = {
@@ -23,18 +24,26 @@ export type updateStatusActionType = {
     type: "UPDATE_STATUS"
     status: string
 }
-export type ActionPageType= AddPostActionType | setUsersProfileType | setStatusActionType|updateStatusActionType
+/*export type PhotosType = ReturnType<typeof updatePhotosAC>*/
 
-export type newProfileType={
+export type ActionPageType =
+     |
+    AddPostActionType
+    | setUsersProfileType
+    | setStatusActionType
+    | updateStatusActionType
+
+
+export type newProfileType = {
     aboutMe: string
-    contacts:{
+    contacts: {
         facebook: string | null
         website: string | null
         vk: string | null
         twitter: string | null
         instagram: string | null
 
-        youtube:  string | null
+        youtube: string | null
         github: string | null
         mainLink: string | null
     },
@@ -47,14 +56,12 @@ export type newProfileType={
         large: string
     }
 }
-export type newProfilePageType={
-    profile:newProfileType | null
+export type newProfilePageType = {
+    profile: newProfileType | null
 
     posts: Array<PostsTypes>
     status: string
 }
-
-
 
 
 let initialState: newProfilePageType = {
@@ -69,9 +76,11 @@ let initialState: newProfilePageType = {
 }
 
 
-const profileReducer = (state: newProfilePageType = initialState, action: ActionPageType ): newProfilePageType => {
+const profileReducer = (state: newProfilePageType = initialState, action: ActionPageType): newProfilePageType => {
 
     switch (action.type) {
+
+
         case "ADD-POST":
             let text = action.value
             let newPost: PostsTypes = {
@@ -82,8 +91,6 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-
-
             }
 
         case "SET_USER_PROFILE":
@@ -93,36 +100,40 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
             return {...state, status: action.status}
         case "UPDATE_STATUS":
             return {...state, status: action.status}
+
         default:
             return state
     }
 
 }
 
-export const addPostActoinCreator = (value:string): AddPostActionType => ({
+export const addPostActoinCreator = (value: string): AddPostActionType => ({
         type: "ADD-POST", value
     }
 )
 
-export const setUsersProfile = (profile: newProfileType):setUsersProfileType => ({
+export const setUsersProfile = (profile: newProfileType): setUsersProfileType => ({
     type: "SET_USER_PROFILE",
     profile
 })
 
-export const setStatus = (status :string): setStatusActionType => ({
-  type: 'SET_STATUS', status
+export const setStatus = (status: string): setStatusActionType => ({
+    type: 'SET_STATUS', status
 })
-export const updateStatusAC = (status :string): updateStatusActionType => ({
-  type: 'UPDATE_STATUS', status
+export const updateStatusAC = (status: string): updateStatusActionType => ({
+    type: 'UPDATE_STATUS', status
 })
+/*
+export const updatePhotosAC = (image: string) => ({type: 'UPDATE_PHOTOS', image} as const )
+*/
 
 
 export default profileReducer
 
 
-export const getUserProfile=(userId: string)=>{
+export const getUserProfile = (userId: string) => {
 
-    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+    return (dispatch: (action: ActionPageType) => ActionPageType) => {
 
         userApi.getProfile(+userId)
             .then((response: AxiosResponse<any>) => {
@@ -131,8 +142,8 @@ export const getUserProfile=(userId: string)=>{
     }
 }
 
-export const getStatus=(userId: string)=>{
-    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+export const getStatus = (userId: string) => {
+    return (dispatch: (action: ActionPageType) => ActionPageType) => {
         profileAPI.getStatus(+userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setStatus(response.data))
@@ -140,15 +151,26 @@ export const getStatus=(userId: string)=>{
     }
 }
 
-export const updateStatus= (status: string)=>{
-    return (dispatch: (action: ActionPageType)=> ActionPageType )=>{
+export const updateStatus = (status: string) => {
+    return (dispatch: (action: ActionPageType) => ActionPageType) => {
         profileAPI.updateStatus(status)
             .then((response: AxiosResponse<any>) => {
-                if(response.data.resultCode===0){
-                dispatch(updateStatusAC(status))}
+                if (response.data.resultCode === 0) {
+                    dispatch(updateStatusAC(status))
+                }
             })
     }
 }
 
+/*export const updatePhotos = (image: string) => {
+    return (dispatch: (action: ActionPageType) => ActionPageType) => {
+        profileAPI.updatePhotos(image)
+            .then((response: AxiosResponse<any>) => {
+                if (response.data.resultCode === 0) {
+                    dispatch(updateStatusAC(status))
+                }
+            })
+    }
+}*/
 
 

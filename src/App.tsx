@@ -13,19 +13,22 @@ import {compose} from "redux";
 import {initializedApp} from "./redux/app-reduser";
 import Preloader from "./components/common/Preloader";
 import {Chat} from "./chat/Chat";
+import {profileAPI} from "./api/api";
 
 
-type mapDispathToPropsType= {
-    initializedApp: ()=>void
+type mapDispathToPropsType = {
+    initializedApp: () => void
 }
 
-type mapStateToPropsType ={
+type mapStateToPropsType = {
     initialized: boolean
 }
 
 type HeaderPropsType = mapStateToPropsType & mapDispathToPropsType
 
+
 class App extends React.Component<HeaderPropsType> {
+
 
     componentDidMount() {
         this.props.initializedApp()
@@ -35,11 +38,10 @@ class App extends React.Component<HeaderPropsType> {
     render() {
 
         {
-            if(!this.props.initialized){
+            if (!this.props.initialized) {
                 return <Preloader/>
             }
         }
-
 
 
         return (
@@ -58,7 +60,8 @@ class App extends React.Component<HeaderPropsType> {
         )
     }
 }
-let mapStateToProps=(state:appStateType):mapStateToPropsType=>{
+
+let mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
 
         initialized: state.app.initialized

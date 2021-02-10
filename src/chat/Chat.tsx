@@ -12,7 +12,7 @@ type UserType = {
 
 export const Chat = function () {
 
-    const authId = useSelector<appStateType, number| null>(state => state.auth.id)
+    const authId = useSelector<appStateType, number | null>(state => state.auth.id)
 
     let [messange, setMessane] = useState('')
     let [user, setUser] = useState<UserType[]>([])
@@ -28,10 +28,10 @@ export const Chat = function () {
         ws.onmessage = (messange) => {
             debugger
             let messages = JSON.parse(messange.data)
+            setUser([...user, ...messages])
             if (h1Ref && h1Ref.current) {
                 h1Ref.current.scrollTo(0, h1Ref.current.scrollHeight)
             }
-            setUser([...user, ...messages])
         }
     }
 
@@ -60,7 +60,8 @@ export const Chat = function () {
         <div>
             <div ref={h1Ref} className={s.messanges}>
                 {user.map((u, index) => <div key={index} className={s.messange}>
-                        <img className={s.usersPhoto} src={u.photo}/><b><span className={u.userId === authId? s.span2: s.span}>{u.userName}</span></b>
+                        <img className={s.usersPhoto} src={u.photo}/><b><span
+                        className={u.userId === authId ? s.span2 : s.span}>{u.userName}</span></b>
                         <span>{u.message}</span>
                     </div>
                 )}
@@ -75,5 +76,4 @@ export const Chat = function () {
     </div>)
 
 }
-
 
