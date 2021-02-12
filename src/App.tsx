@@ -20,6 +20,7 @@ type mapDispathToPropsType = {
     initializedApp: () => void
 }
 
+
 type mapStateToPropsType = {
     initialized: boolean
 }
