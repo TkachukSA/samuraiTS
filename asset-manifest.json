@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/samuraiTS/static/css/main.48163d15.chunk.css",
-    "main.js": "/samuraiTS/static/js/main.b3a6ae55.chunk.js",
-    "main.js.map": "/samuraiTS/static/js/main.b3a6ae55.chunk.js.map",
+    "main.css": "/samuraiTS/static/css/main.58144fcc.chunk.css",
+    "main.js": "/samuraiTS/static/js/main.f6958677.chunk.js",
+    "main.js.map": "/samuraiTS/static/js/main.f6958677.chunk.js.map",
     "runtime-main.js": "/samuraiTS/static/js/runtime-main.b5a9b877.js",
     "runtime-main.js.map": "/samuraiTS/static/js/runtime-main.b5a9b877.js.map",
-    "static/js/2.099409f2.chunk.js": "/samuraiTS/static/js/2.099409f2.chunk.js",
-    "static/js/2.099409f2.chunk.js.map": "/samuraiTS/static/js/2.099409f2.chunk.js.map",
+    "static/js/2.87284811.chunk.js": "/samuraiTS/static/js/2.87284811.chunk.js",
+    "static/js/2.87284811.chunk.js.map": "/samuraiTS/static/js/2.87284811.chunk.js.map",
     "index.html": "/samuraiTS/index.html",
-    "static/css/main.48163d15.chunk.css.map": "/samuraiTS/static/css/main.48163d15.chunk.css.map",
-    "static/js/2.099409f2.chunk.js.LICENSE.txt": "/samuraiTS/static/js/2.099409f2.chunk.js.LICENSE.txt",
+    "static/css/main.58144fcc.chunk.css.map": "/samuraiTS/static/css/main.58144fcc.chunk.css.map",
+    "static/js/2.87284811.chunk.js.LICENSE.txt": "/samuraiTS/static/js/2.87284811.chunk.js.LICENSE.txt",
     "static/media/loader.a1a99674.gif": "/samuraiTS/static/media/loader.a1a99674.gif",
     "static/media/user.ab6315c9.png": "/samuraiTS/static/media/user.ab6315c9.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b5a9b877.js",
-    "static/js/2.099409f2.chunk.js",
-    "static/css/main.48163d15.chunk.css",
-    "static/js/main.b3a6ae55.chunk.js"
+    "static/js/2.87284811.chunk.js",
+    "static/css/main.58144fcc.chunk.css",
+    "static/js/main.f6958677.chunk.js"
   ]
 }
