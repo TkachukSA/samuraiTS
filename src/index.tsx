@@ -7,11 +7,6 @@ import {BrowserRouter} from "react-router-dom";
 import store from "./redux/redux.store";
 import App from "./App";
 
-
-import me from './assets/images/me.jpg'
-import {profileAPI} from "./api/api";
-
-
 const rerenderEntireTree = () => {
 
     ReactDOM.render(
@@ -23,6 +18,8 @@ const rerenderEntireTree = () => {
         </BrowserRouter>,
         document.getElementById('root'));
 }
+
+
 
 
 rerenderEntireTree()
