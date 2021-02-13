@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import ss from '../assets/images/user.png'
+
 
 
 const instance= axios.create({
