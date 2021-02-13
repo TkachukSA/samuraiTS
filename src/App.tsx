@@ -13,7 +13,7 @@ import {compose} from "redux";
 import {initializedApp} from "./redux/app-reduser";
 import Preloader from "./components/common/Preloader";
 import {Chat} from "./chat/Chat";
-import {profileAPI} from "./api/api";
+
 
 
 type mapDispathToPropsType = {
@@ -23,6 +23,7 @@ type mapDispathToPropsType = {
 type mapStateToPropsType = {
     initialized: boolean
 }
+
 
 type HeaderPropsType = mapStateToPropsType & mapDispathToPropsType
 
