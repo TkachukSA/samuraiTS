@@ -65,7 +65,7 @@ class UsersContainet extends React.Component<UsersPropsType> {
     onPageChanged = (pageNumber: number) => {
 
         this.props.getUsersThunk(pageNumber, this.props.pageSize)
-
+        this.props.setCurrentPage(pageNumber);
     }
 
     render() {
@@ -107,7 +107,7 @@ let mapStateToProps = (state: appStateType) => {
 }
 
 
-export default compose(withAuthRedirect,connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
+export default compose(/*withAuthRedirect*/connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toglIsFetching,
