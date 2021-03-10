@@ -55,6 +55,7 @@ function User(props: UsersPropsType) {
                     <span>
                    <div>{u.location && u.location}</div>
                </span>
+
                 </div>
             </div>)
         }
