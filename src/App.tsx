@@ -11,9 +11,8 @@ import {connect} from "react-redux";
 import {appStateType} from "./redux/redux.store";
 import {compose} from "redux";
 import {initializedApp} from "./redux/app-reduser";
-import Preloader from "./components/common/Preloader";
+import Preloader from "./components/common/preloader/Preloader";
 import {Chat} from "./chat/Chat";
-
 
 
 type mapDispathToPropsType = {

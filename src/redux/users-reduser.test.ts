@@ -1,4 +1,3 @@
-
 import {UsersType} from "../components/users/Users";
 import usersReducer, {
     follow,
@@ -9,12 +8,11 @@ import usersReducer, {
     UsersPageType
 } from "./users-reduser";
 
-test('folowAC',()=>{
+test('folowAC', () => {
 
-    const startState: UsersPageType={
-        users:[{
+    const startState: UsersPageType = {
+        users: [{
             name: 'SA',
-
             id: "2502",
             followed: false,
             uniqueUrlName: null,
@@ -27,27 +25,27 @@ test('folowAC',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
+        }],
+        folowingInProgress: [],
         currentPage: 1,
-        pageSize:2,
+        pageSize: 2,
         isFetching: true,
         totalCount: 100
 
     }
 
-    const action =follow("2502")
-    const endState=usersReducer(startState, action )
+    const action = follow("2502")
+    const endState = usersReducer(startState, action)
 
     expect(endState.users[0].followed).toBe(true)
 
 
 })
-test('unFolowAC',()=>{
+test('unFolowAC', () => {
 
-    const startState={
-        users:[{
+    const startState: UsersPageType = {
+        users: [{
             name: 'SA',
-
             id: "2502",
             followed: false,
             uniqueUrlName: null,
@@ -60,29 +58,30 @@ test('unFolowAC',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
+        }],
+        folowingInProgress: [],
         currentPage: 1,
-        pageSize:2,
+        pageSize: 2,
         isFetching: true,
         totalCount: 100
 
+
     }
 
-    const action =unFolow("2502")
-    const endState=usersReducer(startState, action )
+    const action = unFolow("2502")
+    const endState = usersReducer(startState, action)
 
     expect(endState.users[0].followed).toBe(false)
 
 
 })
-test('SETUSERS',()=>{
+test('SETUSERS', () => {
 
-    const startState={
-        users:[{
-
+    const startState: UsersPageType = {
+        users: [{
             name: 'SA',
             id: "2502",
-            followed: true,
+            followed: false,
             uniqueUrlName: null,
             status: "is active",
             photos: {
@@ -93,12 +92,13 @@ test('SETUSERS',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
-
-        pageSize: 1,
-        currentPage:1,
+        }],
+        folowingInProgress: [],
+        currentPage: 1,
+        pageSize: 2,
         isFetching: true,
         totalCount: 100
+
     }
     const newState: Array<UsersType> = [{
 
@@ -114,27 +114,25 @@ test('SETUSERS',()=>{
         location: {
             contry: "BLR",
             city: "Minsk"
-        }
+        },
+
     }]
 
 
-
-    const action =setUsers(newState)
-    const endState=usersReducer(startState, action )
+    const action = setUsers(newState)
+    const endState = usersReducer(startState, action)
     expect(startState.users.length).toBe(1)
 
     expect(endState.users[0].name).toBe('Frank')
-/*    expect(endState.users[1].name).toBe('SA')*/
+    /*    expect(endState.users[1].name).toBe('SA')*/
     expect(endState.users.length).toBe(1)
 
 
-
-
 })
-test('SET-CURRENT-PAGE',()=>{
+test('SET-CURRENT-PAGE', () => {
 
-    const startState={
-        users:[{
+    const startState = {
+        users: [{
             name: 'SA',
             id: "2502",
             followed: true,
@@ -148,15 +146,15 @@ test('SET-CURRENT-PAGE',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
+        }],
 
         pageSize: 1,
-        currentPage:1,
+        currentPage: 1,
         isFetching: true,
         totalCount: 100
     }
-    const newState= {
-        users:[{
+    const newState = {
+        users: [{
             name: 'NN',
             id: "9911",
             followed: false,
@@ -170,31 +168,28 @@ test('SET-CURRENT-PAGE',()=>{
                 contry: "USA",
                 city: "LA"
             },
-        } ],
+        }],
 
         pageSize: 1,
-        currentPage:6,
+        currentPage: 6,
         isFetching: true,
         totalCount: 100
     }
 
 
-
-    const action =setCurrentPage(6)
-    const endState=usersReducer(startState, action )
+    const action = setCurrentPage(6)
+    const endState = usersReducer(startState, action)
     expect(startState.currentPage).toBe(1)
 
 
     expect(endState.currentPage).toBe(6)
 
 
-
-
 })
-test('SET-TOTAL-USERS-COUNT',()=>{
+test('SET-TOTAL-USERS-COUNT', () => {
 
-    const startState={
-        users:[{
+    const startState = {
+        users: [{
             name: 'SA',
             id: "2502",
             followed: true,
@@ -208,15 +203,15 @@ test('SET-TOTAL-USERS-COUNT',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
+        }],
 
         pageSize: 1,
-        currentPage:1,
+        currentPage: 1,
         isFetching: true,
         totalCount: 100
     }
-    const newState= {
-        users:[{
+    const newState = {
+        users: [{
             name: 'NN',
             id: "9911",
             followed: false,
@@ -230,18 +225,17 @@ test('SET-TOTAL-USERS-COUNT',()=>{
                 contry: "USA",
                 city: "LA"
             },
-        } ],
+        }],
 
         pageSize: 1,
-        currentPage:6,
+        currentPage: 6,
         isFetching: true,
         totalCount: 100
     }
 
 
-
-    const action =setTotalUsersCount(1000)
-    const endState=usersReducer(startState, action )
+    const action = setTotalUsersCount(1000)
+    const endState = usersReducer(startState, action)
 
     expect(startState.totalCount).toBe(100)
 
@@ -249,13 +243,11 @@ test('SET-TOTAL-USERS-COUNT',()=>{
     expect(endState.totalCount).toBe(1000)
 
 
-
-
 })
-test('TOGL-IDFETCHING',()=>{
+test('TOGL-IDFETCHING', () => {
 
-    const startState={
-        users:[{
+    const startState = {
+        users: [{
             name: 'SA',
             id: "2502",
             followed: true,
@@ -269,26 +261,22 @@ test('TOGL-IDFETCHING',()=>{
                 contry: "UAE",
                 city: "DUMAI"
             },
-        } ],
+        }],
 
         pageSize: 1,
-        currentPage:1,
+        currentPage: 1,
         isFetching: true,
         totalCount: 100
     }
 
 
-
-
-    const action =toglIsFetching(false)
-    const endState=usersReducer(startState, action )
+    const action = toglIsFetching(false)
+    const endState = usersReducer(startState, action)
 
     expect(startState.isFetching).toBe(true)
 
 
     expect(endState.isFetching).toBe(false)
-
-
 
 
 })

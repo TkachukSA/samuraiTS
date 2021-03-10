@@ -3,13 +3,7 @@ import {Dispatch} from "redux";
 import {stopSubmit} from 'redux-form';
 
 export type setUserDataActionType = ReturnType<typeof setAuthUserData>
-
-export const setAuthUserData = (data: AuthPageType) => ({type: "SET-USER-DATA", data} as const)
-
-
 export type ActionAuthType = setUserDataActionType
-
-
 export type AuthPageType = {
     id: number | null
     email: string | null
@@ -17,9 +11,10 @@ export type AuthPageType = {
     isAuth: boolean
 }
 
+export const setAuthUserData = (data: AuthPageType) => ({type: "SET-USER-DATA", data} as const)
+
 
 let initialState: AuthPageType = {
-
     id: null,
     email: null,
     login: null,
@@ -28,7 +23,6 @@ let initialState: AuthPageType = {
 
 
 const authReducer = (state: AuthPageType = initialState, action: ActionAuthType): AuthPageType => {
-
     switch (action.type) {
         case "SET-USER-DATA":
             return {...state, ...action.data}
@@ -54,10 +48,7 @@ export const getAuthUserData = () => {
 
 
 export const loginTC = (email: string, password: string, rememberMe: boolean) => {
-
     return (dispatch: Dispatch<any>) => {
-
-
         authAPI.login(email, password, rememberMe)
             .then((response) => {
                 if (response.data.resultCode === 0) {

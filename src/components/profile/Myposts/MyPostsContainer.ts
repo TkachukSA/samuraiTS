@@ -7,13 +7,10 @@ import {connect} from "react-redux";
 import {ActionPageType, addPostActoinCreator,} from "../../../redux/profile-reduser";
 
 
-
 type mapDispathToPropsType={
     addPost: (value: string)=>void
 
 }
-
-
 
 let mapStateToProps=(state:appStateType)=>{
     return{
@@ -25,7 +22,6 @@ let mapStateToProps=(state:appStateType)=>{
 let mapDispathToProps=(dispatch:(action: ActionPageType) => void ):mapDispathToPropsType=>{
     return{
         addPost: (value: string)=>{dispatch(addPostActoinCreator(value))},
-
     }
 }
 

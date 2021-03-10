@@ -5,14 +5,11 @@ import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {loginTC} from "../../redux/auth-reduser";
 import {appStateType} from "../../redux/redux.store";
-import { Redirect } from "react-router-dom";
-import s from'../common/formsControl/FormsControl.module.css'
+import {Redirect} from "react-router-dom";
+import s from '../common/formsControl/FormsControl.module.css'
 
 
-
-
-
-type FormDataType={
+type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
@@ -20,7 +17,7 @@ type FormDataType={
 }
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> =(props)=> {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -32,7 +29,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> =(props)=> {
             <div>
                 <Field type={"checkbox"} name={'rememberMe'} component={Input}/>
             </div>
-            { props.error && <div className={s.FormsControl}>
+            {props.error && <div className={s.FormsControl}>
                 {props.error}
             </div>}
             <div>
@@ -46,14 +43,14 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> =(props)=> {
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 
-function Login(props: mapDispathToPropsType & mapStateToPropsType ) {
+function Login(props: mapDispathToPropsType & mapStateToPropsType) {
 
     const onSubmit = (formData: FormDataType) => {
-        props.loginTC(formData.email, formData.password,formData.rememberMe)}
+        props.loginTC(formData.email, formData.password, formData.rememberMe)
+    }
     if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
-
 
     return <div>
         <div>Login</div>
@@ -61,16 +58,17 @@ function Login(props: mapDispathToPropsType & mapStateToPropsType ) {
     </div>
 
 }
-type mapDispathToPropsType={
-    loginTC : (email: string, password: string, rememberMe: boolean) =>void
+
+type mapDispathToPropsType = {
+    loginTC: (email: string, password: string, rememberMe: boolean) => void
 }
-type mapStateToPropsType={
+type mapStateToPropsType = {
     isAuth: boolean
 }
-const mapStateToProps=(state:appStateType):mapStateToPropsType=>{
-    return{
+const mapStateToProps = (state: appStateType): mapStateToPropsType => {
+    return {
         isAuth: state.auth.isAuth
     }
 
 }
-export default connect<mapStateToPropsType,mapDispathToPropsType,{}, appStateType>(mapStateToProps, {loginTC})(Login)
+export default connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>(mapStateToProps, {loginTC})(Login)
