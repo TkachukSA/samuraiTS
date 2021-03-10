@@ -2,10 +2,6 @@ import React from 'react';
 import s from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 
-
-//NavLink - ссылка котроя не обновляет полностью страницу
-// to="/profile" - пишется без точек
-// activeClassName - описано в сисс (цвет активной ссылки)
 const Navbar = () => {
     return (
         <nav className={s.nav}>

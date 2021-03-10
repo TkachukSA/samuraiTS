@@ -6,7 +6,6 @@ type MessageType={
 }
 
 const Message = (props: MessageType) => {
-
     return (
         <div className={s.dialog}>{props.message}</div>)
 

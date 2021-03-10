@@ -8,19 +8,15 @@ import {compose} from "redux";
 
 
 type mapDispathToPropsType = {
-    addMessage: ( value: string) => void
-   // changeHandler: (body: any) => void
+    addMessage: (value: string) => void
 }
 type mapStateToPropsType = {
     dialogsPage: MessagePageType,
-   // isAuth: boolean
 }
-export type DialogsType= mapStateToPropsType & mapDispathToPropsType
 
 let mapStateToProps = (state: appStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-      //  isAuth: state.auth.isAuth
     }
 
 }

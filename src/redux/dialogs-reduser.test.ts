@@ -1,7 +1,6 @@
 
-import {MessagePageType} from "./store";
 import {v1} from "uuid";
-import dialogsReducer, {addMessageActoinCreator} from "./dialogs-reduser";
+import dialogsReducer, {addMessageActoinCreator, MessagePageType} from "./dialogs-reduser";
 
 test('ADD-MESSAGE',()=>{
 
@@ -13,7 +12,7 @@ test('ADD-MESSAGE',()=>{
             {id: v1(), name: "Andrey"},
             {id: v1(), name: "Vasia"}
         ],
-        messagesForMessages: "",
+
         messages: [
             {id: v1(), message: "hi how is your programmnig"},
             {id: v1(), message: "hi, its ok\""},

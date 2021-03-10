@@ -1,6 +1,6 @@
 import {UsersType} from "../components/users/Users";
 import {userApi} from "../api/api";
-import {mapDispathToPropsType} from "../components/users/UsersContainer";
+import {Dispatch} from "redux";
 
 
 export type UsersPageType={
@@ -45,7 +45,6 @@ let initialState: UsersPageType  = {
 
 
 const usersReducer = (state: UsersPageType  = initialState, action: ActionUserType): UsersPageType => {
-
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -127,8 +126,7 @@ export const toglFolowingInProgress = (isFetching: boolean, userId: string): tog
 
 
 export const getUsersThunk=(currentPage: number, pageSize: number)=>{
-
-    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
+    return (dispatch: Dispatch)=>{
         dispatch(toglIsFetching(true))
         dispatch(setCurrentPage(currentPage))
         userApi.getUsers(currentPage, pageSize)
@@ -155,7 +153,6 @@ export const unFolluwThunk=(userId: string)=>{
     }
 }
 export const FolluwThunk=(userId: string)=>{
-
     return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
         dispatch(toglFolowingInProgress(true,userId))
         userApi.getFollow(+userId)
@@ -164,6 +161,5 @@ export const FolluwThunk=(userId: string)=>{
                     dispatch(follow(userId))}
                 dispatch(toglFolowingInProgress(false,userId))
             })
-
     }
 }

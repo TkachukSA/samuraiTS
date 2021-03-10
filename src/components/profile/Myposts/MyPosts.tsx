@@ -18,12 +18,6 @@ const MyPosts = (props: MyPostsType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} likekounts={p.likekounts} id={p.id} key={p.id}/>)
 
-
-
-
-
-
-
     const addPost = (formData: FormDataType) => {
         props.addPost(formData.newPostBody)
     }
@@ -33,13 +27,10 @@ const MyPosts = (props: MyPostsType) => {
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-
                 <AddNewPostReduxForm onSubmit={addPost}/>
-
             </div>
             <div className={s.posts}>
                 {postsElements}
-
             </div>
         </div>
 
@@ -55,7 +46,8 @@ const AddNewPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Enter new post'}  validate={[maxLength20, required]}name={'newPostBody'} component={TextArea}/>
+                <Field placeholder={'Enter new post'} validate={[maxLength20, required]} name={'newPostBody'}
+                       component={TextArea}/>
             </div>
             <div>
                 <button>Add post</button>

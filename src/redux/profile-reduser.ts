@@ -4,7 +4,6 @@ import {
 import {v1} from "uuid";
 import {profileAPI, userApi} from "../api/api";
 import {AxiosResponse} from "axios";
-import {AuthPageType, setAuthUserData} from "./auth-reduser";
 
 
 export type setUsersProfileType = {
@@ -15,7 +14,6 @@ export type AddPostActionType = {
     type: "ADD-POST",
     value: string
 }
-
 export type setStatusActionType = {
     type: "SET_STATUS"
     status: string
@@ -24,11 +22,9 @@ export type updateStatusActionType = {
     type: "UPDATE_STATUS"
     status: string
 }
-/*export type PhotosType = ReturnType<typeof updatePhotosAC>*/
 
 export type ActionPageType =
-     |
-    AddPostActionType
+    | AddPostActionType
     | setUsersProfileType
     | setStatusActionType
     | updateStatusActionType
@@ -58,7 +54,6 @@ export type newProfileType = {
 }
 export type newProfilePageType = {
     profile: newProfileType | null
-
     posts: Array<PostsTypes>
     status: string
 }
@@ -77,10 +72,7 @@ let initialState: newProfilePageType = {
 
 
 const profileReducer = (state: newProfilePageType = initialState, action: ActionPageType): newProfilePageType => {
-
     switch (action.type) {
-
-
         case "ADD-POST":
             let text = action.value
             let newPost: PostsTypes = {
@@ -95,7 +87,6 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
 
         case "SET_USER_PROFILE":
             return {...state, profile: action.profile}
-
         case "SET_STATUS":
             return {...state, status: action.status}
         case "UPDATE_STATUS":
@@ -123,18 +114,14 @@ export const setStatus = (status: string): setStatusActionType => ({
 export const updateStatusAC = (status: string): updateStatusActionType => ({
     type: 'UPDATE_STATUS', status
 })
-/*
-export const updatePhotosAC = (image: string) => ({type: 'UPDATE_PHOTOS', image} as const )
-*/
+
 
 
 export default profileReducer
 
 
 export const getUserProfile = (userId: string) => {
-
     return (dispatch: (action: ActionPageType) => ActionPageType) => {
-
         userApi.getProfile(+userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setUsersProfile(response.data))
@@ -161,16 +148,5 @@ export const updateStatus = (status: string) => {
             })
     }
 }
-
-/*export const updatePhotos = (image: string) => {
-    return (dispatch: (action: ActionPageType) => ActionPageType) => {
-        profileAPI.updatePhotos(image)
-            .then((response: AxiosResponse<any>) => {
-                if (response.data.resultCode === 0) {
-                    dispatch(updateStatusAC(status))
-                }
-            })
-    }
-}*/
 
 
