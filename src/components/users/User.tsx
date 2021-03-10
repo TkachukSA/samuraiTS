@@ -41,6 +41,7 @@ function User(props: UsersPropsType) {
                                 onClick={() => {
                                     props.FolluwThunk(u.id)
                                 }}>
+
                             follow
                         </button>}
                 </div>
