@@ -42,7 +42,6 @@ function User(props: UsersPropsType) {
                                     props.FolluwThunk(u.id)
                                 }}>
 
-
                             follow
                         </button>}
                 </div>
