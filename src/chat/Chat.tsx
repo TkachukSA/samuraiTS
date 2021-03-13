@@ -13,7 +13,6 @@ type UserType = {
 export const Chat = function () {
 
     const authId = useSelector<appStateType, number | null>(state => state.auth.id)
-
     let [messange, setMessane] = useState('')
     let [user, setUser] = useState<UserType[]>([])
     let [ws, setWs] = useState<WebSocket>()
@@ -71,8 +70,6 @@ export const Chat = function () {
             <textarea value={messange} onChange={onMessageChange}/>
             <button onClick={onMessange}>Send</button>
         </div>
-
-
     </div>)
 
 }
