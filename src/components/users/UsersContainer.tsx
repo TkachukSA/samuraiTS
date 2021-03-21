@@ -34,6 +34,7 @@ export type UsersPropsType = mapStateToPropsType & mapDispathToPropsType
 
 class UsersContainet extends React.Component<UsersPropsType> {
 
+
     componentDidMount() {
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize)
     }
@@ -43,7 +44,9 @@ class UsersContainet extends React.Component<UsersPropsType> {
         this.props.setCurrentPage(pageNumber);
     }
 
+
     render() {
+        debugger
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users

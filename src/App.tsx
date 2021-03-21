@@ -54,7 +54,7 @@ class App extends React.Component<HeaderPropsType> {
                 <div className="app-wrapper-content">
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-
+                    <Route path='/users' render={() => <UsersContainet/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                     <Route path='/chat' render={() => <Chat/>}/>
                 </div>

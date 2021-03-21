@@ -33,13 +33,14 @@ export type UsersPropsType = {
 
 
 function Users(props: UsersPropsType) {
-
+debugger
     return <div>
         <Paginator onPageChanged={props.onPageChanged}
                    currentPage={props.currentPage}
                    pageSize={props.pageSize}
                    totalCount={props.totalCount}
                    users={props.users}
+                   portionSize={10}
         />
         <User users={props.users}
               FolluwThunk={props.FolluwThunk}
