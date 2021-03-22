@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from "./components/navbar/Navbar";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainet from "./components/users/UsersContainer";
+//import UsersContainet from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/header.container";
 import Login from "./components/login/Login";
@@ -13,6 +13,7 @@ import {compose} from "redux";
 import {initializedApp} from "./redux/app-reduser";
 import Preloader from "./components/common/preloader/Preloader";
 import {Chat} from "./chat/Chat";
+const UsersContainet = React.lazy(() => import('./components/users/UsersContainer'));
 
 
 type mapDispathToPropsType = {
@@ -54,7 +55,10 @@ class App extends React.Component<HeaderPropsType> {
                 <div className="app-wrapper-content">
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainet/>}/>
+                    <Route path='/users' render={() => <React.Suspense fallback={<div><Preloader/></div>}>
+                        <UsersContainet />
+                    </React.Suspense>}/>
+
                     <Route path='/login' render={() => <Login/>}/>
                     <Route path='/chat' render={() => <Chat/>}/>
                 </div>
