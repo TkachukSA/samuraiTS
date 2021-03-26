@@ -4,6 +4,8 @@ import {
 import {v1} from "uuid";
 import {profileAPI, userApi} from "../api/api";
 import {AxiosResponse} from "axios";
+import {Dispatch} from "redux";
+import {setAuthUserData} from "./auth-reduser";
 
 
 export type setUsersProfileType = {
@@ -28,6 +30,7 @@ export type ActionPageType =
     | setUsersProfileType
     | setStatusActionType
     | updateStatusActionType
+    | ReturnType<typeof SavePhotoAC>
 
 
 export type newProfileType = {
@@ -92,6 +95,9 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
         case "UPDATE_STATUS":
             return {...state, status: action.status}
 
+        case "UPDATE_PHOTO":{
+          return   {...state, profile:{...state.profile, ...action.data}}
+        }
         default:
             return state
     }
@@ -114,6 +120,9 @@ export const setStatus = (status: string): setStatusActionType => ({
 export const updateStatusAC = (status: string): updateStatusActionType => ({
     type: 'UPDATE_STATUS', status
 })
+export const SavePhotoAC = (data: any) => ({
+    type: 'UPDATE_PHOTO', data
+}as const)
 
 
 
@@ -144,6 +153,19 @@ export const updateStatus = (status: string) => {
             .then((response: AxiosResponse<any>) => {
                 if (response.data.resultCode === 0) {
                     dispatch(updateStatusAC(status))
+                }
+            })
+    }
+}
+export const savePhoto = (status: string) => {
+    debugger
+    return (dispatch:  Dispatch<any>) => {
+        profileAPI.updatePhotos(status)
+            .then((response: AxiosResponse<any>) => {
+                debugger
+                if (response.data.resultCode === 0) {
+                    debugger
+                    dispatch(SavePhotoAC(response.data.data.photos))
                 }
             })
     }

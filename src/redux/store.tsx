@@ -10,7 +10,6 @@ export type PostsTypes = {
     id: string
     message: string
     likekounts: number
-
 }
 
 

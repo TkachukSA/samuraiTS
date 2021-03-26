@@ -3,7 +3,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux'
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter} from "react-router-dom";
 import store from "./redux/redux.store";
 import App from "./App";
 
@@ -11,11 +11,11 @@ const rerenderEntireTree = () => {
 
     ReactDOM.render(
       
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <App/>
             </Provider>,
-        </BrowserRouter>,
+        </HashRouter>,
         document.getElementById('root'));
 }
 
