@@ -25,7 +25,7 @@ export const userApi = {
         return instance.post(`follow/${id}`)
 
     },
-    getProfile(userId: number) {
+    getProfile(userId: string | undefined) {
         console.warn('Obsolete method')
         return profileAPI.getProfile(userId)
     }
@@ -33,7 +33,7 @@ export const userApi = {
 }
 
 export const profileAPI = {
-    getProfile(userId: number) {
+    getProfile(userId: string | undefined) {
         return instance.get(`profile/` + userId)
     },
     getStatus(userId: number) {
@@ -41,6 +41,9 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status: status},);
+    },
+    saveProfile(profile: any) {
+        return instance.put(`profile`, profile,);
     },
     updatePhotos(image: string) {
         const formData = new FormData()

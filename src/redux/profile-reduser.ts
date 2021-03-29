@@ -6,6 +6,8 @@ import {profileAPI, userApi} from "../api/api";
 import {AxiosResponse} from "axios";
 import {Dispatch} from "redux";
 import {setAuthUserData} from "./auth-reduser";
+import {appStateType, StoreReduxType} from "./redux.store";
+import {FormDataType} from "../components/profile/ProfileInfo/ProfileDataForm";
 
 
 export type setUsersProfileType = {
@@ -41,7 +43,6 @@ export type newProfileType = {
         vk: string | null
         twitter: string | null
         instagram: string | null
-
         youtube: string | null
         github: string | null
         mainLink: string | null
@@ -49,7 +50,7 @@ export type newProfileType = {
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
-    userId: number,
+    userId: string,
     photos: {
         small: string
         large: string
@@ -95,8 +96,8 @@ const profileReducer = (state: newProfilePageType = initialState, action: Action
         case "UPDATE_STATUS":
             return {...state, status: action.status}
 
-        case "UPDATE_PHOTO":{
-          return   {...state, profile:{...state.profile, ...action.data}}
+        case "UPDATE_PHOTO": {
+            return {...state, profile: {...state.profile, ...action.data}}
         }
         default:
             return state
@@ -122,16 +123,15 @@ export const updateStatusAC = (status: string): updateStatusActionType => ({
 })
 export const SavePhotoAC = (data: any) => ({
     type: 'UPDATE_PHOTO', data
-}as const)
-
+} as const)
 
 
 export default profileReducer
 
 
-export const getUserProfile = (userId: string) => {
+export const getUserProfile = (userId: string | undefined) => {
     return (dispatch: (action: ActionPageType) => ActionPageType) => {
-        userApi.getProfile(+userId)
+        userApi.getProfile(userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setUsersProfile(response.data))
             })
@@ -158,14 +158,35 @@ export const updateStatus = (status: string) => {
     }
 }
 export const savePhoto = (status: string) => {
-    debugger
-    return (dispatch:  Dispatch<any>) => {
+    return (dispatch: Dispatch<any>) => {
         profileAPI.updatePhotos(status)
             .then((response: AxiosResponse<any>) => {
                 debugger
                 if (response.data.resultCode === 0) {
                     debugger
                     dispatch(SavePhotoAC(response.data.data.photos))
+                }
+            })
+    }
+}
+export const saveProfile = (profile: FormDataType
+) => {
+    debugger
+    return (dispatch: Dispatch<any>, getState: () => appStateType) => {
+        const state = getState()
+        const apiModel = {
+            lookingForAJob: profile.lookingForAJob,
+            lookingForAJobDescription: state.profilePage.profile?.lookingForAJobDescription === ''
+                ? 'news'
+                : state.profilePage.profile?.lookingForAJobDescription,
+            fullName: profile.fullName,
+            aboutMe: profile.aboutMe,
+        }
+        profileAPI.saveProfile(apiModel)
+            .then((response: AxiosResponse<any>) => {
+                if (response.data.resultCode === 0) {
+                    debugger
+                    dispatch(getUserProfile(state.profilePage.profile?.userId))
                 }
             })
     }
