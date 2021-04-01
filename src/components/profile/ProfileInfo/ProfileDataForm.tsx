@@ -4,7 +4,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "../../../utils/validators/validators";
 import {Input} from "../../common/formsControl/FormsControl";
 
-export type FormDataType={
+export type FormDataType = {
     fullName: string
     aboutMe: string
     lookingForAJob: boolean
@@ -15,8 +15,8 @@ type test = {
 }
 
 const ProfileDataForm: React.FC<InjectedFormProps<FormDataType, test> & test> = ({
-    profile, handleSubmit,initialValues
-                                                                                         }) => {
+                                                                                     profile, handleSubmit, initialValues
+                                                                                 }) => {
 
     return <form onSubmit={handleSubmit}>
         <div>
@@ -25,12 +25,12 @@ const ProfileDataForm: React.FC<InjectedFormProps<FormDataType, test> & test> = 
 
         <div>
             <b>full name</b>{initialValues.fullName}
-            <Field placeholder={'email'}  name={'fullName'} component={Input}/>
+            <Field placeholder={'email'} name={'fullName'} component={Input}/>
         </div>
         <div>
             <b>about me</b> {initialValues.aboutMe}
 
-            <Field placeholder={'email'}  name={'aboutMe'} component={Input}/>
+            <Field placeholder={'email'} name={'aboutMe'} component={Input}/>
         </div>
         <div>
             <b>looking For a Job</b>{initialValues.lookingForAJob}
@@ -43,4 +43,4 @@ const ProfileDataForm: React.FC<InjectedFormProps<FormDataType, test> & test> = 
 
 export default ProfileDataForm
 
-export const ProfilReduxForm = reduxForm<FormDataType,test>({form: 'profile'})(ProfileDataForm)
+export const ProfilReduxForm = reduxForm<FormDataType, test>({form: 'profile'})(ProfileDataForm)

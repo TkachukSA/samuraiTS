@@ -43,7 +43,7 @@ const Profileinfo = (props: Profileinfotype) => {
                 {props.isOwner && <input type={'file'} onChange={onMinePhotoSelected}/>}
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 {editmode
-                    ? <ProfilReduxForm initialValues={props.profile}onSubmit={onSubmit}/>
+                    ? <ProfilReduxForm initialValues={props.profile} onSubmit={onSubmit}/>
                     : <ProfileData isOwner={props.isOwner}
                                    profile={props.profile}
                                    goToEditmode={() => setEditMode(true)}/>}
@@ -71,7 +71,7 @@ const ProfileData: React.FC<{ profile: newProfileType, isOwner: boolean, goToEdi
             <b>about me</b><span style={{'paddingLeft': '10px'}}>{profile.aboutMe}</span>
         </div>
         <div>
-            <b>looking For a Job</b><span style={{'paddingLeft': '10px'}}>{profile.lookingForAJob? 'yes' : 'no'}</span>
+            <b>looking For a Job</b><span style={{'paddingLeft': '10px'}}>{profile.lookingForAJob ? 'yes' : 'no'}</span>
         </div>
         <div>
             <b>contacts</b>{contacts}

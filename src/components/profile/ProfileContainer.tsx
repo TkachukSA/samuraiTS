@@ -25,8 +25,8 @@ type mapDispathToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
-    savePhoto:(photo:any)=>void
-    saveProfile:(photo:any)=>void
+    savePhoto: (photo: any) => void
+    saveProfile: (photo: any) => void
 }
 type PathParamType = {
     userId: string
@@ -39,7 +39,7 @@ type PropsType = RouteComponentProps<PathParamType> & ProfilePropsType
 
 class ProfileContainer extends React.Component<PropsType> {
 
-    refreshPrrofile(){
+    refreshPrrofile() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.autorisedUserId
@@ -50,12 +50,13 @@ class ProfileContainer extends React.Component<PropsType> {
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
     }
+
     componentDidMount() {
-     this.refreshPrrofile()
+        this.refreshPrrofile()
     }
 
-    componentDidUpdate(prevProps:any) {
-        if (this.props.match.params.userId != prevProps.match.params.userId ) {
+    componentDidUpdate(prevProps: any) {
+        if (this.props.match.params.userId != prevProps.match.params.userId) {
             this.refreshPrrofile();
         }
     }
@@ -86,7 +87,13 @@ let mapStateToProps = (state: appStateType): mapStateToPropsType => {
 }
 
 export default compose<any>(connect<mapStateToPropsType, mapDispathToPropsType, {}, appStateType>
-(mapStateToProps, {getUserProfile, getStatus, updateStatus,savePhoto,saveProfile}), withAuthRedirect, withRouter)(ProfileContainer)
+(mapStateToProps, {
+    getUserProfile,
+    getStatus,
+    updateStatus,
+    savePhoto,
+    saveProfile
+}), withAuthRedirect, withRouter)(ProfileContainer)
 
 /*
 
