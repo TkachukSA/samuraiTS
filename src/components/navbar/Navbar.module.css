@@ -2,11 +2,12 @@
 .nav {
   grid-area: n;
   background-color: #303436;
-  padding: 20px;
+  padding: 30px;
 
 }
 /*// уберает подчеркивание ссылки*/
 .item a {
+
   color: white;
   text-decoration: none;
 }
@@ -14,4 +15,8 @@
 /*//цвет активной ссылки */
 .item a.activeClassLink {
   color: gold;
+}
+.nav div{
+  padding-bottom: 10px;
+  font-size: 15px;
 }

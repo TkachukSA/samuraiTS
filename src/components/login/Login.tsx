@@ -15,11 +15,11 @@ type FormDataType = {
     rememberMe: boolean
     captcha: string | null | undefined
 }
-type test = {
+type CapthaType = {
     captcha?: string | null | undefined
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType, test> & test> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType, CapthaType> & CapthaType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -54,7 +54,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType, test> & test> = (props
 
 }
 
-const LoginReduxForm = reduxForm<FormDataType, test>({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType, CapthaType>({form: 'login'})(LoginForm)
 
 
 function Login(props: mapDispathToPropsType & mapStateToPropsType) {

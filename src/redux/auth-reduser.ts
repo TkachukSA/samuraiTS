@@ -45,7 +45,9 @@ export const getCaphaTC = () => {
         securityAPI.getCaptha()
             .then((response) => {
                 dispatch(getCapthaUrlAC(response.data.url))
-            })
+            }).catch(() => {
+
+        })
     }
 }
 export const getAuthUserData = () => {
@@ -60,7 +62,9 @@ export const getAuthUserData = () => {
                     let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some error'
                     dispatch(stopSubmit("login", {_error: message}))
                 }
-            })
+            }).catch(() => {
+
+        })
     }
 }
 
@@ -77,7 +81,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, ca
                     let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some error'
                     dispatch(stopSubmit("login", {_error: message}))
                 }
-            })
+            }).catch(() => {
+
+        })
     }
 }
 
@@ -88,6 +94,8 @@ export const logoutTC = () => {
                 if (response.data.resultCode === 0) {
                     dispatch(setAuthUserData({login: null, id: null, email: null, isAuth: false}))
                 }
-            })
+            }).catch(() => {
+
+        })
     }
 }

@@ -21,7 +21,7 @@ const appReducer = (state: appReducerType = initialState, action: initializedSuc
 
     switch (action.type) {
         case "INITIALIZED_SUCCESS": {
-            return {...state, initialized: true }
+            return {...state, initialized: true}
         }
     }
     return state
@@ -37,5 +37,7 @@ export const initializedApp = () => (dispatch: Dispatch<any>) => {
     Promise.all([promise])
         .then(() => {
             dispatch(initializedSucsessAction())
-        })
+        }).catch((rej) => {
+        console.log(rej)
+    })
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import {newProfileType} from "../../../redux/profile-reduser";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {required} from "../../../utils/validators/validators";
 import {Input} from "../../common/formsControl/FormsControl";
 
 export type FormDataType = {

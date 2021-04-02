@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import ss from '../assets/images/user.png'
 
 
 const instance = axios.create({
@@ -62,7 +61,6 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
     login(email: string, password: string, rememberMe: boolean, captcha: null | string | undefined) {
-        debugger
         return instance.post(`/auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {

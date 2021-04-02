@@ -134,7 +134,9 @@ export const getUserProfile = (userId: string | undefined) => {
         userApi.getProfile(userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setUsersProfile(response.data))
-            })
+            }).catch(()=>{
+
+        })
     }
 }
 
@@ -143,7 +145,9 @@ export const getStatus = (userId: string) => {
         profileAPI.getStatus(+userId)
             .then((response: AxiosResponse<any>) => {
                 dispatch(setStatus(response.data))
-            })
+            }).catch(()=>{
+
+        })
     }
 }
 
@@ -161,17 +165,16 @@ export const savePhoto = (status: string) => {
     return (dispatch: Dispatch<any>) => {
         profileAPI.updatePhotos(status)
             .then((response: AxiosResponse<any>) => {
-                debugger
                 if (response.data.resultCode === 0) {
-                    debugger
                     dispatch(SavePhotoAC(response.data.data.photos))
                 }
-            })
+            }).catch(()=>{
+
+        })
     }
 }
 export const saveProfile = (profile: FormDataType
 ) => {
-    debugger
     return (dispatch: Dispatch<any>, getState: () => appStateType) => {
         const state = getState()
         const apiModel = {
@@ -188,7 +191,9 @@ export const saveProfile = (profile: FormDataType
                     debugger
                     dispatch(getUserProfile(state.profilePage.profile?.userId))
                 }
-            })
+            }).catch(()=>{
+
+        })
     }
 }
 

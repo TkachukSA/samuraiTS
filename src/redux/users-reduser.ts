@@ -3,28 +3,25 @@ import {userApi} from "../api/api";
 import {Dispatch} from "redux";
 
 
-export type UsersPageType={
-    users:Array<UsersType>
+export type UsersPageType = {
+    users: Array<UsersType>
     pageSize: number
     totalCount: number
     currentPage: number
     isFetching: boolean
-    folowingInProgress:Array<string>
+    folowingInProgress: Array<string>
 }
-export type folowActionType = { type: "FOLLOW", userid: string  }
+export type folowActionType = { type: "FOLLOW", userid: string }
 export type unFolowActionType = { type: "UN-FOLLOW", userid: string }
 export type setUsersActionType = { type: "SETUSERS", users: Array<UsersType> }
 
-export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number}
+export type setCurrentPageActionType = { type: "SET-CURRENT-PAGE", currentPage: number }
 export type setTotalUsersCountActionType = { type: "SET-TOTAL-USERS-COUNT", totalCount: number }
 export type toglIsFetchingActionType = { type: "TOGL-IDFETCHING", isFetching: boolean }
-export type toglFolowingInProgressActionType = { type: "TOGL-IS-FOLLOWING-PROGRESS", isFetching: boolean , userId: string}
+export type toglFolowingInProgressActionType = { type: "TOGL-IS-FOLLOWING-PROGRESS", isFetching: boolean, userId: string }
 
 
-
-
-
-export type ActionUserType= folowActionType
+export type ActionUserType = folowActionType
     | unFolowActionType
     | setUsersActionType
     | setCurrentPageActionType
@@ -33,8 +30,7 @@ export type ActionUserType= folowActionType
     | toglFolowingInProgressActionType
 
 
-
-let initialState: UsersPageType  = {
+let initialState: UsersPageType = {
     users: [],
     pageSize: 10,
     totalCount: 100,
@@ -44,7 +40,7 @@ let initialState: UsersPageType  = {
 }
 
 
-const usersReducer = (state: UsersPageType  = initialState, action: ActionUserType): UsersPageType => {
+const usersReducer = (state: UsersPageType = initialState, action: ActionUserType): UsersPageType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -64,26 +60,28 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
                         return {...u, followed: false}
                     }
                     return u
-                })}
+                })
+            }
         case "SETUSERS": {
-            return {...state, users: action.users }
-    }
-        case "SET-CURRENT-PAGE":{
+            return {...state, users: action.users}
+        }
+        case "SET-CURRENT-PAGE": {
             return {...state, currentPage: action.currentPage}
         }
-        case "SET-TOTAL-USERS-COUNT":{
+        case "SET-TOTAL-USERS-COUNT": {
             return {...state, totalCount: action.totalCount}
         }
-        case "TOGL-IDFETCHING":{
+        case "TOGL-IDFETCHING": {
             return {...state, isFetching: action.isFetching}
         }
-        case "TOGL-IS-FOLLOWING-PROGRESS":{
+        case "TOGL-IS-FOLLOWING-PROGRESS": {
             return {
                 ...state,
                 folowingInProgress: action.isFetching
                     ? [...state.folowingInProgress, action.userId]
                     : state.folowingInProgress.filter(id => id != action.userId)
-            }}
+            }
+        }
 
     }
 
@@ -92,10 +90,9 @@ const usersReducer = (state: UsersPageType  = initialState, action: ActionUserTy
 }
 
 
-
 export default usersReducer
 
-export const follow = (userid: string):folowActionType => ({
+export const follow = (userid: string): folowActionType => ({
     type: "FOLLOW",
     userid: userid
 })
@@ -125,8 +122,8 @@ export const toglFolowingInProgress = (isFetching: boolean, userId: string): tog
 })
 
 
-export const getUsersThunk=(currentPage: number, pageSize: number)=>{
-    return (dispatch: Dispatch)=>{
+export const getUsersThunk = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
         dispatch(toglIsFetching(true))
         dispatch(setCurrentPage(currentPage))
         userApi.getUsers(currentPage, pageSize)
@@ -135,31 +132,39 @@ export const getUsersThunk=(currentPage: number, pageSize: number)=>{
                 dispatch(setUsers(response.data.items))
                 dispatch(setTotalUsersCount(response.data.totalCount))
 
-            })
+            }).catch(() => {
+
+        })
 
     }
 }
-export const unFolluwThunk=(userId: string)=>{
+export const unFolluwThunk = (userId: string) => {
 
-    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
-        dispatch(toglFolowingInProgress(true,userId))
+    return (dispatch: (action: ActionUserType) => ActionUserType) => {
+        dispatch(toglFolowingInProgress(true, userId))
         userApi.getUnFollow(+userId)
             .then((response) => {
                 if (response.data.resultCode === 0) {
-                    dispatch(unFolow(userId))}
-                dispatch(toglFolowingInProgress(false,userId))
-            })
+                    dispatch(unFolow(userId))
+                }
+                dispatch(toglFolowingInProgress(false, userId))
+            }).catch(() => {
+
+        })
 
     }
 }
-export const FolluwThunk=(userId: string)=>{
-    return (dispatch: (action: ActionUserType)=> ActionUserType )=>{
-        dispatch(toglFolowingInProgress(true,userId))
+export const FolluwThunk = (userId: string) => {
+    return (dispatch: (action: ActionUserType) => ActionUserType) => {
+        dispatch(toglFolowingInProgress(true, userId))
         userApi.getFollow(+userId)
             .then((response) => {
                 if (response.data.resultCode === 0) {
-                    dispatch(follow(userId))}
-                dispatch(toglFolowingInProgress(false,userId))
-            })
+                    dispatch(follow(userId))
+                }
+                dispatch(toglFolowingInProgress(false, userId))
+            }).catch(() => {
+
+        })
     }
 }
