@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/samuraiTS/static/css/main.ffbfdd9e.chunk.css",
-    "main.js": "/samuraiTS/static/js/main.a9af9e9b.chunk.js",
-    "main.js.map": "/samuraiTS/static/js/main.a9af9e9b.chunk.js.map",
+    "main.css": "/samuraiTS/static/css/main.644f6e8c.chunk.css",
+    "main.js": "/samuraiTS/static/js/main.4b9646cc.chunk.js",
+    "main.js.map": "/samuraiTS/static/js/main.4b9646cc.chunk.js.map",
     "runtime-main.js": "/samuraiTS/static/js/runtime-main.9afb01e8.js",
     "runtime-main.js.map": "/samuraiTS/static/js/runtime-main.9afb01e8.js.map",
     "static/js/2.2348e61c.chunk.js": "/samuraiTS/static/js/2.2348e61c.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/3.df5b747c.chunk.js.map": "/samuraiTS/static/js/3.df5b747c.chunk.js.map",
     "index.html": "/samuraiTS/index.html",
     "static/css/3.c3d91c1c.chunk.css.map": "/samuraiTS/static/css/3.c3d91c1c.chunk.css.map",
-    "static/css/main.ffbfdd9e.chunk.css.map": "/samuraiTS/static/css/main.ffbfdd9e.chunk.css.map",
+    "static/css/main.644f6e8c.chunk.css.map": "/samuraiTS/static/css/main.644f6e8c.chunk.css.map",
     "static/js/2.2348e61c.chunk.js.LICENSE.txt": "/samuraiTS/static/js/2.2348e61c.chunk.js.LICENSE.txt",
     "static/media/loader.a1a99674.gif": "/samuraiTS/static/media/loader.a1a99674.gif",
     "static/media/user.96e310a6.png": "/samuraiTS/static/media/user.96e310a6.png"
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.9afb01e8.js",
     "static/js/2.2348e61c.chunk.js",
-    "static/css/main.ffbfdd9e.chunk.css",
-    "static/js/main.a9af9e9b.chunk.js"
+    "static/css/main.644f6e8c.chunk.css",
+    "static/js/main.4b9646cc.chunk.js"
   ]
 }
