@@ -117,12 +117,9 @@ test('SETUSERS', () => {
         },
 
     }]
-
-
     const action = setUsers(newState)
     const endState = usersReducer(startState, action)
     expect(startState.users.length).toBe(1)
-
     expect(endState.users[0].name).toBe('Frank')
     /*    expect(endState.users[1].name).toBe('SA')*/
     expect(endState.users.length).toBe(1)
@@ -132,48 +129,12 @@ test('SETUSERS', () => {
 test('SET-CURRENT-PAGE', () => {
 
     const startState = {
-        users: [{
-            name: 'SA',
-            id: "2502",
-            followed: true,
-            uniqueUrlName: null,
-            status: "is active",
-            photos: {
-                small: "string",
-                large: "string"
-            },
-            location: {
-                contry: "UAE",
-                city: "DUMAI"
-            },
-        }],
-
         pageSize: 1,
         currentPage: 1,
         isFetching: true,
-        totalCount: 100
-    }
-    const newState = {
-        users: [{
-            name: 'NN',
-            id: "9911",
-            followed: false,
-            uniqueUrlName: null,
-            status: "is active",
-            photos: {
-                small: "string",
-                large: "string"
-            },
-            location: {
-                contry: "USA",
-                city: "LA"
-            },
-        }],
-
-        pageSize: 1,
-        currentPage: 6,
-        isFetching: true,
-        totalCount: 100
+        totalCount: 100,
+        users: [],
+        folowingInProgress: []
     }
 
 
@@ -189,48 +150,12 @@ test('SET-CURRENT-PAGE', () => {
 test('SET-TOTAL-USERS-COUNT', () => {
 
     const startState = {
-        users: [{
-            name: 'SA',
-            id: "2502",
-            followed: true,
-            uniqueUrlName: null,
-            status: "is active",
-            photos: {
-                small: "string",
-                large: "string"
-            },
-            location: {
-                contry: "UAE",
-                city: "DUMAI"
-            },
-        }],
-
         pageSize: 1,
         currentPage: 1,
         isFetching: true,
-        totalCount: 100
-    }
-    const newState = {
-        users: [{
-            name: 'NN',
-            id: "9911",
-            followed: false,
-            uniqueUrlName: null,
-            status: "is active",
-            photos: {
-                small: "string",
-                large: "string"
-            },
-            location: {
-                contry: "USA",
-                city: "LA"
-            },
-        }],
-
-        pageSize: 1,
-        currentPage: 6,
-        isFetching: true,
-        totalCount: 100
+        totalCount: 100,
+        users: [],
+        folowingInProgress: []
     }
 
 
@@ -247,26 +172,12 @@ test('SET-TOTAL-USERS-COUNT', () => {
 test('TOGL-IDFETCHING', () => {
 
     const startState = {
-        users: [{
-            name: 'SA',
-            id: "2502",
-            followed: true,
-            uniqueUrlName: null,
-            status: "is active",
-            photos: {
-                small: "string",
-                large: "string"
-            },
-            location: {
-                contry: "UAE",
-                city: "DUMAI"
-            },
-        }],
-
         pageSize: 1,
         currentPage: 1,
         isFetching: true,
-        totalCount: 100
+        totalCount: 100,
+        users: [],
+        folowingInProgress: []
     }
 
 
@@ -274,8 +185,6 @@ test('TOGL-IDFETCHING', () => {
     const endState = usersReducer(startState, action)
 
     expect(startState.isFetching).toBe(true)
-
-
     expect(endState.isFetching).toBe(false)
 
 
